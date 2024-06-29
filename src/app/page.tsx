@@ -1,9 +1,10 @@
-import Image from 'next/image';
+import Examples from '@/components/common/Examples';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="container">
       <div>HomePage</div>
+      <Examples />
     </main>
   );
 }
