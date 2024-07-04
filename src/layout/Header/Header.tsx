@@ -1,5 +1,6 @@
 import Logo from '@/components/ui/Logo';
 import Phone from '@/components/ui/Phone';
+import OpenBurgerMenuBtn from '@/components/common/OpenBurgerMenuBtn';
 
 const Header: React.FC = () => {
   return (
@@ -7,9 +8,7 @@ const Header: React.FC = () => {
       <div className="container py-5 flex items-center justify-between">
         <Logo />
         <Phone />
-        <div className="px-2 py-4 bg-white/20 inline-block text-xs rounded-lg">
-          Menu
-        </div>
+        <OpenBurgerMenuBtn />
       </div>
     </header>
   );

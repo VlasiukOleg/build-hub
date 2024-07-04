@@ -19,7 +19,7 @@ const config: Config = {
         },
       },
       colors: {
-        bg: '#040404',
+        bgBlack: '#040404',
         white: '#EFEDE8',
         accent: '#E6533C',
         lightAccent: '#EF8964',
