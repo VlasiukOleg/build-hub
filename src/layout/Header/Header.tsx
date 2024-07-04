@@ -1,6 +1,7 @@
 import Logo from '@/components/ui/Logo';
 import Phone from '@/components/ui/Phone';
 import OpenBurgerMenuBtn from '@/components/common/OpenBurgerMenuBtn';
+import OpenDesktopMenuBtn from '@/components/common/OpenDesktopMenuBtn';
 
 const Header: React.FC = () => {
   return (
@@ -8,7 +9,12 @@ const Header: React.FC = () => {
       <div className="container py-5 flex items-center justify-between">
         <Logo />
         <Phone />
-        <OpenBurgerMenuBtn />
+        <div className="xl:hidden">
+          <OpenBurgerMenuBtn />
+        </div>
+        <div className="hidden xl:block">
+          <OpenDesktopMenuBtn />
+        </div>
       </div>
     </header>
   );

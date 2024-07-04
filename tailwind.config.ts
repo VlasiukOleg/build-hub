@@ -8,6 +8,13 @@ const config: Config = {
     './src/layout/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      sm: '480px',
+      smOnly: { max: '767px' },
+      md: '768px',
+      mdOnly: { max: '1279px' },
+      xl: '1280px',
+    },
     extend: {
       container: {
         center: true,
