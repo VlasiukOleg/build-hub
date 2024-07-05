@@ -1,8 +1,11 @@
+import clsx from 'clsx';
+
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
 import Header from '@/layout/Header';
+import Footer from '@/layout/Footer/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,9 +21,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={clsx(
+          inter.className,
+          'flex h-full min-h-screen flex-col overflow-x-hidden'
+        )}
+      >
         <Header />
-        {children}
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );
