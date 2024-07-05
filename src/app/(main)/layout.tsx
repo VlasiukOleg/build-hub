@@ -7,6 +7,8 @@ import './globals.css';
 import Header from '@/layout/Header';
 import Footer from '@/layout/Footer/Footer';
 
+import StoreProvider from './StoreProvider';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -27,9 +29,11 @@ export default function RootLayout({
           'flex h-full min-h-screen flex-col overflow-x-hidden'
         )}
       >
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <StoreProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );

@@ -1,7 +1,20 @@
-import Image from 'next/image';
+'use client';
 
-import Map from '../../../../public/images/kiev_district.png';
+import React, { useState } from 'react';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import clsx from 'clsx';
+
+const Modal = dynamic(() => import('@/components/ui/Modal'));
+
+import ButtonLink from '@/components/ui/ButtonLink';
+import Map from '../../../../public/images/kiev_district.png';
+
+import {
+  useAppSelector,
+  useAppDispatch,
+  useAppStore,
+} from '../../../redux/hooks';
 
 interface IStorageMapProps {}
 
@@ -13,12 +26,23 @@ const storages = [
 ];
 
 const StorageMap: React.FC<IStorageMapProps> = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedStore, setSelectedStore] = useState('');
+
+  const name = useAppSelector(state => state.delivery.deliveryType);
+  console.log(name);
+
+  const handleStorageClick = (location: string) => {
+    setIsOpen(true);
+    setSelectedStore(location);
+  };
+
   return (
-    <section className="py-5 md:py-10">
+    <section className="py-5 md:py-10 text-center">
       <h1 className="xl:text-2xl font-bold text-center mb-5 md:mb-10 md:text-lg">
         Оберіть найближчий до Вас склад завантаження
       </h1>
-      <div className="relative">
+      <div className="relative mb-5 md:mb-10">
         <Image
           src={Map}
           alt="map"
@@ -34,15 +58,30 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
                   storage.id === 1 && 'top-[34%] left-[42%]',
                   storage.id === 2 && 'top-[49%] left-[51%]',
                   storage.id === 3 && 'top-[41%] left-[21%]',
-                  storage.id === 4 && 'bottom-[38%] right-[18%]'
+                  storage.id === 4 && 'bottom-[38%] right-[18%]',
+                  selectedStore === storage.location &&
+                    'bg-white  border-orange-600 text-accent'
                 )}
               >
-                {storage.id}
+                <button onClick={() => handleStorageClick(storage.location)}>
+                  {storage.id}
+                </button>
               </li>
             ))}
           </ul>
         </div>
       </div>
+      {selectedStore && <p>Склад: {selectedStore}</p>}
+
+      <ButtonLink href="examples" variant="main-icon">
+        ПРОДОВЖИТИ
+      </ButtonLink>
+      <Modal isOpen={isOpen} close={() => setIsOpen(false)}>
+        <div className="bg-white p-5">
+          <p className="text-black">{selectedStore}</p>
+          <p className="text-gray-600 font-semibold">Виберіть тип доставки</p>
+        </div>
+      </Modal>
     </section>
   );
 };
