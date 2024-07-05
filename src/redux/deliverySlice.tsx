@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const deliverySlice = createSlice({
   name: 'delivery',
   initialState: {
-    deliveryType: 'Test',
+    deliveryType: '',
     deliveryStorage: '',
     deliveryPrice: 0,
     activeStore: null,

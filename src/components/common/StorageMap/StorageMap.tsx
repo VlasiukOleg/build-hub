@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import clsx from 'clsx';
@@ -8,13 +9,12 @@ import clsx from 'clsx';
 const Modal = dynamic(() => import('@/components/ui/Modal'));
 
 import ButtonLink from '@/components/ui/ButtonLink';
+import DeliveryTypeChoice from '@/components/ui/DeliveryTypeChoice/DeliveryTypeChoice';
+
 import Map from '../../../../public/images/kiev_district.png';
 
-import {
-  useAppSelector,
-  useAppDispatch,
-  useAppStore,
-} from '../../../redux/hooks';
+import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
+import { setDeliveryType, setDeliveryStorage } from '@/redux/deliverySlice';
 
 interface IStorageMapProps {}
 
@@ -29,12 +29,23 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedStore, setSelectedStore] = useState('');
 
-  const name = useAppSelector(state => state.delivery.deliveryType);
-  console.log(name);
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const deliveryType = useAppSelector(state => state.delivery.deliveryType);
+  const deliveryStorage = useAppSelector(
+    state => state.delivery.deliveryStorage
+  );
 
   const handleStorageClick = (location: string) => {
     setIsOpen(true);
     setSelectedStore(location);
+  };
+
+  const handleDeliveryType = (deliveryType: string) => {
+    dispatch(setDeliveryStorage(selectedStore));
+    dispatch(setDeliveryType(deliveryType));
+    setIsOpen(false);
   };
 
   return (
@@ -71,16 +82,30 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
           </ul>
         </div>
       </div>
-      {selectedStore && <p>Склад: {selectedStore}</p>}
+      {deliveryStorage && (
+        <ul className="flex flex-col gap-2 text-sm mb-5 md:text-base xl:text-xl">
+          <li>Склад: {deliveryStorage}</li>
+          <li>
+            Тип доставки:{' '}
+            {deliveryType === 'delivery'
+              ? 'Доставка автотранспортом'
+              : 'Cамовивіз зі складу'}
+          </li>
+        </ul>
+      )}
 
-      <ButtonLink href="examples" variant="main-icon">
+      <ButtonLink
+        variant="main"
+        onClick={() => router.push('/examples')}
+        disabled={deliveryType === ''}
+      >
         ПРОДОВЖИТИ
       </ButtonLink>
       <Modal isOpen={isOpen} close={() => setIsOpen(false)}>
-        <div className="bg-white p-5">
-          <p className="text-black">{selectedStore}</p>
-          <p className="text-gray-600 font-semibold">Виберіть тип доставки</p>
-        </div>
+        <DeliveryTypeChoice
+          selectedStore={selectedStore}
+          handleDeliveryType={handleDeliveryType}
+        />
       </Modal>
     </section>
   );
