@@ -15,7 +15,7 @@ const Modal: React.FC<IModalProps> = ({ isOpen, close, children, variant }) => {
       <Dialog open={isOpen} onClose={close} className="relative z-50">
         <DialogBackdrop
           transition
-          className="fixed inset-0 bg-black/30 duration-300 ease-out data-[closed]:opacity-0"
+          className="fixed inset-0 bg-black/50 duration-300 ease-out data-[closed]:opacity-0"
         />
         <div className="fixed inset-0 flex w-screen items-center justify-center">
           <DialogPanel

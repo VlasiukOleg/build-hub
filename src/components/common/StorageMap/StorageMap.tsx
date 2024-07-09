@@ -7,7 +7,6 @@ import dynamic from 'next/dynamic';
 import clsx from 'clsx';
 
 const Modal = dynamic(() => import('@/components/ui/Modal'));
-
 import ButtonLink from '@/components/ui/ButtonLink';
 import DeliveryTypeChoice from '@/components/ui/DeliveryTypeChoice/DeliveryTypeChoice';
 
@@ -70,8 +69,8 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
                   storage.id === 2 && 'top-[49%] left-[51%]',
                   storage.id === 3 && 'top-[41%] left-[21%]',
                   storage.id === 4 && 'bottom-[38%] right-[18%]',
-                  selectedStore === storage.location &&
-                    'bg-white  border-orange-600 text-accent'
+                  deliveryStorage === storage.location &&
+                    'bg-white border-orange-700 text-accent'
                 )}
               >
                 <button onClick={() => handleStorageClick(storage.location)}>
@@ -96,7 +95,7 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
 
       <ButtonLink
         variant="main"
-        onClick={() => router.push('/examples')}
+        onClick={() => router.push('/catalog')}
         disabled={deliveryType === ''}
       >
         ПРОДОВЖИТИ

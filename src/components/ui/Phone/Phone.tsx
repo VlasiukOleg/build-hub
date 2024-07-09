@@ -1,9 +1,9 @@
-import PhoneIcon from '@/../../public/icons/phone.svg';
+import PhoneIcon from '@/../../public/icons/phone-color.svg';
 
 const Phone: React.FC = () => {
   return (
     <div className="flex gap-1 items-center">
-      <PhoneIcon width={12} height={12} fill="white" className="md:size-4" />
+      <PhoneIcon width={18} height={18} fill="white" className="md:size-4" />
       <a href="tel:+380632790437" className="text-sm font-medium md:text-lg">
         063-279-04-37
       </a>

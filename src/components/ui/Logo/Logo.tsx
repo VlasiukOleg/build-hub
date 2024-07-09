@@ -9,9 +9,9 @@ const Logo: React.FC = () => {
         width={22}
         height={22}
         fill="white"
-        className="md:size-7 xl:fill-accent"
+        className="md:size-7 fill-accent"
       />
-      <div className="text-xl font-medium md:text-2xl xl:text-accent">
+      <div className="text-xl font-medium md:text-2xl text-accent">
         BudStock
       </div>
     </Link>
