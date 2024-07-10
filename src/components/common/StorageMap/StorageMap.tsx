@@ -10,7 +10,7 @@ const Modal = dynamic(() => import('@/components/ui/Modal'));
 import ButtonLink from '@/components/ui/ButtonLink';
 import DeliveryTypeChoice from '@/components/ui/DeliveryTypeChoice/DeliveryTypeChoice';
 
-import Map from '../../../../public/images/kiev_district.png';
+import Map from '@/../public/images/kiev_district.png';
 
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import { setDeliveryType, setDeliveryStorage } from '@/redux/deliverySlice';
@@ -64,13 +64,13 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
               <li
                 key={storage.id}
                 className={clsx(
-                  'bg-accent rounded-full  text-sm size-5 flex items-center justify-center absolute border-[1px] border-white md:size-7 md:text-base xl:size-9 xl:text-xl',
+                  'bg-white rounded-full text-accent  text-sm size-5 flex items-center justify-center absolute border-[1px] border-accent md:size-7 md:text-base xl:size-9 xl:text-xl',
                   storage.id === 1 && 'top-[34%] left-[42%]',
                   storage.id === 2 && 'top-[49%] left-[51%]',
                   storage.id === 3 && 'top-[41%] left-[21%]',
                   storage.id === 4 && 'bottom-[38%] right-[18%]',
                   deliveryStorage === storage.location &&
-                    'bg-white border-orange-700 text-accent'
+                    'bg-orange-700 border-white text-white'
                 )}
               >
                 <button onClick={() => handleStorageClick(storage.location)}>

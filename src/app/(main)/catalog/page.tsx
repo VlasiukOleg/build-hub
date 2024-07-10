@@ -1,6 +1,3 @@
-import Image from 'next/image';
-import Link from 'next/link';
-
 import CatalogCard from '@/components/ui/CatalogCard';
 
 import Shtukaturka from '../../../../public/images/shtukaturka-450x300.webp';

@@ -1,9 +1,9 @@
-import * as React from 'react';
+import DisclosureCategories from '@/components/ui/DisclosureCategories/';
 
 interface IPageProps {}
 
 const Page: React.FC<IPageProps> = () => {
-  return <div>PageMaterials</div>;
+  return <DisclosureCategories />;
 };
 
 export default Page;

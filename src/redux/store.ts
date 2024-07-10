@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { deliveryReducer } from './deliverySlice';
+import { materialsReducer } from './materialsSlice';
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       delivery: deliveryReducer,
+      categories: materialsReducer,
     },
   });
 };
