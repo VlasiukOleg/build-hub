@@ -1,21 +1,14 @@
 'use client';
 
-import Image from 'next/image';
-
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-} from '@headlessui/react';
+import { Disclosure, DisclosureButton } from '@headlessui/react';
 
 import DisclosureMaterialsPanel from '../DisclosureMaterialsPanel';
+import DisclosureMoving from '../DisclosureMoving';
 
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import { inputChangeQuantity, changeQuantity } from '@/redux/materialsSlice';
 
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import MovingIcon from '@/../public/icons/moving.svg';
-import Moving from '@/../public/images/moving.png';
 
 interface IDisclosureCategoriesProps {}
 
@@ -26,6 +19,10 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
 
   const totalPrice = materials.reduce((acc, value) => {
     return acc + value.price * value.quantity;
+  }, 0);
+
+  const totalWeight = materials.reduce((acc, value) => {
+    return acc + value.weight * value.quantity;
   }, 0);
 
   const handleInputChangeQuantity = (
@@ -90,15 +87,15 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
               >
                 <DisclosureButton className="group flex w-full items-center justify-between">
                   <div className="text-left flex gap-2 items-center">
-                    <div className="rounded-full bg-accent size-5 flex justify-center items-center text-xs">
+                    <div className="rounded-full bg-accent size-5 flex justify-center items-center text-xs md:size-6 md:text-sm xl:size-7 xl:text-base ">
                       {category.id}
                     </div>
-                    <span className="text-xs/6 text-left font-medium text-white group-data-[hover]:text-white/80">
+                    <span className="text-xs/6 text-left font-medium text-white  group-data-[hover]:text-white/80 md:text-base xl:text-xl">
                       {category.categoryTitle}
                     </span>
                   </div>
 
-                  <ChevronDownIcon className="size-5 fill-white/60 group-data-[hover]:fill-white/50 group-data-[open]:rotate-180" />
+                  <ChevronDownIcon className="size-5 fill-white/60 group-data-[hover]:fill-white/50 group-data-[open]:rotate-180 md:size-6 xl:size-7" />
                 </DisclosureButton>
                 {category.materials.map((material, matInd) => {
                   const { quantity, price } = material;
@@ -120,21 +117,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
               </Disclosure>
             );
           })}
-          <Disclosure as="div" className="p-6" defaultOpen={true}>
-            <DisclosureButton className="group flex w-full items-center justify-between">
-              <div className="text-left flex gap-2 items-center">
-                <Image src={Moving} width={20} height={20} />
-
-                <span className="text-xs/6 text-left font-medium text-white group-data-[hover]:text-white/80">
-                  Розвантаження
-                </span>
-              </div>
-              <ChevronDownIcon className="size-5 fill-white/60 group-data-[hover]:fill-white/50 group-data-[open]:rotate-180" />
-            </DisclosureButton>
-            <DisclosurePanel className="mt-2 text-sm/5 text-white/50">
-              If you're unhappy with your purchase, we'll refund you in full.
-            </DisclosurePanel>
-          </Disclosure>
+          <DisclosureMoving totalWeight={totalWeight} />
         </div>
       </div>
     </section>
