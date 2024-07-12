@@ -1,9 +1,12 @@
 'use client';
 
+import clsx from 'clsx';
+
 import { Disclosure, DisclosureButton } from '@headlessui/react';
 
 import DisclosureMaterialsPanel from '../DisclosureMaterialsPanel';
 import DisclosureMoving from '../DisclosureMoving';
+import OrderBar from '@/components/common/OrderBar';
 
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import { inputChangeQuantity, changeQuantity } from '@/redux/materialsSlice';
@@ -23,6 +26,10 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
 
   const totalWeight = materials.reduce((acc, value) => {
     return acc + value.weight * value.quantity;
+  }, 0);
+
+  const totalQuantity = materials.reduce((acc, value) => {
+    return acc + value.quantity;
   }, 0);
 
   const handleInputChangeQuantity = (
@@ -74,8 +81,14 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
   };
 
   return (
-    <section className="py-5">
+    <section className={clsx('pt-5 py-5', totalQuantity > 0 && 'pt-14')}>
       <div className="container">
+        <OrderBar
+          totalQuantity={totalQuantity}
+          totalWeight={totalWeight}
+          totalPrice={totalPrice}
+        />
+
         <div className="mx-auto w-full  divide-y divide-white/20 rounded-xl bg-white/10">
           {categories.map((category, catInd) => {
             return (

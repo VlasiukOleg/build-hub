@@ -70,7 +70,7 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
                   storage.id === 3 && 'top-[41%] left-[21%]',
                   storage.id === 4 && 'bottom-[38%] right-[18%]',
                   deliveryStorage === storage.location &&
-                    'bg-orange-700 border-white text-white'
+                    'bg-green-800 text-white'
                 )}
               >
                 <button onClick={() => handleStorageClick(storage.location)}>

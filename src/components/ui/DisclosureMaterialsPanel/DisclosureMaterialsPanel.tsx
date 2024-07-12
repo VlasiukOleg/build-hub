@@ -59,7 +59,7 @@ const DisclosureMaterialsPanel: React.FC<IDisclosureMaterialsPanelProps> = ({
             />
           </div>
           <div className="xl:w-[500px]">
-            <div className="text-sm md:text-base underline md:text-xl">
+            <div className="text-sm md:text-base underline xl:text-xl">
               {material.title}
             </div>
             <p className="text-[8px] md:text-xs xl:text-sm">

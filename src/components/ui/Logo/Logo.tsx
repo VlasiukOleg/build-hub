@@ -1,4 +1,4 @@
-import LogoIcon from '@/../../public/icons/kyrpich-wall.svg';
+import LogoIcon from '@/../../public/icons/kyrpich-wall-blue.svg';
 
 import Link from 'next/link';
 
@@ -11,9 +11,7 @@ const Logo: React.FC = () => {
         fill="white"
         className="md:size-7 fill-accent"
       />
-      <div className="text-xl font-medium md:text-2xl text-accent">
-        BudStock
-      </div>
+      <div className="text-xl font-medium md:text-2xl text-white">BudStock</div>
     </Link>
   );
 };

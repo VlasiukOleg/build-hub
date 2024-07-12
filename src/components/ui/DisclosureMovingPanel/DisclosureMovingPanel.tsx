@@ -115,7 +115,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
                 className="group relative flex cursor-pointer rounded-lg bg-white/5 py-2 px-3 text-white shadow-md transition focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white data-[checked]:bg-white/10"
               >
                 <div className="flex w-full items-center justify-between md:gap-3">
-                  <div className="text-xs/6 md:text-sm md:text-base">
+                  <div className="text-xs/6 md:text-sm xl:text-base">
                     <p className="font-semibold text-white">{building.name}</p>
                   </div>
                   <CheckCircleIcon className="size-6 fill-accent opacity-0 transition group-data-[checked]:opacity-100 xl:size-7" />

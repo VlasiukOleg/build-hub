@@ -6,7 +6,7 @@ import OpenDesktopMenuBtn from '@/components/common/OpenDesktopMenuBtn';
 const Header: React.FC = () => {
   return (
     <header className="border-b-[1px] border-accent">
-      <div className="container py-5 flex items-center justify-between">
+      <div className="container py-4 flex items-center justify-between">
         <Logo />
         <Phone />
         <div className="xl:hidden">
