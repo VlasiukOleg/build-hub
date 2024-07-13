@@ -15,7 +15,7 @@ const BurgerMenu: React.FunctionComponent<IBurgerMenuProps> = ({ close }) => {
           <Logo />
           <button
             onClick={close}
-            className="px-2 py-4 bg-white/20 inline-block text-xs rounded-lg"
+            className="px-2 py-3 bg-white/20 inline-block text-xs rounded-lg"
           >
             CLOSE
           </button>

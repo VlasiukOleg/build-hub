@@ -24,7 +24,7 @@ const OpenDesktopMenuBtn: React.FC<IOpenDesktopMenuBtnProps> = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={clsx(
-          'px-2 py-4 bg-white/20 inline-block rounded-lg relative z-10 text-accent',
+          'px-2 py-4 bg-white/20 inline-block rounded-lg relative z-10 text-accent ',
           isOpen && 'rounded-l-none pl-[3.5px]'
         )}
       >

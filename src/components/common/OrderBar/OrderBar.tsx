@@ -4,12 +4,17 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 
+import { useAppDispatch } from '@/redux/hooks';
+import { clearQuantity } from '@/redux/materialsSlice';
+import { toggleMovingPriceToOrder } from '@/redux/movingSlice';
+
 import WeightIcon from '@/../public/icons/weight.svg';
 import PriceIcon from '@/../public/icons/price.svg';
 import DeliveryIcon from '@/../public/icons/delivery-truck.svg';
 import MovingIcon from '@/../public/icons/moving.svg';
 
 import Cart from '@/../public/images/cart.png';
+import Remove from '@/../public/images/remove.png';
 
 interface IOrderBarProps {
   totalQuantity: number;
@@ -32,6 +37,8 @@ const OrderBar: React.FC<IOrderBarProps> = ({
 }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     function handleScroll() {
       setScrollPosition(window.scrollY);
@@ -42,6 +49,11 @@ const OrderBar: React.FC<IOrderBarProps> = ({
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const onClearOrder = () => {
+    dispatch(clearQuantity(0));
+    dispatch(toggleMovingPriceToOrder());
+  };
 
   return (
     <div
@@ -86,9 +98,19 @@ const OrderBar: React.FC<IOrderBarProps> = ({
             width={32}
             height={32}
             alt="іконка корзини"
-            className="sixe-7 md:size-9 xl:size-14"
+            className="size-8 md:size-9 xl:size-14"
           />
         </div>
+        <button>
+          <Image
+            src={Remove}
+            width={28}
+            height={28}
+            alt="іконка видалення"
+            className="size-7 md:size-8 xl:size-12"
+            onClick={onClearOrder}
+          />
+        </button>
       </div>
     </div>
   );
