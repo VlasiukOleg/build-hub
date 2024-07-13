@@ -72,12 +72,13 @@ const DisclosureDeliveryPanel: React.FC<IDisclosureDeliveryPanelProps> = ({
             : 'Доставка автотранспортом'}
         </span>
       </div>
-
-      <div className="md:flex md:gap-5 md:items-center xl:flex-col xl:items-start">
-        <div className="bg-white/5 text-center rounded-lg border-[1px] border-accent p-2 md:flex-[50%] xl:w-[50%]">
-          Ціна доставки: {deliveryPrice} грн.
+      {deliveryType === 'delivery' && (
+        <div className="md:flex md:gap-5 md:items-center xl:flex-col xl:items-start">
+          <div className="bg-white/5 text-center rounded-lg border-[1px] border-accent p-2 md:flex-[50%] xl:w-[50%]">
+            Ціна доставки: {deliveryPrice} грн.
+          </div>
         </div>
-      </div>
+      )}
     </DisclosurePanel>
   );
 };

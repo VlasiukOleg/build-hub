@@ -47,6 +47,9 @@ const DisclosureMovingPanel: React.FunctionComponent<
   const [distance, setDistance] = useState(20);
 
   const movingPrice = useAppSelector(state => state.moving.movingPrice);
+  const isMovingPriceAddToOrderBar = useAppSelector(
+    state => state.moving.isMovingPriceAddToOrder
+  );
   const dispatch = useAppDispatch();
 
   const handleFloorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,6 +57,10 @@ const DisclosureMovingPanel: React.FunctionComponent<
     if (/^\d*$/.test(value) && Number(value) <= 35) {
       setFloor(value);
     }
+  };
+
+  const onAddMovingToOrderBar = () => {
+    dispatch(toggleMovingPriceToOrder());
   };
 
   useEffect(() => {
@@ -142,7 +149,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
         </div>
       )}
 
-      <div className="md:flex md:gap-5 md:items-center xl:flex-col xl:items-start">
+      <div className="md:flex md:gap-5 md:items-center xl:flex-col xl:items-start mb-3 xl:mb-5">
         <Field className="mb-5 md:mb-0 md:flex-[50%] xl:w-[50%]">
           <Label className="text-sm/6 font-medium text-white/50 md:text-base xl:text-lg">
             Відстань заносу матеріалу -{' '}
@@ -165,6 +172,20 @@ const DisclosureMovingPanel: React.FunctionComponent<
         <div className="bg-white/5 text-center rounded-lg border-[1px] border-accent p-2 md:flex-[50%] xl:w-[50%]">
           Ціна розвантаження: {movingPrice} грн.
         </div>
+      </div>
+      <div className="text-center">
+        {' '}
+        <button
+          onClick={onAddMovingToOrderBar}
+          className={clsx(
+            'bg-green-800 text-center rounded-lg border-[1px] border-none text-white md:text-base p-2 md:flex-[50%] xl:w-[25%]',
+            isMovingPriceAddToOrderBar && 'bg-red-800'
+          )}
+        >
+          {isMovingPriceAddToOrderBar
+            ? 'Прибрати з замовлення'
+            : 'Додати до замовлення'}
+        </button>
       </div>
     </DisclosurePanel>
   );

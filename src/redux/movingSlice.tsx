@@ -10,7 +10,7 @@ const movingSlice = createSlice({
     setMovingCost(state, action) {
       state.movingPrice = action.payload;
     },
-    toggleMovingPriceToOrder(state, action) {
+    toggleMovingPriceToOrder(state) {
       state.isMovingPriceAddToOrder = !state.isMovingPriceAddToOrder;
     },
   },

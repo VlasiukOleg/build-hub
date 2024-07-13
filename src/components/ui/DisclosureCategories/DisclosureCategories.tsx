@@ -20,6 +20,12 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
   const dispatch = useAppDispatch();
   const categories = useAppSelector(state => state.categories);
   const materials = categories.flatMap(material => material.materials);
+  const deliveryPrice = useAppSelector(state => state.delivery.deliveryPrice);
+  const deliveryType = useAppSelector(state => state.delivery.deliveryType);
+  const movingPrice = useAppSelector(state => state.moving.movingPrice);
+  const isMovingAddToOrder = useAppSelector(
+    state => state.moving.isMovingPriceAddToOrder
+  );
 
   const totalPrice = materials.reduce((acc, value) => {
     return acc + value.price * value.quantity;
@@ -82,12 +88,16 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
   };
 
   return (
-    <section className={clsx('pt-5 py-5', totalQuantity > 0 && 'pt-14')}>
+    <section className={clsx('pt-5 py-5', totalQuantity > 0 && 'pt-[72px]')}>
       <div className="container">
         <OrderBar
           totalQuantity={totalQuantity}
           totalWeight={totalWeight}
           totalPrice={totalPrice}
+          deliveryPrice={deliveryPrice}
+          deliveryType={deliveryType}
+          movingPrice={movingPrice}
+          isMovingAddToOrder={isMovingAddToOrder}
         />
 
         <div className="mx-auto w-full  divide-y divide-white/20 rounded-xl bg-white/10">
