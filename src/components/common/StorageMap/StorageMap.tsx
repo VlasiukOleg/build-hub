@@ -56,7 +56,7 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
         <Image
           src={Map}
           alt="map"
-          sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw"
+          sizes="(max-width: 767px) 50vw, (max-width: 1279px) 50vw, 33vw"
         />
         <div className="">
           <ul className="flex gap-2">

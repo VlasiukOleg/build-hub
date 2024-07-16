@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 
 import { useAppDispatch } from '@/redux/hooks';
@@ -37,6 +38,7 @@ const OrderBar: React.FC<IOrderBarProps> = ({
 }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -92,7 +94,7 @@ const OrderBar: React.FC<IOrderBarProps> = ({
           <PriceIcon width={20} height={20} className="size-5 xl:size-7" />{' '}
           {totalPrice.toFixed(2)} грн.
         </div>
-        <div>
+        <button type="button" onClick={() => router.push('/order')}>
           <Image
             src={Cart}
             width={32}
@@ -100,7 +102,7 @@ const OrderBar: React.FC<IOrderBarProps> = ({
             alt="іконка корзини"
             className="size-8 md:size-9 xl:size-14"
           />
-        </div>
+        </button>
         <button>
           <Image
             src={Remove}
