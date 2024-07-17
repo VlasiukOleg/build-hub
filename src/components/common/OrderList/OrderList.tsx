@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useAppSelector } from '@/redux/hooks';
 
 import ButtonLink from '@/components/ui/ButtonLink';
+import OrderForm from '../OrderForm';
 
 interface IOrderListProps {}
 
@@ -42,77 +43,80 @@ const OrderList: React.FC<IOrderListProps> = ({}) => {
   return (
     <>
       {totalQuantity > 0 ? (
-        <>
-          <div className=" bg-white/10 rounded-xl py-2 mb-2 md:py-3">
-            <ul className="divide-y divide-white/20">
-              {filteredMaterialsByQuantity.map(material => (
-                <li
-                  key={material.id}
-                  className="p-2 flex items-center text-white/50 md:p-4"
-                >
-                  <div className="rounded-xl border-[1px] border-accent overflow-hidden mr-2 text-center inline-block md:size-[75px] md:mr-4">
-                    <Image
-                      src={material.image}
-                      alt={material.title}
-                      width={50}
-                      height={50}
-                      className="md:size-[75px]"
-                    />
-                  </div>
+        <div className="xl:flex xl:justify-between">
+          <div className="xl:w-[48%]">
+            <div className=" bg-white/10 rounded-xl py-2 mb-2 md:py-3">
+              <ul className="divide-y divide-white/20">
+                {filteredMaterialsByQuantity.map(material => (
+                  <li
+                    key={material.id}
+                    className="p-2 flex items-center text-white/50 md:p-4"
+                  >
+                    <div className="rounded-xl border-[1px] border-accent overflow-hidden mr-2 text-center inline-block md:size-[75px] md:mr-4">
+                      <Image
+                        src={material.image}
+                        alt={material.title}
+                        width={50}
+                        height={50}
+                        className="md:size-[75px]"
+                      />
+                    </div>
 
-                  <p className="text-xs w-[50%] md:text-base ">
-                    {' '}
-                    {material.title}
-                  </p>
-                  <p className="text-sm text-center w-[15%] md:text-lg">
-                    {material.quantity}
-                  </p>
-                  <div className="w-[25%] text-right">
-                    <p className="text-xs md:text-base">
-                      {material.price} грн.
+                    <p className="text-xs w-[50%] md:text-base ">
+                      {' '}
+                      {material.title}
                     </p>
-                    <p className="text-sm text-accent md:text-lg">
-                      {(material.quantity * material.price).toFixed(2)} грн.
+                    <p className="text-sm text-center w-[15%] md:text-lg">
+                      {material.quantity}
                     </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="text-white/50 text-xs/5 md:text-base">
-            Вага: {totalWeight} кг.
-          </div>
-          <div className="text-white/50 text-xs/5 md:text-base">
-            Склад: {deliveryStorage ? deliveryStorage : 'Не вибрано'}{' '}
-          </div>
-
-          <div className="text-white/50 text-xs/5 md:text-base">
-            Тип доставки:{' '}
-            {deliveryType
-              ? deliveryType === 'delivery'
-                ? 'Доставка автотранспотром'
-                : 'Самовивіз зі складу'
-              : 'Не вибрано'}
-          </div>
-          {deliveryType === 'delivery' && (
-            <div className="text-white/50 text-xs/5 md:text-base">
-              Доставка: {deliveryPrice} грн.
+                    <div className="w-[25%] text-right">
+                      <p className="text-xs md:text-base">
+                        {material.price} грн.
+                      </p>
+                      <p className="text-sm text-accent md:text-lg">
+                        {(material.quantity * material.price).toFixed(2)} грн.
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-          )}
-
-          {isMovingAddToOrder && (
             <div className="text-white/50 text-xs/5 md:text-base">
-              Розвантаження: {movingPrice} грн.
+              Вага: {totalWeight} кг.
             </div>
-          )}
+            <div className="text-white/50 text-xs/5 md:text-base">
+              Склад: {deliveryStorage ? deliveryStorage : 'Не вибрано'}{' '}
+            </div>
 
-          <div className="text-white/50 text-sm font-bold md:text-lg">
-            Всього до оплати:{' '}
-            <span className="text-accent">
-              {(movingPrice + deliveryPrice + totalPrice).toFixed(2)} грн.{' '}
-            </span>
+            <div className="text-white/50 text-xs/5 md:text-base">
+              Тип доставки:{' '}
+              {deliveryType
+                ? deliveryType === 'delivery'
+                  ? 'Доставка автотранспотром'
+                  : 'Самовивіз зі складу'
+                : 'Не вибрано'}
+            </div>
+            {deliveryType === 'delivery' && (
+              <div className="text-white/50 text-xs/5 md:text-base">
+                Доставка: {deliveryPrice} грн.
+              </div>
+            )}
+
+            {isMovingAddToOrder && (
+              <div className="text-white/50 text-xs/5 md:text-base">
+                Розвантаження: {movingPrice} грн.
+              </div>
+            )}
+
+            <div className="text-white/50 text-sm font-bold md:text-lg mb-4">
+              Всього до оплати:{' '}
+              <span className="text-accent">
+                {(movingPrice + deliveryPrice + totalPrice).toFixed(2)} грн.{' '}
+              </span>
+            </div>
           </div>
-        </>
+          <OrderForm />
+        </div>
       ) : (
         <div className="flex flex-col items-center gap-5 ">
           Не вибрано жодного товару{' '}
