@@ -52,25 +52,28 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
       <h1 className="xl:text-2xl font-bold text-center mb-5 md:mb-10 md:text-lg">
         Оберіть найближчий до Вас склад завантаження
       </h1>
-      <div className="relative mb-5 md:mb-10">
-        <Image
-          src={Map}
-          alt="map"
-          sizes="(max-width: 767px) 50vw, (max-width: 1279px) 50vw, 33vw"
-        />
+      <div className="relative mb-5 md:mb-10 xl:flex xl:items-center xl:justify-center">
+        <div className="xl:w-[1000px] ">
+          <Image src={Map} priority alt="map" />
+        </div>
+
         <div className="">
           <ul className="flex gap-2">
             {storages?.map(storage => (
               <li
                 key={storage.id}
                 className={clsx(
-                  'bg-white rounded-full text-accent  text-sm size-5 flex items-center justify-center absolute border-[1px] border-accent md:size-7 md:text-base xl:size-9 xl:text-xl',
-                  storage.id === 1 && 'top-[34%] left-[42%]',
-                  storage.id === 2 && 'top-[49%] left-[51%]',
-                  storage.id === 3 && 'top-[41%] left-[21%]',
-                  storage.id === 4 && 'bottom-[38%] right-[18%]',
+                  'bg-accent rounded-full text-white  text-sm size-5 flex items-center justify-center absolute border-[1px] border-white md:size-7 md:text-base xl:size-9 xl:text-xl',
+                  storage.id === 1 &&
+                    'top-[42%] left-[42%] xl:top-[42%] xl:left-[42%]',
+                  storage.id === 2 &&
+                    'top-[60%] left-[51%] xl:top-[60%] xl:left-[51%]',
+                  storage.id === 3 &&
+                    'top-[47%] left-[15%] xl:top-[47%] xl:left-[21%]',
+                  storage.id === 4 &&
+                    'bottom-[28%] right-[22%] xl:bottom-[28%] xl:right-[22%]',
                   deliveryStorage === storage.location &&
-                    'bg-green-800 text-white'
+                    'bg-white text-orange-500 border-orange-500 scale-[1.1] xl:border-[2px]'
                 )}
               >
                 <button onClick={() => handleStorageClick(storage.location)}>
