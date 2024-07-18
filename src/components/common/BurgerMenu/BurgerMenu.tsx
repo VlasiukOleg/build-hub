@@ -29,7 +29,7 @@ const BurgerMenu: React.FunctionComponent<IBurgerMenuProps> = ({ close }) => {
         </ul>
       </nav>
 
-      <div className="flex flex-col items-center py-5 gap-3">
+      <div className="flex flex-col items-center pb-12 gap-3">
         <Phone />
         <Email />
       </div>
