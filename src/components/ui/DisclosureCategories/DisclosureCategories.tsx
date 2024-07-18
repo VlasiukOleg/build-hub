@@ -99,6 +99,9 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
           movingPrice={movingPrice}
           isMovingAddToOrder={isMovingAddToOrder}
         />
+        <h1 className="font-unbounded xl:text-2xl font-bold text-center mb-5  md:text-lg">
+          Замовлення матеріалів для ручної та машинної штукатурки
+        </h1>
 
         <div className="mx-auto w-full  divide-y divide-white/20 rounded-xl bg-white/10">
           {categories.map((category, catInd) => {

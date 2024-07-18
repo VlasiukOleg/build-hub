@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 
+import { useAppSelector } from '@/redux/hooks';
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -56,6 +58,12 @@ export interface IFormState {
 interface IOrderFormProps {}
 
 const OrderForm: React.FC<IOrderFormProps> = ({}) => {
+  const categories = useAppSelector(state => state.categories);
+  const materials = categories.flatMap(material => material.materials);
+  const filteredMaterialsByQuantity = materials.filter(
+    material => material.quantity > 0
+  );
+
   const router = useRouter();
   const {
     register,
@@ -68,7 +76,7 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
 
   const [sendError, setSendError] = useState(false);
   const [isSending, setIsSending] = useState(false);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const onSubmit = async (data: IFormState) => {
     setSendError(false);
@@ -80,6 +88,7 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
       address: data.address.trim(),
       message: data.message ? data.message.trim() : '',
       date: data.date,
+      materials: filteredMaterialsByQuantity,
     };
     console.log(sanitizedData);
     try {
@@ -191,10 +200,10 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
             />
           </Field>
         </Fieldset>
-        <div className="text-center mt-4">
+        <div className="text-center mt-4 flex justify-center">
           <button
             type="submit"
-            className="p-2 bg-accent rounded-md"
+            className="flex items-center gap-2 p-2 bg-accent rounded-md md:text-lg xl:text-xl"
             disabled={isSending}
           >
             {isSending && (
@@ -225,7 +234,7 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
               : "Ваші дані були успішно відправлені. Будь ласка, очікуйте, ми зв'яжемося з вами найближчим часом для обговорення деталей."}
           </p>
           <ButtonLink variant="main" onClick={() => router.push('/')}>
-            НА ГОЛОВНУ
+            На головну
           </ButtonLink>
         </div>
       </Modal>

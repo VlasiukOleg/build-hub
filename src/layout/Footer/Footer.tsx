@@ -3,7 +3,7 @@ interface IFooterProps {}
 const Footer: React.FunctionComponent<IFooterProps> = props => {
   return (
     <footer className="border-t-[1px] border-accent">
-      <div className="container text-center py-5 text-sm">
+      <div className="container text-center py-5 text-sm md:text-lg xl:text-xl">
         ©BudStock 2024 all rights reserved
       </div>
     </footer>

@@ -5,7 +5,7 @@ import configuration from '@/utils/configuration';
 
 export async function POST(request: Request) {
   try {
-    const { firstName, phone, email, address, message, date } =
+    const { firstName, phone, email, address, message, date, materials } =
       await request.json();
 
     const transporter = nodemailer.createTransport({
@@ -17,11 +17,50 @@ export async function POST(request: Request) {
       },
     });
 
+    const materialsTable = `
+      <table>
+        <thead>
+          <tr>
+            <th>Название</th>
+            <th>Количество</th>
+            <th>Цена</th>
+            <th>Общая сумма</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${materials
+            .map(
+              (material: {
+                title: string;
+                quantity: number;
+                price: number;
+              }) => `
+            <tr>
+              <td>${material.title}</td>
+              <td>${material.quantity}</td>
+              <td>${material.price}</td>
+              <td>${(material.quantity * material.price).toFixed(2)}</td>
+            </tr>
+          `
+            )
+            .join('')}
+        </tbody>
+      </table>
+    `;
+
     const mailOptions = {
       from: configuration.apiMailFrom,
       to: configuration.apiMailTo,
       subject: 'Нова заявка з сайту BudStock',
-      text: `Імʼя: ${firstName}\nТелефон: ${phone}\nEmail: ${email}\nАдреса: ${address}\nДата та час: ${date}\nКоментар: ${message}`,
+      html: `
+        <p>Імʼя: ${firstName}</p>
+        <p>Телефон: ${phone}</p>
+        <p>Email: ${email}</p>
+        <p>Адреса: ${address}</p>
+        <p>Дата та час: ${date}</p>
+        <p>Коментар: ${message}</p>
+        ${materialsTable}
+      `,
     };
 
     await transporter.sendMail(mailOptions);

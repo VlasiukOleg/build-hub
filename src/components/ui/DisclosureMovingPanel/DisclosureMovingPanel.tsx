@@ -178,7 +178,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
         <button
           onClick={onAddMovingToOrderBar}
           className={clsx(
-            'bg-green-800 text-center rounded-lg border-[1px] border-none text-white md:text-base p-2 md:flex-[50%] xl:w-[25%]',
+            'bg-green-800 font-unbounded text-center rounded-lg border-[1px] border-none text-white md:text-base p-2 md:flex-[50%] xl:w-[25%]',
             isMovingPriceAddToOrderBar && 'bg-red-800'
           )}
         >

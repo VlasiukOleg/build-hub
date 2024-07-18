@@ -27,6 +27,7 @@ const storages = [
 const StorageMap: React.FC<IStorageMapProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedStore, setSelectedStore] = useState('');
+  console.log(selectedStore);
 
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -35,6 +36,7 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
   const deliveryStorage = useAppSelector(
     state => state.delivery.deliveryStorage
   );
+  console.log(deliveryStorage);
 
   const handleStorageClick = (location: string) => {
     setIsOpen(true);
@@ -73,7 +75,7 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
                   storage.id === 4 &&
                     'bottom-[28%] right-[22%] xl:bottom-[28%] xl:right-[22%]',
                   deliveryStorage === storage.location &&
-                    'bg-white text-orange-500 border-orange-500 scale-[1.1] xl:border-[2px]'
+                    'bg-white text-orange-500  border-orange-500 scale-[1.1] xl:border-[2px]'
                 )}
               >
                 <button onClick={() => handleStorageClick(storage.location)}>
@@ -101,7 +103,7 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
         onClick={() => router.push('/catalog')}
         disabled={deliveryType === ''}
       >
-        ПРОДОВЖИТИ
+        Продовжити
       </ButtonLink>
       <Modal isOpen={isOpen} close={() => setIsOpen(false)}>
         <DeliveryTypeChoice

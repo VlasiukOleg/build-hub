@@ -35,19 +35,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={clsx(
-          unbounded.variable,
-          inter.variable,
-          'flex h-full min-h-screen flex-col overflow-x-hidden font-inter'
-        )}
-      >
-        <StoreProvider>
+      <StoreProvider>
+        <body
+          className={clsx(
+            unbounded.variable,
+            inter.variable,
+            'flex h-full min-h-screen flex-col overflow-x-hidden'
+          )}
+        >
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
-        </StoreProvider>
-      </body>
+        </body>
+      </StoreProvider>
     </html>
   );
 }
