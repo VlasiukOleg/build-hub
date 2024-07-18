@@ -49,7 +49,7 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
 
   return (
     <section className="py-5 md:py-10 text-center">
-      <h1 className="xl:text-2xl font-bold text-center mb-5 md:mb-10 md:text-lg">
+      <h1 className="font-unbounded xl:text-2xl font-bold text-center mb-5 md:mb-10 md:text-lg">
         Оберіть найближчий до Вас склад завантаження
       </h1>
       <div className="relative mb-5 md:mb-10 xl:flex xl:items-center xl:justify-center">

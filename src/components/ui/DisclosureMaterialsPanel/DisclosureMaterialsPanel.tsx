@@ -53,9 +53,9 @@ const DisclosureMaterialsPanel: React.FC<IDisclosureMaterialsPanelProps> = ({
             <Image
               src={material.image}
               alt={material.title}
-              width={75}
-              height={75}
-              className="md:w-[100px] md:h-100px xl:size-[150px]"
+              width={150}
+              height={150}
+              className="size-[75px] md:size-[100px] xl:size-[150px]"
             />
           </div>
           <div className="xl:w-[500px]">

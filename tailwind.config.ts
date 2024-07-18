@@ -25,6 +25,10 @@ const config: Config = {
           xl: '2rem',
         },
       },
+      fontFamily: {
+        unbounded: ['var(--font-unbounded)'],
+        inter: ['var(--font-inter)'],
+      },
       colors: {
         bgBlack: '#040404',
         white: '#EFEDE8',

@@ -122,7 +122,7 @@ const OrderList: React.FC<IOrderListProps> = ({}) => {
           Не вибрано жодного товару{' '}
           <ButtonLink
             variant="main"
-            className="max-w-[200px] md:max-w-[280px]"
+            className="max-w-[200px] md:max-w-[280px] xl:max-w-[350px]"
             onClick={() => router.push('/catalog')}
           >
             ПЕРЕЙТИ В КАТАЛОГ

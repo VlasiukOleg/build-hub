@@ -1,5 +1,5 @@
-import DeliveryIcon from '../../../../public/icons/delivery-truck.svg';
-import PickUpIcon from '../../../../public/icons/pickup.svg';
+import DeliveryIcon from '/public/icons/delivery-truck.svg';
+import PickUpIcon from '/public/icons/pickup.svg';
 
 interface IDeliveryTypeChoiceProps {
   selectedStore: string;

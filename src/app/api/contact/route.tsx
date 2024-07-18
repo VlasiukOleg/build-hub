@@ -5,7 +5,8 @@ import configuration from '@/utils/configuration';
 
 export async function POST(request: Request) {
   try {
-    const { name, phone, email, message } = await request.json();
+    const { firstName, phone, email, address, message, date } =
+      await request.json();
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -20,7 +21,7 @@ export async function POST(request: Request) {
       from: configuration.apiMailFrom,
       to: configuration.apiMailTo,
       subject: 'Нова заявка з сайту BudStock',
-      text: `Імʼя: ${name}\nТелефон: ${phone}\nEmail: ${email}\nКоментар: ${message}`,
+      text: `Імʼя: ${firstName}\nТелефон: ${phone}\nEmail: ${email}\nАдреса: ${address}\nДата та час: ${date}\nКоментар: ${message}`,
     };
 
     await transporter.sendMail(mailOptions);
