@@ -65,6 +65,8 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
               <li
                 key={storage.id}
                 className={clsx(
+                  deliveryStorage === storage.location &&
+                    ' text-accent border-accent scale-[1.1] bg-darkAccent xl:border-[2px]',
                   'bg-accent rounded-full text-white  text-sm size-5 flex items-center justify-center absolute border-[1px] border-white md:size-7 md:text-base xl:size-9 xl:text-xl',
                   storage.id === 1 &&
                     'top-[42%] left-[42%] xl:top-[42%] xl:left-[42%]',
@@ -73,9 +75,7 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
                   storage.id === 3 &&
                     'top-[47%] left-[15%] xl:top-[47%] xl:left-[21%]',
                   storage.id === 4 &&
-                    'bottom-[28%] right-[22%] xl:bottom-[28%] xl:right-[22%]',
-                  deliveryStorage === storage.location &&
-                    'bg-white text-orange-500  border-orange-500 scale-[1.1] xl:border-[2px]'
+                    'bottom-[28%] right-[22%] xl:bottom-[28%] xl:right-[22%]'
                 )}
               >
                 <button onClick={() => handleStorageClick(storage.location)}>
