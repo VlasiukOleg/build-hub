@@ -36,20 +36,20 @@ const DisclosureDeliveryPanel: React.FC<IDisclosureDeliveryPanelProps> = ({
   }, [dispatch, totalWeight]);
 
   return (
-    <DisclosurePanel className="mt-2 text-sm/5 text-white/50 md:text-lg xl:text-xl xl:mt-6">
+    <DisclosurePanel className="mt-2 text-sm/5 text-grey md:text-lg xl:text-xl xl:mt-6">
       {deliveryType ? (
         <>
-          <div className="mb-3">
+          <div className="mb-3 font-normal">
             Загальна вага:{' '}
-            <span className="text-accent">{totalWeight} кг.</span>
+            <span className="text-accent font-semibold">{totalWeight} кг.</span>
           </div>
-          <div className="mb-3">
-            Склад: <span className="text-white">{deliveryStorage} </span>
+          <div className="mb-3 ">
+            Склад: <span className="text-grey">{deliveryStorage} </span>
           </div>
 
           <div className="mb-3">
             Тип доставки:{' '}
-            <span className="text-white">
+            <span className="text-grey">
               {deliveryType === 'pickup'
                 ? 'Самовивіз зі складу'
                 : 'Доставка автотранспортом'}

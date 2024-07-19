@@ -13,7 +13,7 @@ const OpenBurgerMenuBtn: React.FC<IOpenBurgerMenuBtnProps> = () => {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-2 py-3 bg-white/20 inline-block text-xs rounded-lg text-accent"
+        className="px-2 py-3 bg-bgWhite border-[1px] border-accent inline-block text-xs font-semibold rounded-lg text-accent"
       >
         MENU
       </button>

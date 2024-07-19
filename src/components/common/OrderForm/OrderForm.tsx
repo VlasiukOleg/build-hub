@@ -106,16 +106,16 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
   return (
     <>
       <form className="w-full xl:w-[48%]" onSubmit={handleSubmit(onSubmit)}>
-        <Fieldset className="space-y-3 rounded-xl bg-white/10 p-4 md:space-y-4">
+        <Fieldset className="space-y-3 rounded-xl bg-bgWhite border-[1px] border-grey p-4 md:space-y-4">
           <Field className="relative">
-            <Label className="text-xs/6 font-medium  text-white/50 md:text-sm">
+            <Label className="text-xs/6 font-medium  text-grey md:text-sm">
               Ваше імя
             </Label>
             <Input
               {...register('firstName')}
               className={clsx(
-                'mt-1 block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-xs/6 text-white md:text-sm md:py-2',
-                'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
+                'mt-1 block w-full rounded-lg border-[1px] border-grey bg-bgWhite py-1.5 px-3 text-xs/6 text-grey md:text-sm md:py-2',
+                'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-accent'
               )}
             />
 
@@ -124,14 +124,14 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
             </p>
           </Field>
           <Field className="relative">
-            <Label className="text-xs/6 font-medium text-white/50 md:text-sm">
+            <Label className="text-xs/6 font-medium  text-grey md:text-sm">
               Email
             </Label>
             <Input
               {...register('email')}
               className={clsx(
-                'mt-1 block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-xs/6 text-white md:text-sm md:py-2',
-                'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
+                'mt-1 block w-full rounded-lg border-[1px] border-grey bg-bgWhite py-1.5 px-3 text-xs/6 text-grey md:text-sm md:py-2',
+                'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-accent'
               )}
             />
             <p className="absolute left-0 bottom-[-20px] text-[10px]/6 text-red-600">
@@ -139,14 +139,14 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
             </p>
           </Field>
           <Field className="relative">
-            <Label className="text-xs/6 font-medium text-white/50 md:text-sm">
+            <Label className="text-xs/6 font-medium  text-grey md:text-sm">
               Телефон
             </Label>
             <Input
               {...register('phone')}
               className={clsx(
-                'mt-1 block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-xs/6 text-white md:text-sm md:py-2',
-                'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
+                'mt-1 block w-full rounded-lg border-[1px] border-grey bg-bgWhite py-1.5 px-3 text-xs/6 text-grey md:text-sm md:py-2',
+                'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-accent'
               )}
             />
             <p className="absolute left-0 bottom-[-20px] text-[10px]/6 text-red-600">
@@ -154,14 +154,14 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
             </p>
           </Field>
           <Field className="relative">
-            <Label className="text-xs/6 font-medium text-white/50 md:text-sm ">
+            <Label className="text-xs/6 font-medium  text-grey md:text-sm">
               Адреса доставки
             </Label>
             <Input
               {...register('address')}
               className={clsx(
-                'mt-1 block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-xs/6 text-white md:text-sm md:py-2',
-                'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
+                'mt-1 block w-full rounded-lg border-[1px] border-grey bg-bgWhite py-1.5 px-3 text-xs/6 text-grey md:text-sm md:py-2',
+                'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-accent'
               )}
             />
             <p className="absolute left-0 bottom-[-20px] text-[10px]/6 text-red-600">
@@ -169,15 +169,15 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
             </p>
           </Field>
           <Field className="relative">
-            <Label className="text-xs/6 font-medium  text-white/50 md:text-sm">
+            <Label className="text-xs/6 font-medium  text-grey md:text-sm">
               Дата та час доставки
             </Label>
             <Input
               type="datetime-local"
               {...register('date')}
               className={clsx(
-                'mt-1 block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white md:text-sm md:py-2',
-                'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
+                'mt-1 block w-full rounded-lg border-[1px] border-grey bg-bgWhite py-1.5 px-3 text-xs/6 text-grey md:text-sm md:py-2',
+                'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-accent'
               )}
             />
             <p className="absolute left-0 bottom-[-20px] text-[10px]/6 text-red-600">
@@ -186,14 +186,14 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
           </Field>
 
           <Field>
-            <Label className="text-xs/6 font-medium text-white/50 md:text-sm">
+            <Label className="text-xs/6 font-medium text-grey md:text-sm">
               Додаткова інформація
             </Label>
 
             <Textarea
               {...register('message')}
               className={clsx(
-                'mt-1 block w-full resize-none rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white md:text-sm md:py-2',
+                'mt-1 block w-full resize-none rounded-lg border-[1px] border-grey bg-bgWhite py-1.5 px-3 text-sm/6 text-white md:text-sm md:py-2',
                 'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
               )}
               rows={3}
@@ -203,7 +203,7 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
         <div className="text-center mt-4 flex justify-center">
           <button
             type="submit"
-            className="flex items-center gap-2 p-2 bg-accent rounded-md md:text-lg xl:text-xl"
+            className="flex items-center gap-2 p-2 bg-accent text-white rounded-md md:text-lg xl:text-xl"
             disabled={isSending}
           >
             {isSending && (

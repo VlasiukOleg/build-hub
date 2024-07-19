@@ -8,6 +8,9 @@ import { useAppSelector } from '@/redux/hooks';
 import ButtonLink from '@/components/ui/ButtonLink';
 import OrderForm from '../OrderForm';
 
+import DeliveryIcon from '@/../public/icons/delivery-truck.svg';
+import MovingIcon from '@/../public/icons/moving.svg';
+
 interface IOrderListProps {}
 
 const OrderList: React.FC<IOrderListProps> = ({}) => {
@@ -45,14 +48,14 @@ const OrderList: React.FC<IOrderListProps> = ({}) => {
       {totalQuantity > 0 ? (
         <div className="xl:flex xl:justify-between">
           <div className="xl:w-[48%]">
-            <div className=" bg-white/10 rounded-xl py-2 mb-2 md:py-3">
-              <ul className="divide-y divide-white/20">
+            <div className=" bg-bgWhite border-[1px] border-grey rounded-xl py-2 mb-2 md:py-3">
+              <ul className="divide-y divide-grey">
                 {filteredMaterialsByQuantity.map(material => (
                   <li
                     key={material.id}
-                    className="p-2 flex items-center text-white/50 md:p-4"
+                    className="p-2 font-semibold flex items-center text-grey md:p-4"
                   >
-                    <div className="rounded-xl border-[1px] border-accent overflow-hidden mr-2 text-center inline-block md:size-[75px] md:mr-4">
+                    <div className="mr-2 text-center inline-block md:size-[75px] md:mr-4">
                       <Image
                         src={material.image}
                         alt={material.title}
@@ -62,15 +65,15 @@ const OrderList: React.FC<IOrderListProps> = ({}) => {
                       />
                     </div>
 
-                    <p className="text-xs w-[50%] md:text-base ">
+                    <p className="text-xs text-semibold w-[50%] md:text-base ">
                       {' '}
                       {material.title}
                     </p>
-                    <p className="text-sm text-center w-[15%] md:text-lg">
+                    <p className="text-sm font-normal text-center w-[15%] md:text-lg">
                       {material.quantity}
                     </p>
                     <div className="w-[25%] text-right">
-                      <p className="text-xs md:text-base">
+                      <p className="text-xs font-normal md:text-base">
                         {material.price} грн.
                       </p>
                       <p className="text-sm text-accent md:text-lg">
@@ -79,16 +82,70 @@ const OrderList: React.FC<IOrderListProps> = ({}) => {
                     </div>
                   </li>
                 ))}
+                {isMovingAddToOrder && (
+                  <li className="p-2 font-semibold flex items-center text-grey md:p-4">
+                    <div className="mr-2 p-1 text-center inline-block md:size-[75px] md:mr-4">
+                      <MovingIcon
+                        width={40}
+                        height={40}
+                        className="md:size-[75px]"
+                      />
+                    </div>
+
+                    <p className="text-xs text-semibold w-[50%] md:text-base ">
+                      {' '}
+                      Розвантаження
+                    </p>
+                    <p className="text-sm font-normal text-center w-[15%] md:text-lg">
+                      1
+                    </p>
+                    <div className="w-[25%] text-right">
+                      <p className="text-xs font-normal md:text-base">
+                        {movingPrice} грн.
+                      </p>
+                      <p className="text-sm text-accent md:text-lg">
+                        {movingPrice} грн.
+                      </p>
+                    </div>
+                  </li>
+                )}
+                {deliveryType === 'delivery' && (
+                  <li className="p-2 font-semibold flex items-center text-grey md:p-4">
+                    <div className="mr-2 p-1 text-center inline-block md:size-[75px] md:mr-4">
+                      <DeliveryIcon
+                        width={40}
+                        height={40}
+                        className="md:size-[75px]"
+                      />
+                    </div>
+
+                    <p className="text-xs text-semibold w-[50%] md:text-base ">
+                      {' '}
+                      Доставка
+                    </p>
+                    <p className="text-sm font-normal text-center w-[15%] md:text-lg">
+                      1
+                    </p>
+                    <div className="w-[25%] text-right">
+                      <p className="text-xs font-normal md:text-base">
+                        {deliveryPrice} грн.
+                      </p>
+                      <p className="text-sm text-accent md:text-lg">
+                        {deliveryPrice} грн.
+                      </p>
+                    </div>
+                  </li>
+                )}
               </ul>
             </div>
-            <div className="text-white/50 text-xs/5 md:text-base">
+            <div className="text-grey text-xs/5 md:text-base">
               Вага: {totalWeight} кг.
             </div>
-            <div className="text-white/50 text-xs/5 md:text-base">
+            <div className="text-grey text-xs/5 md:text-base">
               Склад: {deliveryStorage ? deliveryStorage : 'Не вибрано'}{' '}
             </div>
 
-            <div className="text-white/50 text-xs/5 md:text-base">
+            <div className="text-grey text-xs/5 md:text-base">
               Тип доставки:{' '}
               {deliveryType
                 ? deliveryType === 'delivery'
@@ -96,19 +153,8 @@ const OrderList: React.FC<IOrderListProps> = ({}) => {
                   : 'Самовивіз зі складу'
                 : 'Не вибрано'}
             </div>
-            {deliveryType === 'delivery' && (
-              <div className="text-white/50 text-xs/5 md:text-base">
-                Доставка: {deliveryPrice} грн.
-              </div>
-            )}
 
-            {isMovingAddToOrder && (
-              <div className="text-white/50 text-xs/5 md:text-base">
-                Розвантаження: {movingPrice} грн.
-              </div>
-            )}
-
-            <div className="text-white/50 text-sm font-bold md:text-lg mb-4">
+            <div className="text-grey text-sm font-bold md:text-lg mb-4">
               Всього до оплати:{' '}
               <span className="text-accent">
                 {(movingPrice + deliveryPrice + totalPrice).toFixed(2)} грн.{' '}
@@ -123,7 +169,7 @@ const OrderList: React.FC<IOrderListProps> = ({}) => {
           <ButtonLink
             variant="main"
             className="max-w-[200px] md:max-w-[280px] xl:max-w-[350px]"
-            onClick={() => router.push('/catalog')}
+            onClick={() => router.push('/catalog/shtukaturka')}
           >
             ПЕРЕЙТИ В КАТАЛОГ
           </ButtonLink>

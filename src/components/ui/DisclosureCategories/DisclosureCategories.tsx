@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 
 import { Disclosure, DisclosureButton } from '@headlessui/react';
@@ -13,10 +14,13 @@ import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import { inputChangeQuantity, changeQuantity } from '@/redux/materialsSlice';
 
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import ButtonLink from '../ButtonLink';
 
 interface IDisclosureCategoriesProps {}
 
 const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
+  const router = useRouter();
+
   const dispatch = useAppDispatch();
   const categories = useAppSelector(state => state.categories);
   const materials = categories.flatMap(material => material.materials);
@@ -103,7 +107,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
           Замовлення матеріалів для ручної та машинної штукатурки
         </h1>
 
-        <div className="mx-auto w-full  divide-y divide-white/20 rounded-xl bg-white/10">
+        <div className="mx-auto w-full  divide-y divide-accent rounded-xl bg-bgWhite border-[1px] border-accent mb-4">
           {categories.map((category, catInd) => {
             return (
               <Disclosure
@@ -114,15 +118,15 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
               >
                 <DisclosureButton className="group flex w-full items-center justify-between">
                   <div className="text-left flex gap-2 items-center">
-                    <div className="rounded-full bg-accent size-5 flex justify-center items-center text-xs md:size-6 md:text-sm xl:size-7 xl:text-base ">
+                    <div className="rounded-full bg-accent text-bgWhite size-5 flex justify-center items-center text-xs md:size-6 md:text-sm xl:size-7 xl:text-base ">
                       {category.id}
                     </div>
-                    <span className="text-xs/6 text-left font-medium text-white  group-data-[hover]:text-white/80 md:text-base xl:text-xl">
+                    <span className="text-xs/6 text-left font-semibold text-grey  group-data-[hover]:text-white/80 md:text-base xl:text-xl">
                       {category.categoryTitle}
                     </span>
                   </div>
 
-                  <ChevronDownIcon className="size-5 fill-white/60 group-data-[hover]:fill-white/50 group-data-[open]:rotate-180 md:size-6 xl:size-7" />
+                  <ChevronDownIcon className="size-5 fill-grey group-data-[hover]:fill-white/50 group-data-[open]:rotate-180 md:size-6 xl:size-7" />
                 </DisclosureButton>
                 {category.materials.map((material, matInd) => {
                   const { quantity, price } = material;
@@ -146,6 +150,11 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
           })}
           <DisclosureMoving totalWeight={totalWeight} />
           <DisclosureDelivery totalWeight={totalWeight} />
+        </div>
+        <div className="text-center">
+          <ButtonLink onClick={() => router.push('/order')}>
+            Оформити замовлення
+          </ButtonLink>
         </div>
       </div>
     </section>

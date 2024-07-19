@@ -59,10 +59,10 @@ const DisclosureMaterialsPanel: React.FC<IDisclosureMaterialsPanelProps> = ({
             />
           </div>
           <div className="xl:w-[500px]">
-            <div className="text-sm md:text-base underline xl:text-xl">
+            <div className="text-sm text-grey text-medium md:text-base underline xl:text-xl">
               {material.title}
             </div>
-            <p className="text-[8px] md:text-xs xl:text-sm">
+            <p className="text-[8px] text-grey md:text-xs xl:text-sm">
               {material.description}
             </p>
           </div>
@@ -70,13 +70,13 @@ const DisclosureMaterialsPanel: React.FC<IDisclosureMaterialsPanelProps> = ({
 
         <div className="md:flex md:items-center justify-between xl:flex-wrap xl:flex-col xl:justify-center">
           <div className="flex items-center justify-between mb-2 md:mb-0 xl:mb-5">
-            <div className="text-sm text-white flex items-center gap-1 md:mr-5 md:text-base xl:text-xl">
+            <div className="text-sm text-grey font-semibold flex items-center gap-1 md:mr-5 md:text-base xl:text-xl">
               Ціна: {material.price} грн.
             </div>
             <div>
               <button
                 type="button"
-                className="bg-accent size-6 rounded-md"
+                className="bg-accent text-bgWhite size-6 rounded-md"
                 onClick={() => handleButtonChangeQuantity(catInd, matInd, -1)}
               >
                 -
@@ -90,20 +90,20 @@ const DisclosureMaterialsPanel: React.FC<IDisclosureMaterialsPanelProps> = ({
                 onBlur={handleBlur}
                 type="number"
                 className={clsx(
-                  'inline-block mx-2 text-center w-[60px]  rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white md:text-base md:w-[80px] xl:text-xl xl:w-[100px]',
+                  'inline-block mx-2 text-center w-[60px]  rounded-lg border-none bg-white/5 py-1.5 px-3 text-lg/6 text-grey md:text-base md:w-[80px] xl:text-xl xl:w-[100px]',
                   'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
                 )}
               />
               <button
                 type="button"
-                className="bg-accent size-6 rounded-md"
+                className="bg-accent text-bgWhite size-6 rounded-md"
                 onClick={() => handleButtonChangeQuantity(catInd, matInd, 1)}
               >
                 +
               </button>
             </div>
           </div>
-          <div className="bg-white/5 text-center rounded-lg border-[1px] border-accent p-2 md:text-lg xl:w-full xl:text-xl xl:p-3">
+          <div className="bg-bgWhite text-grey  font-semibold text-center rounded-lg border-[1px] border-accent p-2 md:text-lg xl:w-full xl:text-xl xl:p-3">
             Всього: {totalMaterialPrice.toFixed(2)} грн.
           </div>
         </div>

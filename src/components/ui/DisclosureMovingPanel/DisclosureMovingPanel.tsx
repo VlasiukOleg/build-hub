@@ -81,8 +81,8 @@ const DisclosureMovingPanel: React.FunctionComponent<
   }, [totalWeight, dispatch, elevator.label, distance, floor, building.label]);
 
   return (
-    <DisclosurePanel className="mt-2 text-sm/5 text-white/50 md:text-lg xl:text-xl xl:mt-6">
-      <div className="mb-3">
+    <DisclosurePanel className="mt-2 text-sm/5 text-grey md:text-lg xl:text-xl xl:mt-6">
+      <div className="mb-3 font-medium">
         Загальна вага: <span className="text-accent">{totalWeight} кг.</span>
       </div>
       <RadioGroup
@@ -95,11 +95,11 @@ const DisclosureMovingPanel: React.FunctionComponent<
           <Radio
             key={elevator.name}
             value={elevator}
-            className="group relative flex  cursor-pointer rounded-lg bg-white/5 py-2 px-3 text-white shadow-md transition focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white data-[checked]:bg-white/10"
+            className="group relative flex  cursor-pointer rounded-lg bg-gray-200 py-2 px-3 text-grey shadow-md transition focus:outline-none data-[focus]:outline-1 data-[focus]:outline-grey data-[checked]:bg-lightAccent"
           >
             <div className="flex  w-full items-center justify-between md:gap-3">
               <div className="text-xs/6 md:text-sm xl:text-base">
-                <p className="font-semibold text-white">{elevator.name}</p>
+                <p className="font-semibold text-grey">{elevator.name}</p>
               </div>
               <CheckCircleIcon className="size-6 fill-accent opacity-0 transition group-data-[checked]:opacity-100 xl:size-7" />
             </div>
@@ -119,11 +119,11 @@ const DisclosureMovingPanel: React.FunctionComponent<
               <Radio
                 key={building.name}
                 value={building}
-                className="group relative flex cursor-pointer rounded-lg bg-white/5 py-2 px-3 text-white shadow-md transition focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white data-[checked]:bg-white/10"
+                className="group relative flex cursor-pointer rounded-lg bg-gray-200  py-2 px-3 text-grey shadow-md transition focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white data-[checked]:bg-lightAccent"
               >
                 <div className="flex w-full items-center justify-between md:gap-3">
                   <div className="text-xs/6 md:text-sm xl:text-base">
-                    <p className="font-semibold text-white">{building.name}</p>
+                    <p className="font-semibold text-grey">{building.name}</p>
                   </div>
                   <CheckCircleIcon className="size-6 fill-accent opacity-0 transition group-data-[checked]:opacity-100 xl:size-7" />
                 </div>
@@ -131,7 +131,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
             ))}
           </RadioGroup>
           <Field className="mb-3 md:mb-0 md:flex md:items-center md:gap-2">
-            <Label className="text-sm/6 font-medium text-white/50 xl:text-base">
+            <Label className="text-sm/6 font-medium textgrey xl:text-base">
               Поверх
             </Label>
 
@@ -141,7 +141,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
               min={1}
               onChange={handleFloorChange}
               className={clsx(
-                'block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white md:w-[75px] md:py-2 md:text-center xl:text-base',
+                'block w-full rounded-lg border-accent border-[1px] bg-white/5 py-1.5 px-3 text-sm/6 text-grey md:w-[75px] md:py-2 md:text-center xl:text-base',
                 'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
               )}
             />
@@ -151,7 +151,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
 
       <div className="md:flex md:gap-5 md:items-center xl:flex-col xl:items-start mb-3 xl:mb-5">
         <Field className="mb-5 md:mb-0 md:flex-[50%] xl:w-[50%]">
-          <Label className="text-sm/6 font-medium text-white/50 md:text-base xl:text-lg">
+          <Label className="text-sm/6 font-medium text-grey md:text-base xl:text-lg">
             Відстань заносу матеріалу -{' '}
             <span className="text-accent">{distance} м.</span>
           </Label>
@@ -169,7 +169,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
             )}
           />
         </Field>
-        <div className="bg-white/5 text-center rounded-lg border-[1px] border-accent p-2 md:flex-[50%] xl:w-[50%]">
+        <div className="bg-white/5 text-center font-semibold rounded-lg border-[1px] border-accent p-2 md:flex-[50%] xl:w-[50%]">
           Ціна розвантаження: {movingPrice} грн.
         </div>
       </div>

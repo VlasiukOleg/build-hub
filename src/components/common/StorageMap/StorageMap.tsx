@@ -100,7 +100,7 @@ const StorageMap: React.FC<IStorageMapProps> = () => {
 
       <ButtonLink
         variant="main"
-        onClick={() => router.push('/catalog')}
+        onClick={() => router.push('/catalog/shtukaturka')}
         disabled={deliveryType === ''}
       >
         Продовжити

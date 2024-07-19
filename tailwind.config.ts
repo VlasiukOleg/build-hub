@@ -25,11 +25,15 @@ const config: Config = {
           xl: '2rem',
         },
       },
+
       colors: {
-        bgBlack: '#040404',
+        bgWhite: '#fff',
+        black: '#000',
+        grey: '#696969',
         white: '#EFEDE8',
-        accent: '#E6533C',
-        lightAccent: '#EF8964',
+        darkAccent: '#2F4F50',
+        accent: '#5F9EA0',
+        lightAccent: '#80CBC4',
         extraLightAccent: '#EFA082',
       },
     },
