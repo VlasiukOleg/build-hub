@@ -92,7 +92,12 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
   };
 
   return (
-    <section className={clsx('pt-5 py-5', totalQuantity > 0 && 'pt-[72px]')}>
+    <section
+      className={clsx(
+        'pt-5 py-5',
+        totalQuantity > 0 && 'pt-[72px] xl:pt-[92px]'
+      )}
+    >
       <div className="container">
         <OrderBar
           totalQuantity={totalQuantity}
