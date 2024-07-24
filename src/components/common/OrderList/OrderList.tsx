@@ -157,7 +157,12 @@ const OrderList: React.FC<IOrderListProps> = ({}) => {
             <div className="text-grey text-sm font-bold md:text-lg mb-4">
               Всього до оплати:{' '}
               <span className="text-accent">
-                {(movingPrice + deliveryPrice + totalPrice).toFixed(2)} грн.{' '}
+                {(
+                  (isMovingAddToOrder ? movingPrice : 0) +
+                  (deliveryType === 'pickup' ? 0 : deliveryPrice) +
+                  totalPrice
+                ).toFixed(2)}{' '}
+                грн.{' '}
               </span>
             </div>
           </div>

@@ -68,7 +68,7 @@ const OrderBar: React.FC<IOrderBarProps> = ({
       <div className="flex items-center gap-1 md:gap-3 xl:gap-5">
         <div className="p-1 rounded-lg bg-white text-black flex items-center gap-1 text-xs md:text-sm md:p-2 xl:text-lg xl:p-3 xl:gap-2">
           <WeightIcon width={20} height={20} className="size-5 xl:size-7" />{' '}
-          {totalWeight} кг.
+          {totalWeight.toFixed(2)} кг.
         </div>
         {isMovingAddToOrder && (
           <div className="p-1 rounded-lg bg-white text-black flex items-center gap-1 text-xs md:text-sm md:p-2 xl:text-lg xl:p-3 xl:gap-2">
