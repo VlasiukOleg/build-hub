@@ -12,6 +12,10 @@ import { useRouter } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { clearQuantity } from '@/redux/materialsSlice';
 import { toggleMovingPriceToOrder } from '@/redux/movingSlice';
+import {
+  clearAdditionalMaterial,
+  toggleAdditionalPriceAddToOrder,
+} from '@/redux/additionalMaterialSlice';
 
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -79,6 +83,9 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
   const dispatch = useAppDispatch();
 
   const categories = useAppSelector(state => state.categories);
+  const additionalMaterial = useAppSelector(
+    state => state.additionalMaterial.additionalMaterial
+  );
   const deliveryPrice = useAppSelector(state => state.delivery.deliveryPrice);
   const deliveryType = useAppSelector(state => state.delivery.deliveryType);
   const movingPrice = useAppSelector(state => state.moving.movingPrice);
@@ -87,6 +94,9 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
   );
   const isMovingAddToOrder = useAppSelector(
     state => state.moving.isMovingPriceAddToOrder
+  );
+  const isAdditionalMaterialAddToOrder = useAppSelector(
+    state => state.additionalMaterial.isAdditionalMaterialAddToOrder
   );
 
   const materials = categories.flatMap(material => material.materials);
@@ -143,6 +153,8 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
       movingPrice: movingPrice,
       deliveryStorage: deliveryStorage,
       isMovingAddToOrder: isMovingAddToOrder,
+      additionalMaterial: additionalMaterial,
+      isAdditionalMaterialAddToOrder: isAdditionalMaterialAddToOrder,
     };
     console.log(sanitizedData);
     try {
@@ -319,6 +331,8 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
           setIsOpen(false);
           dispatch(clearQuantity(0));
           dispatch(toggleMovingPriceToOrder());
+          dispatch(clearAdditionalMaterial());
+          dispatch(toggleAdditionalPriceAddToOrder());
         }}
       >
         <div className="px-4 pb-8 rounded-md max-w-[320px] md:max-w-[526px] md:px-10 md:pb-10 xl:max-w-[677px] xl:px-[102px] bg-white text-center">
@@ -342,6 +356,8 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
               router.push('/');
               dispatch(clearQuantity(0));
               dispatch(toggleMovingPriceToOrder());
+              dispatch(clearAdditionalMaterial());
+              dispatch(toggleAdditionalPriceAddToOrder());
             }}
           >
             На головну

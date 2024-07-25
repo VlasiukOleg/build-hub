@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { deliveryReducer } from './deliverySlice';
 import { materialsReducer } from './materialsSlice';
 import { movingReducer } from './movingSlice';
+import { additionalMaterialReducer } from './additionalMaterialSlice';
 
 export const makeStore = () => {
   return configureStore({
@@ -10,6 +11,7 @@ export const makeStore = () => {
       delivery: deliveryReducer,
       categories: materialsReducer,
       moving: movingReducer,
+      additionalMaterial: additionalMaterialReducer,
     },
   });
 };

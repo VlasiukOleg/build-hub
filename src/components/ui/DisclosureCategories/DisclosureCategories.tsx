@@ -8,6 +8,7 @@ import { Disclosure, DisclosureButton } from '@headlessui/react';
 import DisclosureMaterialsPanel from '../DisclosureMaterialsPanel';
 import DisclosureMoving from '../DisclosureMoving';
 import DisclosureDelivery from '../DisclosureDelivery';
+import DisclosureAddMaterials from '../DisclosureAddMaterials';
 import OrderBar from '@/components/common/OrderBar';
 
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
@@ -153,6 +154,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
               </Disclosure>
             );
           })}
+          <DisclosureAddMaterials />
           <DisclosureMoving totalWeight={totalWeight} />
           <DisclosureDelivery totalWeight={totalWeight} />
         </div>

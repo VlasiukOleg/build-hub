@@ -30,6 +30,8 @@ export async function POST(request: Request) {
       deliveryStorage,
       movingPrice,
       isMovingAddToOrder,
+      additionalMaterial,
+      isAdditionalMaterialAddToOrder,
     } = await request.json();
 
     const formattedDate = format(new Date(date), "d MMMM yyyy 'року'", {
@@ -50,7 +52,7 @@ export async function POST(request: Request) {
     <thead>
       <tr>
         <th style="border: 1px solid black; padding: 8px;">Назва</th>
-        <th style="border: 1px solid black; padding: 8px;">Кількість</th>
+        <th style="border: 1px solid black; padding: 8px;">К-сть</th>
         <th style="border: 1px solid black; padding: 8px;">Ціна за одиницю</th>
         <th style="border: 1px solid black; padding: 8px;">Загальна ціна</th>
       </tr>
@@ -100,6 +102,39 @@ export async function POST(request: Request) {
       <td style="text-align: right; font-weight: bold;">Всього до оплати: ${((isMovingAddToOrder ? movingPrice : 0) + (deliveryType === 'pickup' ? 0 : deliveryPrice) + totalPrice).toFixed(2)} грн.</td>
     </tr>
   </table>
+  
+`;
+
+    const additionalMaterialTable = `
+  <table style="width: 100%; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th style="border: 1px solid black; padding: 8px;">Назва</th>
+        <th style="border: 1px solid black; padding: 8px;">К-сть</th>
+        <th style="border: 1px solid black; padding: 8px;">Ціна за одиницю</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      ${additionalMaterial
+        .map(
+          (material: Material) => `
+        <tr>
+          <td style="border: 1px solid black; padding: 8px;">${material.title}</td>
+          <td style="border: 1px solid black; padding: 8px;">${material.quantity}</td>
+          <td style="border: 1px solid black; padding: 8px;">${material.price}</td>
+        </tr>
+      `
+        )
+        .join('')}
+      
+     
+        
+      
+    </tbody>
+  </table>
+  
+  
 `;
 
     const mailOptions = {
@@ -114,6 +149,8 @@ export async function POST(request: Request) {
         <p>Дата та час: ${formattedDate} ${deliveryTime.name}</p>
         <p>Коментар: ${message}</p>
         ${materialsTable}
+        <p style="font-weight: bold;">Додані матеріали</p>
+        ${isAdditionalMaterialAddToOrder && additionalMaterialTable}
         
         <p>Склад: ${deliveryStorage ? deliveryStorage : 'Не вибрано'}</p>
         <p>Тип доставки: ${
@@ -140,6 +177,8 @@ export async function POST(request: Request) {
         <p>Дата та час: ${formattedDate} ${deliveryTime.name}</p>
         <p>Коментар: ${message}</p>
         ${materialsTable}
+         <p style="font-weight: bold;">Додані матеріали</p>
+        ${isAdditionalMaterialAddToOrder && additionalMaterialTable}
         
         <p>Склад: ${deliveryStorage ? deliveryStorage : 'Не вибрано'}</p>
         <p>Тип доставки: ${
