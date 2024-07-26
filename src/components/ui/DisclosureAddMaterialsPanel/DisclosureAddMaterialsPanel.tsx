@@ -63,49 +63,56 @@ const DisclosureAddMaterialsPanel: React.FC<
 
   return (
     <DisclosurePanel className="mt-2 text-sm/5 text-grey md:text-lg xl:text-xl xl:mt-6">
-      <Field className="relative mb-2">
-        <Label className="text-xs/6 font-medium  text-grey md:text-sm">
-          Назва матеріалу
-        </Label>
-        <Input
-          onChange={handleInputChange}
-          name="title"
-          value={newMaterial.title}
-          className={clsx(
-            'mt-1 block w-full rounded-lg border-[1px] border-grey bg-bgWhite py-1.5 px-3 text-xs/6 text-grey md:text-sm md:py-2',
-            'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-accent'
-          )}
-        />
-      </Field>
-      <div className="flex items-end gap-1">
-        <Field className="relative">
+      <p className="text-xs text-center text-accent font-bold mb-2 md:text-base xl:text-xl">
+        Якщо Ви не знайшли потрібний матеріал, додайте що Вам необхідно:
+      </p>
+      <div className="xl:flex xl:gap-4">
+        <Field className="relative mb-2 xl:mb-0 xl:w-[500px]">
           <Label className="text-xs/6 font-medium  text-grey md:text-sm">
-            Кількість
+            Назва матеріалу
           </Label>
           <Input
             onChange={handleInputChange}
-            name="quantity"
-            value={newMaterial.quantity}
+            name="title"
+            value={newMaterial.title}
             className={clsx(
               'mt-1 block w-full rounded-lg border-[1px] border-grey bg-bgWhite py-1.5 px-3 text-xs/6 text-grey md:text-sm md:py-2',
               'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-accent'
             )}
           />
         </Field>
+        <div className="flex items-end gap-1">
+          <Field className="relative">
+            <Label className="text-xs/6 font-medium  text-grey md:text-sm">
+              Кількість
+            </Label>
+            <Input
+              onChange={handleInputChange}
+              name="quantity"
+              value={newMaterial.quantity}
+              className={clsx(
+                'mt-1 block w-full rounded-lg border-[1px] border-grey bg-bgWhite py-1.5 px-3 text-xs/6 text-grey md:text-sm md:py-2',
+                'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-accent'
+              )}
+            />
+          </Field>
 
-        <button type="button" onClick={handleAddMaterial}>
-          <Image
-            src={Plus}
-            alt="іконка додавання"
-            className="size-9 md:size-8 xl:size-12"
-          />
-        </button>
+          <button type="button" onClick={handleAddMaterial}>
+            <Image
+              src={Plus}
+              alt="іконка додавання"
+              className="size-9 md:size-8 xl:size-12"
+            />
+          </button>
+        </div>
       </div>
 
       {additionalMaterial.length > 0 && (
         <>
           <div className="mt-2">
-            <h3 className="font-bold text-xs mb-2">Додані матеріали:</h3>
+            <h3 className="font-bold text-xs mb-2 md:text-sm">
+              Додані матеріали:
+            </h3>
             <div className=" bg-bgWhite border-[1px] border-grey rounded-xl py-1 mb-2 md:py-3">
               <ul className="divide-y divide-grey">
                 {additionalMaterial.map((material, index) => (
