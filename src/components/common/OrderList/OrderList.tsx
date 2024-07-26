@@ -172,42 +172,44 @@ const OrderList: React.FC<IOrderListProps> = ({}) => {
                 грн.{' '}
               </span>
             </div>
-          </div>
-          {isAdditionalMaterialAddToOrder && (
-            <div className="mt-4 mb-4">
-              <h3 className="font-bold mb-2 text-sm">Додані матеріали:</h3>
-              <table className="min-w-full border-collapse border border-grey">
-                <thead>
-                  <tr>
-                    <th className="border border-grey px-4 py-2 text-left text-xs">
-                      Матеріал
-                    </th>
-                    <th className="border border-grey px-4 py-2 text-left text-xs">
-                      К-ть
-                    </th>
-                    <th className="border border-grey px-4 py-2 text-left text-xs">
-                      Ціна
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {additionalMaterial?.map((material, index) => (
-                    <tr key={index}>
-                      <td className="border border-grey px-4 py-2 text-xs">
-                        {material.title}
-                      </td>
-                      <td className="border border-grey px-4 py-2 text-xs">
-                        {material.quantity}
-                      </td>
-                      <td className="border border-grey px-4 py-2 text-xs">
-                        {material.price}
-                      </td>
+            {isAdditionalMaterialAddToOrder && (
+              <div className="mt-4 mb-4 md:mb-6">
+                <h3 className="font-bold mb-2 text-sm md:text-lg">
+                  Додані матеріали:
+                </h3>
+                <table className="min-w-full border-collapse border border-grey">
+                  <thead>
+                    <tr>
+                      <th className="border border-grey px-4 py-2 text-left text-xs md:text-base">
+                        Матеріал
+                      </th>
+                      <th className="border border-grey px-4 py-2 text-left text-xs md:text-base">
+                        К-ть
+                      </th>
+                      <th className="border border-grey px-4 py-2 text-left text-xs md:text-base">
+                        Ціна
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
+                  </thead>
+                  <tbody>
+                    {additionalMaterial?.map((material, index) => (
+                      <tr key={index}>
+                        <td className="border border-grey px-4 py-2 text-xs md:text-base">
+                          {material.title}
+                        </td>
+                        <td className="border border-grey px-4 py-2 text-xs md:text-base">
+                          {material.quantity}
+                        </td>
+                        <td className="border border-grey px-4 py-2 text-xs md:text-base">
+                          {material.price}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
 
           <OrderForm />
         </div>
