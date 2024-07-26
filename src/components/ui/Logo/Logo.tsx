@@ -2,9 +2,13 @@ import LogoIcon from '@/../../public/icons/kyrpich-wall.svg';
 
 import Link from 'next/link';
 
-const Logo: React.FC = () => {
+interface ILogoProps {
+  close: () => void;
+}
+
+const Logo: React.FC<ILogoProps> = ({ close }) => {
   return (
-    <Link href="/" className="flex gap-1">
+    <Link href="/" className="flex gap-1" onClick={close}>
       <LogoIcon
         width={22}
         height={22}

@@ -51,6 +51,7 @@ export async function POST(request: Request) {
   <table style="width: 100%; border-collapse: collapse;">
     <thead>
       <tr>
+        <th style="border: 1px solid black; padding: 8px;">№</th>
         <th style="border: 1px solid black; padding: 8px;">Назва</th>
         <th style="border: 1px solid black; padding: 8px;">К-сть</th>
         <th style="border: 1px solid black; padding: 8px;">Ціна за одиницю</th>
@@ -60,8 +61,9 @@ export async function POST(request: Request) {
     <tbody>
       ${materials
         .map(
-          (material: Material) => `
+          (material: Material, index: number) => `
         <tr>
+        <td style="border: 1px solid black; padding: 8px;">${index + 1}</td>
           <td style="border: 1px solid black; padding: 8px;">${material.title}</td>
           <td style="border: 1px solid black; padding: 8px;">${material.quantity}</td>
           <td style="border: 1px solid black; padding: 8px;">${material.price} грн.</td>
@@ -75,6 +77,7 @@ export async function POST(request: Request) {
         isMovingAddToOrder
           ? `
         <tr>
+          <td style="border: 1px solid black; padding: 8px;">${materials.length + 1}</td>
           <td style="border: 1px solid black; padding: 8px;">Розвантаження</td>
           <td style="border: 1px solid black; padding: 8px;">1</td>
           <td style="border: 1px solid black; padding: 8px;">${movingPrice} грн.</td>
@@ -87,6 +90,7 @@ export async function POST(request: Request) {
         deliveryType === 'delivery'
           ? `
         <tr>
+          <td style="border: 1px solid black; padding: 8px;">${materials.length + 2}</td>
           <td style="border: 1px solid black; padding: 8px;">Доставка</td>
           <td style="border: 1px solid black; padding: 8px;">1</td>
           <td style="border: 1px solid black; padding: 8px;">${deliveryPrice} грн.</td>

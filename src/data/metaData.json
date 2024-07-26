@@ -1,0 +1,27 @@
+{
+  "mainTitle": "BudStock",
+  "description": "BudStock - це більш ніж 5 000 будматеріалів по найнижчим цінам.У нас є все, що Вам потрібно для будівництва!",
+  "keywords": "будівельні матеріали, машинна штукатурка, ручна штукатурка, будівництво, ремонт",
+  "icons": [
+    {
+      "url": "/favicon/favicon.ico"
+    },
+    {
+      "url": "/favicon/favicon-16x16.png",
+      "rel": "icon",
+      "type": "image/png"
+    },
+    {
+      "url": "/favicon/favicon-32x32.png",
+      "rel": "icon",
+      "type": "image/png"
+    }
+  ],
+  "ogTitle": "BudStock - будматеріали для машиної та ручної штукатурки",
+  "ogDescription": "BudStock - це більш ніж 5 000 будматеріалів по найнижчим цінам.У нас є все, що Вам потрібно для будівництва!",
+  "ogSiteName": "BudStock",
+  "image": {
+    "url": "/images/og-image/og-image.webp",
+    "alt": "ADRENALINE TOUR"
+  }
+}
