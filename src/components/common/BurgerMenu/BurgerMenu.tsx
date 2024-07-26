@@ -29,8 +29,14 @@ const BurgerMenu: React.FC<IBurgerMenuProps> = ({ close }) => {
               Матеріали
             </Link>
           </li>
-          <li>Послуги</li>
-          <li>О проекті</li>
+          <Link href="/services" onClick={close}>
+            Послуги
+          </Link>
+          <li>
+            <Link href="/about" onClick={close}>
+              О проекті
+            </Link>
+          </li>
         </ul>
       </nav>
 

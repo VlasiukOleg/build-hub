@@ -95,7 +95,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
   return (
     <section
       className={clsx(
-        'pt-5 py-5',
+        'pt-5 py-5 w-full',
         totalQuantity > 0 && 'pt-[88px] xl:pt-[92px]'
       )}
     >

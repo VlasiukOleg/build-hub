@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import clsx from 'clsx';
 import { useState } from 'react';
 
@@ -15,9 +16,15 @@ const OpenDesktopMenuBtn: React.FC<IOpenDesktopMenuBtnProps> = () => {
         )}
       >
         <ul className="flex font-semibold  gap-5 uppercase">
-          <li>Матеріали</li>
-          <li>Послуги</li>
-          <li>О проекті</li>
+          <Link href="/catalog/shtukaturka" onClick={() => setIsOpen(!isOpen)}>
+            Матеріали
+          </Link>
+          <Link href="/services" onClick={() => setIsOpen(!isOpen)}>
+            Послуги
+          </Link>
+          <Link href="/about" onClick={() => setIsOpen(!isOpen)}>
+            О проекті
+          </Link>
         </ul>
       </nav>
 

@@ -30,11 +30,11 @@ const DisclosureMoving: React.FC<IDisclosureMovingProps> = ({
             className="md:size-6 xl:size-7"
           />
 
-          <span className="text-xs/6 text-left  text-grey font-semibold group-data-[hover]:text-white/80 md:text-base xl:text-xl">
+          <span className="text-xs/6 text-left  text-grey font-semibold group-data-[hover]:text-grey/80 md:text-base xl:text-xl">
             Розвантаження
           </span>
         </div>
-        <ChevronDownIcon className="size-5 fill-grey group-data-[hover]:fill-white/50 group-data-[open]:rotate-180 md:size-6 xl:size-7" />
+        <ChevronDownIcon className="size-5 fill-grey group-data-[hover]:fill-grey/80 group-data-[open]:rotate-180 md:size-6 xl:size-7" />
       </DisclosureButton>
       <DisclosureMovingPanel totalWeight={totalWeight} />
     </Disclosure>
