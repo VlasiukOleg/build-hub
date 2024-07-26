@@ -3,7 +3,7 @@ import LogoIcon from '@/../../public/icons/kyrpich-wall.svg';
 import Link from 'next/link';
 
 interface ILogoProps {
-  close: () => void;
+  close?: () => void;
 }
 
 const Logo: React.FC<ILogoProps> = ({ close }) => {
