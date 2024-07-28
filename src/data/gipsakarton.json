@@ -1,0 +1,111 @@
+[
+  {
+    "id": 1,
+    "categoryTitle": "Гіпсокартон",
+    "isCategoryOpen": true,
+    "materials": [
+      {
+        "id": 1.1,
+        "image": "https://i.imgur.com/zLaCAU4.jpeg",
+        "title": "Knauf",
+        "variants": [
+          {
+            "type": "вологостійкий",
+            "thickness": "стіновий 12,5 мм",
+            "size": "1200х2000",
+            "weight": 25,
+            "price": 299.89
+          },
+          {
+            "type": "вологостійкий",
+            "thickness": "стіновий 12,5 мм",
+            "size": "1200х2500",
+            "weight": 30,
+            "price": 350.0
+          },
+          {
+            "type": "вологостійкий",
+            "thickness": "стіновий 12,5 мм",
+            "size": "1200х3000",
+            "weight": 28,
+            "price": 279.99
+          },
+          {
+            "type": "звичайний",
+            "thickness": "стіновий 12,5 мм",
+            "size": "1200х2000",
+            "weight": 25,
+            "price": 299.89
+          },
+          {
+            "type": "звичайний",
+            "thickness": "стіновий 12,5 мм",
+            "size": "1200х2500",
+            "weight": 30,
+            "price": 350.0
+          },
+          {
+            "type": "звичайний",
+            "thickness": "стіновий 12,5 мм",
+            "size": "1200х3000",
+            "weight": 28,
+            "price": 279.99
+          }
+        ],
+        "quantity": 0,
+        "totalPrice": 0
+      },
+      {
+        "id": 1.1,
+        "image": "https://i.imgur.com/zLaCAU4.jpeg",
+        "title": "Plato",
+        "variants": [
+          {
+            "type": "вологостійкий",
+            "thickness": "стіновий 12,5 мм",
+            "size": "1200х2000",
+            "weight": 25,
+            "price": 299.89
+          },
+          {
+            "type": "вологостійкий",
+            "thickness": "стіновий 12,5 мм",
+            "size": "1200х2500",
+            "weight": 30,
+            "price": 350.0
+          },
+          {
+            "type": "вологостійкий",
+            "thickness": "стіновий 12,5 мм",
+            "size": "1200х3000",
+            "weight": 28,
+            "price": 279.99
+          },
+          {
+            "type": "звичайний",
+            "thickness": "стіновий 12,5 мм",
+            "size": "1200х2000",
+            "weight": 25,
+            "price": 299.89
+          },
+          {
+            "type": "звичайний",
+            "thickness": "стіновий 12,5 мм",
+            "size": "1200х2500",
+            "weight": 30,
+            "price": 350.0
+          },
+          {
+            "type": "звичайний",
+            "thickness": "стіновий 12,5 мм",
+            "size": "1200х3000",
+            "weight": 28,
+            "price": 279.99
+          }
+        ],
+        "quantity": 0,
+        "totalPrice": 0
+      }
+    ]
+  }
+]

@@ -166,7 +166,9 @@ const OrderList: React.FC<IOrderListProps> = ({}) => {
               <span className="text-accent">
                 {(
                   (isMovingAddToOrder ? movingPrice : 0) +
-                  (deliveryType === 'pickup' ? 0 : deliveryPrice) +
+                  (deliveryType === 'pickup' || deliveryType === ''
+                    ? 0
+                    : deliveryPrice) +
                   totalPrice
                 ).toFixed(2)}{' '}
                 грн.{' '}
