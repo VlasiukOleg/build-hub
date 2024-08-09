@@ -99,7 +99,14 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
     state => state.additionalMaterial.isAdditionalMaterialAddToOrder
   );
 
-  const materials = categories.flatMap(material => material.materials);
+  const allMaterialsCategories = categories.flatMap(
+    material => material.categories
+  );
+
+  const materials = allMaterialsCategories.flatMap(
+    category => category.materials
+  );
+
   const filteredMaterialsByQuantity = materials.filter(
     material => material.quantity > 0
   );

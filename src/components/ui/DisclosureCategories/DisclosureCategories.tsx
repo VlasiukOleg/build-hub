@@ -17,14 +17,17 @@ import { inputChangeQuantity, changeQuantity } from '@/redux/materialsSlice';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import ButtonLink from '../ButtonLink';
 
-interface IDisclosureCategoriesProps {}
+interface IDisclosureCategoriesProps {
+  slug: string;
+}
 
-const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
+const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
+  slug,
+}) => {
   const router = useRouter();
+  console.log(slug);
 
   const dispatch = useAppDispatch();
-  const categories = useAppSelector(state => state.categories);
-  const materials = categories.flatMap(material => material.materials);
   const deliveryPrice = useAppSelector(state => state.delivery.deliveryPrice);
   const deliveryType = useAppSelector(state => state.delivery.deliveryType);
   const movingPrice = useAppSelector(state => state.moving.movingPrice);
@@ -32,15 +35,26 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
     state => state.moving.isMovingPriceAddToOrder
   );
 
-  const totalPrice = materials.reduce((acc, value) => {
+  const allMaterials = useAppSelector(state => state.categories);
+  const categories = allMaterials.find(
+    category => category.id === slug
+  )?.categories;
+
+  if (!categories) {
+    return null;
+  }
+
+  const materials = categories?.flatMap(material => material.materials);
+
+  const totalPrice = materials?.reduce((acc, value) => {
     return acc + value.price * value.quantity;
   }, 0);
 
-  const totalWeight = materials.reduce((acc, value) => {
+  const totalWeight = materials?.reduce((acc, value) => {
     return acc + value.weight * value.quantity;
   }, 0);
 
-  const totalQuantity = materials.reduce((acc, value) => {
+  const totalQuantity = materials?.reduce((acc, value) => {
     return acc + value.quantity;
   }, 0);
 
@@ -62,7 +76,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
     // value = Math.max(0, value);
     // value = parseInt(value, 10);
 
-    const payload = { catInd, matInd, value };
+    const payload = { catInd, matInd, value, slug };
     dispatch(inputChangeQuantity(payload));
   };
 
@@ -71,7 +85,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
     matInd: number,
     value: number
   ) => {
-    const payload = { catInd, matInd, value };
+    const payload = { catInd, matInd, value, slug };
 
     dispatch(changeQuantity(payload));
   };
@@ -114,7 +128,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = () => {
         </h1>
 
         <div className="mx-auto w-full  divide-y divide-accent rounded-xl bg-bgWhite border-[1px] border-accent mb-4">
-          {categories.map((category, catInd) => {
+          {categories?.map((category, catInd) => {
             return (
               <Disclosure
                 as="div"

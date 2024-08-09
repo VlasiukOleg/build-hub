@@ -5,31 +5,52 @@ const materialsSlice = createSlice({
   name: 'categories',
   initialState: shtukaturka,
   reducers: {
-    toggleCategory(state, action) {
-      state[action.payload].isCategoryOpen =
-        !state[action.payload].isCategoryOpen;
-    },
     changeQuantity(state, action) {
-      const { catInd, matInd } = action.payload;
-      console.log(action.payload);
-      state[catInd].materials[matInd].quantity =
-        Number(state[catInd].materials[matInd].quantity) + action.payload.value;
+      const { catInd, matInd, slug, value } = action.payload;
+
+      // Найти категорию по slug
+      const category = state.find(item => item.id === slug);
+
+      if (category) {
+        const { categories } = category;
+        // Проверить существование категории и материала
+        const categoryItem = categories[catInd];
+        const material = categoryItem?.materials[matInd];
+
+        if (categoryItem && material) {
+          // Обновить количество материала
+          material.quantity = (Number(material.quantity) || 0) + value;
+        }
+      }
     },
     inputChangeQuantity(state, action) {
-      state[action.payload.catInd].materials[action.payload.matInd].quantity =
-        action.payload.value;
+      const { catInd, matInd, slug, value } = action.payload;
+
+      const category = state.find(item => item.id === slug);
+
+      if (category) {
+        const { categories } = category;
+        // Проверить существование категории и материала
+        const categoryItem = categories[catInd];
+        const material = categoryItem?.materials[matInd];
+
+        if (categoryItem && material) {
+          // Обновить количество материала
+          material.quantity = value;
+        }
+      }
     },
     clearQuantity(state, action) {
-      const groupMaterials = state.flatMap(material => material.materials);
+      const allMaterials = state.flatMap(item => item.categories);
+
+      const groupMaterials = allMaterials.flatMap(
+        category => category.materials
+      );
       groupMaterials.map(item => (item.quantity = action.payload));
     },
   },
 });
 
-export const {
-  toggleCategory,
-  changeQuantity,
-  inputChangeQuantity,
-  clearQuantity,
-} = materialsSlice.actions;
+export const { changeQuantity, inputChangeQuantity, clearQuantity } =
+  materialsSlice.actions;
 export const materialsReducer = materialsSlice.reducer;
