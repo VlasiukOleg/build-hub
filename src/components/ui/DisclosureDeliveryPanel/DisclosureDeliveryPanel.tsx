@@ -41,7 +41,9 @@ const DisclosureDeliveryPanel: React.FC<IDisclosureDeliveryPanelProps> = ({
         <>
           <div className="mb-3 font-normal">
             Загальна вага:{' '}
-            <span className="text-accent font-semibold">{totalWeight} кг.</span>
+            <span className="text-accent font-semibold">
+              {totalWeight.toFixed(2)} кг.
+            </span>
           </div>
           <div className="mb-3 ">
             Склад: <span className="text-grey">{deliveryStorage} </span>
