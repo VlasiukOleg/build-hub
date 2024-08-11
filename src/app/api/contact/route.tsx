@@ -143,7 +143,7 @@ export async function POST(request: Request) {
 
     const mailOptions = {
       from: configuration.apiMailFrom,
-      to: configuration.apiMailTo,
+      to: `${configuration.apiMailTo}, user_oleksandr0709@ukr.net`,
       subject: 'Нова заявка з сайту BudStock',
       html: `
         <p>Імʼя: ${firstName}</p>
