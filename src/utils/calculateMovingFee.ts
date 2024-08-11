@@ -1,4 +1,4 @@
-const MIN_PRICE = 400;
+const MIN_PRICE = 500;
 const BASE_PRICE = 0.5;
 const PRICE_PER_FLOOR = 0.25;
 
