@@ -168,10 +168,11 @@ const OrderForm: React.FC<IOrderFormProps> = ({}) => {
       setIsSending(true);
       await sendingEmail(sanitizedData);
       reset();
+      router.push('/thanks');
     } catch (error) {
       setSendError(true);
-    } finally {
       setIsOpen(true);
+    } finally {
       setIsSending(false);
     }
   };
