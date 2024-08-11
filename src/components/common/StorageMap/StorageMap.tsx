@@ -18,10 +18,10 @@ import { setDeliveryType, setDeliveryStorage } from '@/redux/deliverySlice';
 interface IStorageMapProps {}
 
 const storages = [
-  { id: 1, location: 'Київ, вул. Марка Вовчка, 14 (Куренівка)' },
-  { id: 2, location: 'Київ, пров. Деревообробний , 5  (Видубичі)' },
-  { id: 3, location: 'Київ, пр-т Перемоги, 67. корпус-Nb (м. Нивки)' },
-  { id: 4, location: 'Київ, вул.Бориспільська, 7' },
+  { id: 1, location: 'СКЛАД №1' },
+  { id: 2, location: 'СКЛАД №2' },
+  { id: 3, location: 'СКЛАД №3' },
+  { id: 4, location: 'СКЛАД №4' },
 ];
 
 const StorageMap: React.FC<IStorageMapProps> = () => {
