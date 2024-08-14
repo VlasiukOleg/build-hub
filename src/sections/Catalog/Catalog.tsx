@@ -14,7 +14,7 @@ const catalog = [
     id: 2,
     text: 'Гіпсокартон',
     img: Gipsokarton,
-    href: 'gipsakarton',
+    href: 'gipsokarton',
   },
 ];
 

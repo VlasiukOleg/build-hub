@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { Disclosure, DisclosureButton } from '@headlessui/react';
 
 import DisclosureMaterialsPanel from '../DisclosureMaterialsPanel';
+import DisclosureGipsokartonPanel from '../DisclosureGipsokartonPanel';
 import DisclosureMoving from '../DisclosureMoving';
 import DisclosureDelivery from '../DisclosureDelivery';
 import DisclosureAddMaterials from '../DisclosureAddMaterials';
@@ -133,13 +134,13 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
               <Disclosure
                 as="div"
                 className="p-6"
-                defaultOpen={category.id === 1}
+                defaultOpen={catInd === 0}
                 key={category.id}
               >
                 <DisclosureButton className="group flex w-full items-center justify-between">
                   <div className="text-left flex gap-2 items-center">
                     <div className="rounded-full bg-accent text-bgWhite size-5 flex justify-center items-center text-xs md:size-6 md:text-sm xl:size-7 xl:text-base ">
-                      {category.id}
+                      {catInd + 1}
                     </div>
                     <span className="text-xs/6 text-left font-semibold text-grey  group-data-[hover]:text-grey/80 md:text-base xl:text-xl">
                       {category.categoryTitle}
@@ -148,10 +149,11 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
 
                   <ChevronDownIcon className="size-5 fill-grey group-data-[hover]:fill-grey/80 group-data-[open]:rotate-180 md:size-6 xl:size-7" />
                 </DisclosureButton>
+
                 {category.materials.map((material, matInd) => {
                   const { quantity, price } = material;
                   const totalMaterialPrice = quantity * price;
-                  return (
+                  return slug !== 'gipsokarton' ? (
                     <DisclosureMaterialsPanel
                       key={matInd}
                       material={material}
@@ -163,6 +165,20 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
                       handleFocus={handleFocus}
                       handleBlur={handleBlur}
                     />
+                  ) : (
+                    <>
+                      <DisclosureGipsokartonPanel
+                        key={matInd}
+                        material={material}
+                        totalMaterialPrice={totalMaterialPrice}
+                        catInd={catInd}
+                        matInd={matInd}
+                        handleButtonChangeQuantity={handleButtonChangeQuantity}
+                        handleInputChangeQuantity={handleInputChangeQuantity}
+                        handleFocus={handleFocus}
+                        handleBlur={handleBlur}
+                      />
+                    </>
                   );
                 })}
               </Disclosure>
