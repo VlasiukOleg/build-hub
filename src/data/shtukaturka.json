@@ -814,6 +814,199 @@
             "totalPrice": 0
           }
         ]
+      },
+      {
+        "id": 20,
+        "categoryTitle": "Профіль для гіпсокартону UW-50",
+        "isCategoryOpen": false,
+        "materials": [
+          {
+            "id": 20.1,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Профіль UW-50 (0.55 мм) - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 85.86,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 20.2,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Профіль UW-50 (0.55 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 114.48,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 20.3,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Профіль UW-50 (0.6 мм) ГОСТ - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 109.08,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 20.5,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Knauf Профіль UW-50 (0.6 мм) - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 145.26,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 20.6,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Knauf Профіль UW-50 (0.6 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 193.68,
+            "quantity": 0,
+            "totalPrice": 0
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "categoryTitle": "Профіль для гіпсокартону UW-75",
+        "isCategoryOpen": false,
+        "materials": [
+          {
+            "id": 21.1,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Профіль UW-75 (0.55 мм) - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 102.51,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 21.2,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Профіль UW-75 (0.55 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 136.68,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 21.3,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Профіль UW-75 (0.6 мм) ГОСТ - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 141.36,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+
+          {
+            "id": 21.4,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Профіль UW-75 (0.6 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 188.48,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 21.5,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Knauf Профіль UW-75 (0.6 мм) - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 169.17,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 21.6,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Knauf Профіль UW-75 (0.6 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 225.56,
+            "quantity": 0,
+            "totalPrice": 0
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "categoryTitle": "Профіль для гіпсокартону UW-100",
+        "isCategoryOpen": false,
+        "materials": [
+          {
+            "id": 22.1,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Профіль UW-100 (0.55 мм) - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 120.48,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 22.2,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Профіль UW-100 (0.55 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 160.64,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 22.3,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Профіль UW-100 (0.6 мм) ГОСТ - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 157.68,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+
+          {
+            "id": 22.4,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Профіль UW-100 (0.6 мм) ГОСТ - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 210.24,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 22.5,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Knauf Профіль UW-100 (0.6 мм) - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 198.69,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 22.6,
+            "image": "https://i.imgur.com/rYGeLgO.jpeg",
+            "title": "Knauf Профіль UW-100 (0.6 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 264.92,
+            "quantity": 0,
+            "totalPrice": 0
+          }
+        ]
       }
     ]
   }
