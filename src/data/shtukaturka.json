@@ -620,6 +620,200 @@
             "totalPrice": 0
           }
         ]
+      },
+      {
+        "id": 17,
+        "categoryTitle": "Профіль для гіпсокартону CW-50",
+        "isCategoryOpen": false,
+        "materials": [
+          {
+            "id": 17.1,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Профіль CW-50 (0.55 мм) - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 107.91,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 17.2,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Профіль CW-50 (0.55 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 143.88,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 17.3,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Профіль CW-50 (0.6 мм) ГОСТ - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 133.68,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+
+          {
+            "id": 17.5,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Knauf Профіль CW-50 (0.6 мм) - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 165.96,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 17.6,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Knauf Профіль CW-50 (0.6 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 221.28,
+            "quantity": 0,
+            "totalPrice": 0
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "categoryTitle": "Профіль для гіпсокартону CW-75",
+        "isCategoryOpen": false,
+        "materials": [
+          {
+            "id": 18.1,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Профіль CW-75 (0.55 мм) - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 126.93,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 18.2,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Профіль CW-75 (0.55 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 169.24,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 18.3,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Профіль CW-75 (0.6 мм) ГОСТ - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 159.06,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+
+          {
+            "id": 18.4,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Профіль CW-75 (0.6 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 212.08,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 18.5,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Knauf Профіль CW-75 (0.6 мм) - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 189.24,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 18.6,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Knauf Профіль CW-75 (0.6 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 252.32,
+            "quantity": 0,
+            "totalPrice": 0
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "categoryTitle": "Профіль для гіпсокартону CW-100",
+        "isCategoryOpen": false,
+        "materials": [
+          {
+            "id": 19.1,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Профіль CW-100 (0.55 мм) - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 145.59,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 19.2,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Профіль CW-100 (0.55 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 194.12,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 19.3,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Профіль CW-100 (0.6 мм) ГОСТ - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 181.95,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+
+          {
+            "id": 19.4,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Профіль CW-100 (0.6 мм) ГОСТ - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 242.6,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 19.5,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Knauf Профіль CW-100 (0.6 мм) - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 223.26,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 19.6,
+            "image": "https://i.imgur.com/AtlYCOt.jpeg",
+            "title": "Knauf Профіль CW-100 (0.6 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 297.68,
+            "quantity": 0,
+            "totalPrice": 0
+          }
+        ]
       }
     ]
   }
