@@ -552,6 +552,74 @@
             "totalPrice": 0
           }
         ]
+      },
+      {
+        "id": 16,
+        "categoryTitle": "Профіль для гіпсокартону UD-27",
+        "isCategoryOpen": false,
+
+        "materials": [
+          {
+            "id": 16.1,
+            "image": "https://i.imgur.com/tSzHGba.jpeg",
+            "title": "Профіль UD-27 (0.55 мм) - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 50.13,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 16.2,
+            "image": "https://i.imgur.com/tSzHGba.jpeg",
+            "title": "Профіль UD-27 (0.55 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 66.84,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 16.3,
+            "image": "https://i.imgur.com/tSzHGba.jpeg",
+            "title": "Профіль UD-27 (0.6 мм) ГОСТ - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 65.82,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 16.4,
+            "image": "https://i.imgur.com/tSzHGba.jpeg",
+            "title": "Профіль UD-27 (0.6 мм) ГОСТ - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 87.76,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 16.5,
+            "image": "https://i.imgur.com/tSzHGba.jpeg",
+            "title": "Knauf Профіль UD-27 (0.6 мм) - 3м",
+            "description": "",
+            "weight": 2,
+            "price": 106.47,
+            "quantity": 0,
+            "totalPrice": 0
+          },
+          {
+            "id": 16.6,
+            "image": "https://i.imgur.com/tSzHGba.jpeg",
+            "title": "Knauf Профіль UD-27 (0.6 мм) - 4м",
+            "description": "",
+            "weight": 2,
+            "price": 141.96,
+            "quantity": 0,
+            "totalPrice": 0
+          }
+        ]
       }
     ]
   }
