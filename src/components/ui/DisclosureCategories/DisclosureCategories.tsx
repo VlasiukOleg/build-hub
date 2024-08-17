@@ -142,7 +142,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
                     <div className="rounded-full bg-accent text-bgWhite size-5 flex justify-center items-center text-xs md:size-6 md:text-sm xl:size-7 xl:text-base ">
                       {catInd + 1}
                     </div>
-                    <span className="text-xs/6 text-left font-semibold text-grey  group-data-[hover]:text-grey/80 md:text-base xl:text-xl">
+                    <span className="text-xs/6 text-left font-semibold text-grey leading-4 group-data-[hover]:text-grey/80 md:text-base xl:text-xl">
                       {category.categoryTitle}
                     </span>
                   </div>

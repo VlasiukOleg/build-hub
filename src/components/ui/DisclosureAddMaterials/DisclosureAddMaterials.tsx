@@ -13,8 +13,8 @@ const DisclosureAdditionalMaterials: React.FC<
     <Disclosure as="div" className="p-6">
       <DisclosureButton className="group flex w-full items-center justify-between">
         <div className="text-left flex gap-2 items-center">
-          <div className="rounded-full bg-accent text-bgWhite size-5 flex justify-center items-center text-xs md:size-6 md:text-sm xl:size-7 xl:text-base ">
-            12
+          <div className="rounded-full bg-accent text-bgWhite size-5 flex justify-center items-center text-lg md:size-6 md:text-xl xl:size-7  ">
+            +
           </div>
           <span className="text-xs/6 text-left  text-grey font-semibold group-data-[hover]:text-grey/80 md:text-base xl:text-xl">
             Додати матеріал
