@@ -41,11 +41,16 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
     category => category.id === slug
   )?.categories;
 
+  const title = allMaterials.find(category => category.id === slug)?.title;
+
   if (!categories) {
     return null;
   }
 
   const materials = categories?.flatMap(material => material.materials);
+
+  console.log(allMaterials);
+  console.log(categories);
 
   const totalPrice = materials?.reduce((acc, value) => {
     return acc + value.price * value.quantity;
@@ -125,7 +130,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
           isMovingAddToOrder={isMovingAddToOrder}
         />
         <h1 className="font-unbounded xl:text-2xl font-bold text-center mb-5  md:text-lg">
-          Замовлення матеріалів для ручної та машинної штукатурки
+          {title}
         </h1>
 
         <div className="mx-auto w-full  divide-y divide-accent rounded-xl bg-bgWhite border-[1px] border-accent mb-4">

@@ -1,6 +1,7 @@
 [
   {
     "id": "shtukaturka",
+    "title": "Замовлення матеріалів для ручної та машинної штукатурки",
     "categories": [
       {
         "id": 1,
@@ -383,6 +384,7 @@
   },
   {
     "id": "gipsokarton",
+    "title": "Замовлення матеріалів для гіпсокартонних робіт",
     "categories": [
       {
         "id": 12,
@@ -1118,47 +1120,6 @@
             "description": "",
             "weight": 1,
             "price": 6.71,
-            "quantity": 0,
-            "totalPrice": 0
-          },
-
-          {
-            "id": 24.4,
-            "image": "https://i.imgur.com/YbMfRU4.jpeg",
-            "title": "З'єднувач хрестовий  дворівневий 60/60 (0.8 мм)",
-            "description": "",
-            "weight": 1,
-            "price": 5.47,
-            "quantity": 0,
-            "totalPrice": 0
-          },
-          {
-            "id": 24.5,
-            "image": "https://i.imgur.com/YbMfRU4.jpeg",
-            "title": "З'єднувач хрестовий  дворівневий 60/60 (0.9 мм)",
-            "description": "",
-            "weight": 1,
-            "price": 5.69,
-            "quantity": 0,
-            "totalPrice": 0
-          },
-          {
-            "id": 24.6,
-            "image": "https://i.imgur.com/jtm6Biw.jpeg",
-            "title": "Кутове з'єднання для CD-профілю (0,65 мм)",
-            "description": "",
-            "weight": 2,
-            "price": 5.34,
-            "quantity": 0,
-            "totalPrice": 0
-          },
-          {
-            "id": 24.7,
-            "image": "https://i.imgur.com/jtm6Biw.jpeg",
-            "title": "Кутове з'єднання для CD-профілю (0,9 мм)",
-            "description": "",
-            "weight": 2,
-            "price": 7.88,
             "quantity": 0,
             "totalPrice": 0
           }
