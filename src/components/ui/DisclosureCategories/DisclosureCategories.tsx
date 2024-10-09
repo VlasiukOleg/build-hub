@@ -26,7 +26,6 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
   slug,
 }) => {
   const router = useRouter();
-  console.log(slug);
 
   const dispatch = useAppDispatch();
   const deliveryPrice = useAppSelector(state => state.delivery.deliveryPrice);
@@ -41,11 +40,11 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
     category => category.id === slug
   )?.categories;
 
-  const title = allMaterials.find(category => category.id === slug)?.title;
-
   if (!categories) {
     return null;
   }
+
+  const title = allMaterials.find(category => category.id === slug)?.title;
 
   const materials = categories?.flatMap(material => material.materials);
 
