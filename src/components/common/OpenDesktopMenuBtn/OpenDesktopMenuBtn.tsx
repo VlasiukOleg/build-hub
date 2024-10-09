@@ -16,7 +16,7 @@ const OpenDesktopMenuBtn: React.FC<IOpenDesktopMenuBtnProps> = () => {
         )}
       >
         <ul className="flex font-semibold  gap-5 uppercase">
-          <Link href="/catalog/shtukaturka" onClick={() => setIsOpen(!isOpen)}>
+          <Link href="/catalog/" onClick={() => setIsOpen(!isOpen)}>
             Матеріали
           </Link>
           <Link href="/services" onClick={() => setIsOpen(!isOpen)}>

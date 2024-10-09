@@ -25,7 +25,7 @@ const BurgerMenu: React.FC<IBurgerMenuProps> = ({ close }) => {
       <nav className="flex-1">
         <ul className="flex flex-col gap-5 text-2xl items-center uppercase font-medium  md:text-[28px]">
           <li>
-            <Link href="/catalog/shtukaturka" onClick={close}>
+            <Link href="/catalog/" onClick={close}>
               Матеріали
             </Link>
           </li>
