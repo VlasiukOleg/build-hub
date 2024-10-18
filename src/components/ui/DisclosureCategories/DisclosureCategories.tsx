@@ -50,6 +50,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
 
   console.log(allMaterials);
   console.log(categories);
+  console.log(materials);
 
   const totalPrice = materials?.reduce((acc, value) => {
     return acc + value.price * value.quantity;
@@ -62,6 +63,17 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
   const totalQuantity = materials?.reduce((acc, value) => {
     return acc + value.quantity;
   }, 0);
+
+  const liftSizedGipsokarton = materials.filter(
+    material => material.size === 2
+  );
+
+  const liftSizedGipsokartonQuantity = liftSizedGipsokarton.reduce(
+    (acc, value) => {
+      return acc + value.quantity;
+    },
+    0
+  );
 
   const handleInputChangeQuantity = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -189,7 +201,10 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
             );
           })}
           <DisclosureAddMaterials />
-          <DisclosureMoving totalWeight={totalWeight} />
+          <DisclosureMoving
+            totalWeight={totalWeight}
+            liftSizedGipsokarton={liftSizedGipsokartonQuantity}
+          />
           <DisclosureDelivery totalWeight={totalWeight} />
         </div>
         <div className="text-center">

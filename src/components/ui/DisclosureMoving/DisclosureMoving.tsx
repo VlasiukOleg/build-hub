@@ -13,10 +13,12 @@ import Moving from '@/../public/images/moving.png';
 
 interface IDisclosureMovingProps {
   totalWeight: number;
+  liftSizedGipsokarton: number;
 }
 
 const DisclosureMoving: React.FC<IDisclosureMovingProps> = ({
   totalWeight,
+  liftSizedGipsokarton,
 }) => {
   return (
     <Disclosure as="div" className="p-6">
@@ -36,7 +38,10 @@ const DisclosureMoving: React.FC<IDisclosureMovingProps> = ({
         </div>
         <ChevronDownIcon className="size-5 fill-grey group-data-[hover]:fill-grey/80 group-data-[open]:rotate-180 md:size-6 xl:size-7" />
       </DisclosureButton>
-      <DisclosureMovingPanel totalWeight={totalWeight} />
+      <DisclosureMovingPanel
+        totalWeight={totalWeight}
+        liftSizedGipsokarton={liftSizedGipsokarton}
+      />
     </Disclosure>
   );
 };

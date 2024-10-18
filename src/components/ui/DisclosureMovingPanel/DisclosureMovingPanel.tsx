@@ -19,6 +19,7 @@ import { calculateMovingFee } from '@/utils/calculateMovingFee';
 
 interface IDisclosureMovingPanelProps {
   totalWeight: number;
+  liftSizedGipsokarton: number;
 }
 
 const elevators = [
@@ -40,7 +41,7 @@ const buildings = [
 
 const DisclosureMovingPanel: React.FunctionComponent<
   IDisclosureMovingPanelProps
-> = ({ totalWeight }) => {
+> = ({ totalWeight, liftSizedGipsokarton }) => {
   const [elevator, setElevator] = useState(elevators[1]);
   const [building, setBuilding] = useState(buildings[0]);
   const [floor, setFloor] = useState('1');
@@ -74,7 +75,8 @@ const DisclosureMovingPanel: React.FunctionComponent<
       elevator.label,
       distance,
       building.label,
-      floorNumber
+      floorNumber,
+      liftSizedGipsokarton
     );
 
     dispatch(setMovingCost(Math.round(movingFee)));
