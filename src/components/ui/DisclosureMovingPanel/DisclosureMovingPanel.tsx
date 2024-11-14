@@ -66,7 +66,6 @@ const DisclosureMovingPanel: React.FunctionComponent<
 
   useEffect(() => {
     if (elevator.label !== 'nolift') {
-      setFloor('1');
       setBuilding(buildings[0]);
     }
     const floorNumber = Number(floor) || 0;
@@ -80,7 +79,15 @@ const DisclosureMovingPanel: React.FunctionComponent<
     );
 
     dispatch(setMovingCost(Math.round(movingFee)));
-  }, [totalWeight, dispatch, elevator.label, distance, floor, building.label]);
+  }, [
+    totalWeight,
+    dispatch,
+    elevator.label,
+    distance,
+    floor,
+    building.label,
+    liftSizedGipsokarton,
+  ]);
 
   return (
     <DisclosurePanel className="mt-2 text-sm/5 text-grey md:text-lg xl:text-xl xl:mt-6">
@@ -149,6 +156,25 @@ const DisclosureMovingPanel: React.FunctionComponent<
             />
           </Field>
         </div>
+      )}
+
+      {elevator.label === 'passenger' && liftSizedGipsokarton > 0 && (
+        <Field className="mb-3 md:mb-0 md:flex md:items-center md:gap-2">
+          <Label className="text-sm/6 font-medium textgrey xl:text-base">
+            Поверх
+          </Label>
+
+          <Input
+            value={floor}
+            type="number"
+            min={1}
+            onChange={handleFloorChange}
+            className={clsx(
+              'block w-full rounded-lg border-accent border-[1px] bg-white/5 py-1.5 px-3 text-sm/6 text-grey md:w-[75px] md:py-2 md:text-center xl:text-base',
+              'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
+            )}
+          />
+        </Field>
       )}
 
       <div className="md:flex md:gap-5 md:items-center xl:flex-col xl:items-start mb-3 xl:mb-5">

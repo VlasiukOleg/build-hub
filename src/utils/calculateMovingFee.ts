@@ -1,6 +1,6 @@
 const PRICE_PER_TON = 500;
-const BASE_PRICE = 0.5;
-const PRICE_PER_FLOOR = 0.25;
+const BASE_PRICE = 500;
+const PRICE_PER_FLOOR = 250;
 const PRICE_GIPSOKARTON_LIFT_XS = 25;
 
 const PRICE_GIPSOKARTON_XS_PER_FLOOR = 40;
@@ -16,15 +16,16 @@ export const calculateMovingFee = (
   liftSizedGipsokarton: number
 ) => {
   const normalizedWeight = weight * 0.001;
+
   let movingFee = 0;
 
-  if (weight > 0 && weight < 1000) {
+  if (weight > 0 && weight < 1000 && liftSizedGipsokarton === 0) {
     movingFee = PRICE_PER_TON;
   } else {
     movingFee =
       PRICE_PER_TON * normalizedWeight +
       liftSizedGipsokarton * PRICE_GIPSOKARTON_LIFT_XS -
-      liftSizedGipsokarton * 20 * BASE_PRICE;
+      liftSizedGipsokarton * 0.02 * BASE_PRICE;
   }
 
   if (elevator === 'passenger') {
@@ -37,8 +38,8 @@ export const calculateMovingFee = (
   if (floor > 1) {
     movingFee +=
       building === 'old'
-        ? (BASE_PRICE + (PRICE_PER_FLOOR + 0.05) * (floor - 1)) * weight
-        : (BASE_PRICE + PRICE_PER_FLOOR * (floor - 1)) * weight;
+        ? (PRICE_PER_FLOOR + 50) * (floor - 1) * normalizedWeight
+        : PRICE_PER_FLOOR * (floor - 1) * normalizedWeight;
   }
 
   if (distance <= 20) {
