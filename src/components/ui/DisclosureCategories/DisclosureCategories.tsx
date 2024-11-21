@@ -35,21 +35,30 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
     state => state.moving.isMovingPriceAddToOrder
   );
 
-  const allMaterials = useAppSelector(state => state.categories);
-  const categories = allMaterials.find(
+  const allCategories = useAppSelector(state => state.categories);
+
+  const allSubCategories = allCategories.flatMap(
+    category => category.categories
+  );
+
+  console.log('allSubCategories', allSubCategories);
+
+  const subCategories = allCategories.find(
     category => category.id === slug
   )?.categories;
 
-  if (!categories) {
+  if (!subCategories) {
     return null;
   }
 
-  const title = allMaterials.find(category => category.id === slug)?.title;
+  const title = allCategories.find(category => category.id === slug)?.title;
 
-  const materials = categories?.flatMap(material => material.materials);
+  const materials = allSubCategories?.flatMap(
+    subCategory => subCategory.materials
+  );
 
-  console.log(allMaterials);
-  console.log(categories);
+  console.log(allCategories);
+  console.log(subCategories);
   console.log(materials);
 
   const totalPrice = materials?.reduce((acc, value) => {
@@ -145,7 +154,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
         </h1>
 
         <div className="mx-auto w-full  divide-y divide-accent rounded-xl bg-bgWhite border-[1px] border-accent mb-4">
-          {categories?.map((category, catInd) => {
+          {subCategories?.map((category, catInd) => {
             return (
               <Disclosure
                 as="div"
