@@ -15,13 +15,15 @@ interface IOrderListProps {}
 
 const OrderList: React.FC<IOrderListProps> = ({}) => {
   const router = useRouter();
-  const categories = useAppSelector(state => state.categories);
-  const allMaterialsCategories = categories.flatMap(
-    material => material.categories
+  const allCategories = useAppSelector(state => state.categories);
+
+  const allSubCategories = allCategories.flatMap(
+    category => category.categories
   );
-  const materials = allMaterialsCategories.flatMap(
-    category => category.materials
+  const materials = allSubCategories.flatMap(
+    subCategory => subCategory.materials
   );
+
   const filteredMaterialsByQuantity = materials.filter(
     material => material.quantity > 0
   );

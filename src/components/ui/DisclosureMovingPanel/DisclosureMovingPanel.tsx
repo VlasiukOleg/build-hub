@@ -201,6 +201,12 @@ const DisclosureMovingPanel: React.FunctionComponent<
           Ціна розвантаження: {movingPrice} грн.
         </div>
       </div>
+      <div>
+        <p>Розрахунок доставки</p>
+        <ul>
+          <li>Ваговий матеріал {totalWeight} кг. 600 грн. {totalWeight * 600}</li>
+        </ul>
+      </div>
       <div className="text-center">
         {' '}
         <button

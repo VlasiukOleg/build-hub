@@ -41,13 +41,11 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
     category => category.categories
   );
 
-  console.log('allSubCategories', allSubCategories);
-
-  const subCategories = allCategories.find(
+  const subCategoriesBySlug = allCategories.find(
     category => category.id === slug
   )?.categories;
 
-  if (!subCategories) {
+  if (!subCategoriesBySlug) {
     return null;
   }
 
@@ -57,9 +55,10 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
     subCategory => subCategory.materials
   );
 
-  console.log(allCategories);
-  console.log(subCategories);
-  console.log(materials);
+  console.log('allCategories', allCategories);
+  console.log('allSubCategories', allSubCategories);
+  console.log('subCategoriesBySlug', subCategoriesBySlug);
+  console.log('materials', materials);
 
   const totalPrice = materials?.reduce((acc, value) => {
     return acc + value.price * value.quantity;
@@ -154,7 +153,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
         </h1>
 
         <div className="mx-auto w-full  divide-y divide-accent rounded-xl bg-bgWhite border-[1px] border-accent mb-4">
-          {subCategories?.map((category, catInd) => {
+          {subCategoriesBySlug?.map((category, catInd) => {
             return (
               <Disclosure
                 as="div"
