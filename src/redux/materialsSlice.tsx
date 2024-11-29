@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import shtukaturka from '@/data/shtukaturka.json';
+import catalog from '@/data/catalog.json';
 
 const materialsSlice = createSlice({
   name: 'categories',
-  initialState: shtukaturka,
+  initialState: catalog,
   reducers: {
     changeQuantity(state, action) {
       const { catInd, matInd, slug, value } = action.payload;

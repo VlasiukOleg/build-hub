@@ -22,12 +22,11 @@ interface IDisclosureMovingProps {
     image: string;
     title: string;
     description: string;
-    size: number;
+    weight: number;
     movingTypeCalculation: string;
     price: number;
     quantity: number;
     totalPrice: number;
-    weight: number;
   }[];
 }
 
