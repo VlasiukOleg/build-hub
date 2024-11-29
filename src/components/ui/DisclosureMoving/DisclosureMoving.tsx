@@ -1,5 +1,4 @@
 import Image from 'next/image';
-
 import {
   Disclosure,
   DisclosurePanel,
@@ -11,15 +10,79 @@ import DisclosureMovingPanel from '../DisclosureMovingPanel';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import Moving from '@/../public/images/moving.png';
 
+import { MATERIAL_SIZE } from '@/constants/constants';
+import { PRICE_PER_TON } from '@/constants/constants';
+
 interface IDisclosureMovingProps {
-  totalWeight: number;
-  liftSizedGipsokarton: number;
+  materials: {
+    id: number;
+    image: string;
+    title: string;
+    description: string;
+    size: number;
+    isWeightCalculation: boolean;
+    price: number;
+    quantity: number;
+    totalPrice: number;
+    weight: number;
+  }[];
 }
 
-const DisclosureMoving: React.FC<IDisclosureMovingProps> = ({
-  totalWeight,
-  liftSizedGipsokarton,
-}) => {
+const DisclosureMoving: React.FC<IDisclosureMovingProps> = ({ materials }) => {
+  const totalWeight = materials?.reduce((acc, value) => {
+    return acc + value.weight * value.quantity;
+  }, 0);
+
+  const liftSizedGipsokarton = materials.filter(
+    material => material.size === MATERIAL_SIZE.SM
+  );
+
+  const liftSizedGipsokartonQuantity = liftSizedGipsokarton.reduce(
+    (acc, value) => {
+      return acc + Number(value.quantity);
+    },
+    0
+  );
+
+  const getRows = () => {
+    let rows = [];
+    const weighCalculationMaterialTotalWeight = materials
+      .filter(material => material.isWeightCalculation)
+      .reduce((acc, value) => {
+        return acc + value.weight * value.quantity;
+      }, 0);
+  };
+
+  const rows = materials.map(material => {
+    if (material.isWeightCalculation) {
+      return {
+        key: material.id,
+        type: 'Ваговий матеріал',
+        measure: 'тн',
+        quantity: material.quantity * material.weight,
+        price: PRICE_PER_TON,
+        totalPrice: material.quantity * material.weight * PRICE_PER_TON,
+      };
+    }
+  });
+
+  const weighCalculationMaterialTotalWeight = materials
+    .filter(material => material.isWeightCalculation)
+    .reduce((acc, value) => {
+      return acc + value.weight * value.quantity;
+    }, 0);
+
+  console.log(
+    'weighCalculationMaterialWeight',
+    weighCalculationMaterialTotalWeight
+  );
+
+  const itemCalculationMaterial = materials.filter(
+    material => !material.isWeightCalculation
+  );
+
+  console.log('liftSizedGipsokartonQuantity', liftSizedGipsokartonQuantity);
+
   return (
     <Disclosure as="div" className="p-6">
       <DisclosureButton className="group flex w-full items-center justify-between">
@@ -40,7 +103,11 @@ const DisclosureMoving: React.FC<IDisclosureMovingProps> = ({
       </DisclosureButton>
       <DisclosureMovingPanel
         totalWeight={totalWeight}
-        liftSizedGipsokarton={liftSizedGipsokarton}
+        rows={rows}
+        weightCalculationMaterialTotalWeight={
+          weighCalculationMaterialTotalWeight
+        }
+        liftSizedGipsokarton={liftSizedGipsokartonQuantity}
       />
     </Disclosure>
   );

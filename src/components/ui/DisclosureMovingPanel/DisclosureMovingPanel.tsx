@@ -11,15 +11,29 @@ import {
 import clsx from 'clsx';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { useState, useEffect } from 'react';
+import { Button } from '@nextui-org/react';
+
+import MovingCostTable from '@/components/common/MovingCostTable';
 
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import { setMovingCost, toggleMovingPriceToOrder } from '@/redux/movingSlice';
 
 import { calculateMovingFee } from '@/utils/calculateMovingFee';
+import { normalizedWeight } from '@/utils/normalizesWeight';
+
+import { PRICE_PER_TON } from '@/constants/constants';
 
 interface IDisclosureMovingPanelProps {
   totalWeight: number;
   liftSizedGipsokarton: number;
+  weightCalculationMaterialTotalWeight: number;
+  rows: {
+    key: string;
+    type: string;
+    weight: string;
+    price: string;
+    total: number;
+  }[];
 }
 
 const elevators = [
@@ -41,7 +55,12 @@ const buildings = [
 
 const DisclosureMovingPanel: React.FunctionComponent<
   IDisclosureMovingPanelProps
-> = ({ totalWeight, liftSizedGipsokarton }) => {
+> = ({
+  totalWeight,
+  liftSizedGipsokarton,
+  weightCalculationMaterialTotalWeight,
+  rows,
+}) => {
   const [elevator, setElevator] = useState(elevators[1]);
   const [building, setBuilding] = useState(buildings[0]);
   const [floor, setFloor] = useState('1');
@@ -51,6 +70,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
   const isMovingPriceAddToOrderBar = useAppSelector(
     state => state.moving.isMovingPriceAddToOrder
   );
+
   const dispatch = useAppDispatch();
 
   const handleFloorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -203,23 +223,25 @@ const DisclosureMovingPanel: React.FunctionComponent<
       </div>
       <div>
         <p>Розрахунок доставки</p>
+        <MovingCostTable rows={rows} />
         <ul>
-          <li>Ваговий матеріал {totalWeight} кг. 600 грн. {totalWeight * 600}</li>
+          <li>
+            Ваговий матеріал {weightCalculationMaterialTotalWeight} кг. 600 грн.{' '}
+            {weightCalculationMaterialTotalWeight * 600}
+          </li>
         </ul>
       </div>
       <div className="text-center">
         {' '}
-        <button
+        <Button
           onClick={onAddMovingToOrderBar}
-          className={clsx(
-            'bg-green-800 font-unbounded text-center rounded-lg border-[1px] border-none text-white md:text-base p-2 md:flex-[50%] xl:w-[25%]',
-            isMovingPriceAddToOrderBar && 'bg-red-800'
-          )}
+          color={isMovingPriceAddToOrderBar ? 'danger' : 'success'}
+          size="lg"
         >
           {isMovingPriceAddToOrderBar
             ? 'Прибрати з замовлення'
             : 'Додати до замовлення'}
-        </button>
+        </Button>
       </div>
     </DisclosurePanel>
   );

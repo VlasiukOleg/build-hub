@@ -72,17 +72,6 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
     return acc + value.quantity;
   }, 0);
 
-  const liftSizedGipsokarton = materials.filter(
-    material => material.size === 2
-  );
-
-  const liftSizedGipsokartonQuantity = liftSizedGipsokarton.reduce(
-    (acc, value) => {
-      return acc + value.quantity;
-    },
-    0
-  );
-
   const handleInputChangeQuantity = (
     e: React.ChangeEvent<HTMLInputElement>,
     catInd: number,
@@ -209,10 +198,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
             );
           })}
           <DisclosureAddMaterials />
-          <DisclosureMoving
-            totalWeight={totalWeight}
-            liftSizedGipsokarton={liftSizedGipsokartonQuantity}
-          />
+          {totalQuantity > 0 && <DisclosureMoving materials={materials} />}
           <DisclosureDelivery totalWeight={totalWeight} />
         </div>
         <div className="text-center">

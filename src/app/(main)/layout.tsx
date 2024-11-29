@@ -7,6 +7,7 @@ import { metaData } from '@/data';
 import { Montserrat } from 'next/font/google';
 import './globals.css';
 
+import { Providers } from '../provider';
 import Header from '@/layout/Header';
 import Footer from '@/layout/Footer/Footer';
 import configuration from '@/utils/configuration';
@@ -55,11 +56,13 @@ export default function RootLayout({
             'flex h-full min-h-screen flex-col overflow-x-hidden'
           )}
         >
-          <Header />
-          <main className="flex-1 flex items-center justify-center">
-            {children}
-          </main>
-          <Footer />
+          <Providers>
+            <Header />
+            <main className="flex-1 flex items-center justify-center">
+              {children}
+            </main>
+            <Footer />
+          </Providers>
         </body>
       </StoreProvider>
     </html>

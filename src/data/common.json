@@ -10,5 +10,14 @@
     "burgerClose": "Закрити модальне меню",
     "burgerOpen": "Відкрити модальне меню"
   },
-  "materialSlugs": ["shtukaturka", "gipsokarton"]
+  "materialSlugs": ["shtukaturka", "gipsokarton"],
+  "moving": {
+    "columnLabels": {
+      "type": "Тип матеріалу",
+      "measure": "Одиниця вимірювання",
+      "quantity": "Кількість",
+      "price": "Ціна",
+      "totalPrice": "Всього"
+    }
+  }
 }
