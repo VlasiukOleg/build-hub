@@ -1,1 +1,2 @@
-export const normalizedWeight = (weight: number) => (weight * 0.001).toFixed(2);
+export const normalizedWeight = (weight: number) =>
+  Number((weight * 0.001).toFixed(2));

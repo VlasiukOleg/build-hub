@@ -7,11 +7,11 @@ export const MOVING_LIST_TABLE_KEYS_MAP = {
 };
 
 
-export const MOVING_TYPE_COSTS_LIST_MAP = {
-  WEIGHT_CALCULATION: 'weightCalculation',
+export const MOVING_TYPE_CALCULATION_LIST_MAP = {
+  WEIGHT: 'weight',
   GIPS_SM: 'gipsSM',
   GIPS_MD: 'gipsMD',
   GIPS_LG: 'gipsLG',
-  PROF_LG: 'profMD',
+  PROF_LG: 'profLG',
   PROF_XL: 'profXL',
 }

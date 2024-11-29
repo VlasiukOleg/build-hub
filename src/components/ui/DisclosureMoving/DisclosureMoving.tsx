@@ -7,9 +7,12 @@ import {
 
 import DisclosureMovingPanel from '../DisclosureMovingPanel';
 
+import { normalizedWeight } from '@/utils/normalizesWeight';
+
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import Moving from '@/../public/images/moving.png';
 
+import { MOVING_TYPE_CALCULATION_LIST_MAP } from '@/components/common/MovingCostTable/constans';
 import { MATERIAL_SIZE } from '@/constants/constants';
 import { PRICE_PER_TON } from '@/constants/constants';
 
@@ -20,7 +23,7 @@ interface IDisclosureMovingProps {
     title: string;
     description: string;
     size: number;
-    isWeightCalculation: boolean;
+    movingTypeCalculation: string;
     price: number;
     quantity: number;
     totalPrice: number;
@@ -44,41 +47,43 @@ const DisclosureMoving: React.FC<IDisclosureMovingProps> = ({ materials }) => {
     0
   );
 
-  const getRows = () => {
-    let rows = [];
-    const weighCalculationMaterialTotalWeight = materials
-      .filter(material => material.isWeightCalculation)
-      .reduce((acc, value) => {
-        return acc + value.weight * value.quantity;
-      }, 0);
-  };
+  const weightTypeCalculateMaterial = materials.filter(
+    material =>
+      material.movingTypeCalculation === MOVING_TYPE_CALCULATION_LIST_MAP.WEIGHT
+  );
 
-  const rows = materials.map(material => {
-    if (material.isWeightCalculation) {
-      return {
-        key: material.id,
-        type: 'Ваговий матеріал',
-        measure: 'тн',
-        quantity: material.quantity * material.weight,
-        price: PRICE_PER_TON,
-        totalPrice: material.quantity * material.weight * PRICE_PER_TON,
-      };
-    }
-  });
-
-  const weighCalculationMaterialTotalWeight = materials
-    .filter(material => material.isWeightCalculation)
-    .reduce((acc, value) => {
+  const weightTypeCalculateMaterialTotalWeight =
+    weightTypeCalculateMaterial.reduce((acc, value) => {
       return acc + value.weight * value.quantity;
     }, 0);
 
-  console.log(
-    'weighCalculationMaterialWeight',
-    weighCalculationMaterialTotalWeight
+  const normalizedWeightTypeCalculateMaterialTotalWeight = normalizedWeight(
+    weightTypeCalculateMaterialTotalWeight
   );
 
-  const itemCalculationMaterial = materials.filter(
-    material => !material.isWeightCalculation
+  const getRows = () => {
+    if (weightTypeCalculateMaterialTotalWeight > 0) {
+      return [
+        {
+          key: '1',
+          type: 'Ваговий матеріал',
+          measure: 'тн',
+          quantity: normalizedWeightTypeCalculateMaterialTotalWeight,
+          price: PRICE_PER_TON,
+          totalPrice:
+            normalizedWeightTypeCalculateMaterialTotalWeight * PRICE_PER_TON,
+        },
+      ];
+    }
+
+    return [];
+  };
+
+  const rows = getRows();
+
+  console.log(
+    'weighCalculationMaterialWeight',
+    normalizedWeightTypeCalculateMaterialTotalWeight
   );
 
   console.log('liftSizedGipsokartonQuantity', liftSizedGipsokartonQuantity);
@@ -104,9 +109,6 @@ const DisclosureMoving: React.FC<IDisclosureMovingProps> = ({ materials }) => {
       <DisclosureMovingPanel
         totalWeight={totalWeight}
         rows={rows}
-        weightCalculationMaterialTotalWeight={
-          weighCalculationMaterialTotalWeight
-        }
         liftSizedGipsokarton={liftSizedGipsokartonQuantity}
       />
     </Disclosure>

@@ -25,13 +25,16 @@ const createColumns = () => {
 const columns = createColumns();
 
 interface IMovingCostTableProps {
-  rows: {
-    key: string;
-    type: string;
-    weight: string;
-    price: string;
-    total: number;
-  }[];
+  rows:
+    | {
+        key: string;
+        type: string;
+        measure: string;
+        quantity: number;
+        price: number;
+        totalPrice: number;
+      }[]
+    | [];
 }
 
 const MovingCOstTable: React.FunctionComponent<IMovingCostTableProps> = ({

@@ -26,14 +26,16 @@ import { PRICE_PER_TON } from '@/constants/constants';
 interface IDisclosureMovingPanelProps {
   totalWeight: number;
   liftSizedGipsokarton: number;
-  weightCalculationMaterialTotalWeight: number;
-  rows: {
-    key: string;
-    type: string;
-    weight: string;
-    price: string;
-    total: number;
-  }[];
+  rows:
+    | {
+        key: string;
+        type: string;
+        measure: string;
+        quantity: number;
+        price: number;
+        totalPrice: number;
+      }[]
+    | [];
 }
 
 const elevators = [
@@ -55,12 +57,7 @@ const buildings = [
 
 const DisclosureMovingPanel: React.FunctionComponent<
   IDisclosureMovingPanelProps
-> = ({
-  totalWeight,
-  liftSizedGipsokarton,
-  weightCalculationMaterialTotalWeight,
-  rows,
-}) => {
+> = ({ totalWeight, liftSizedGipsokarton, rows }) => {
   const [elevator, setElevator] = useState(elevators[1]);
   const [building, setBuilding] = useState(buildings[0]);
   const [floor, setFloor] = useState('1');
@@ -224,12 +221,6 @@ const DisclosureMovingPanel: React.FunctionComponent<
       <div>
         <p>Розрахунок доставки</p>
         <MovingCostTable rows={rows} />
-        <ul>
-          <li>
-            Ваговий матеріал {weightCalculationMaterialTotalWeight} кг. 600 грн.{' '}
-            {weightCalculationMaterialTotalWeight * 600}
-          </li>
-        </ul>
       </div>
       <div className="text-center">
         {' '}
