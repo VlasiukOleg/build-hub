@@ -31,8 +31,8 @@ interface IMovingCostTableProps {
         type: string;
         measure: string;
         quantity: number;
-        price: number;
-        totalPrice: number;
+        price: string;
+        totalPrice: string;
       }[]
     | [];
 }
@@ -41,7 +41,7 @@ const MovingCOstTable: React.FunctionComponent<IMovingCostTableProps> = ({
   rows,
 }) => {
   return (
-    <Table aria-label="Example table with dynamic content">
+    <Table aria-label="Moving Cost Table">
       <TableHeader columns={columns}>
         {column => <TableColumn key={column.key}>{column.label}</TableColumn>}
       </TableHeader>

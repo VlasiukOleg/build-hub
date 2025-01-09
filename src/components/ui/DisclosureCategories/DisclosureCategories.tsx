@@ -11,12 +11,15 @@ import DisclosureMoving from '../DisclosureMoving';
 import DisclosureDelivery from '../DisclosureDelivery';
 import DisclosureAddMaterials from '../DisclosureAddMaterials';
 import OrderBar from '@/components/common/OrderBar';
+import ButtonLink from '../ButtonLink';
+
+import { useMaterials } from '@/hooks/useMaterials';
 
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import { inputChangeQuantity, changeQuantity } from '@/redux/materialsSlice';
 
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import ButtonLink from '../ButtonLink';
+import { useMaterialsByCalculationType } from '@/hooks/useMaterialsByCalculationType';
 
 interface IDisclosureCategoriesProps {
   slug: string;
@@ -26,8 +29,8 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
   slug,
 }) => {
   const router = useRouter();
-
   const dispatch = useAppDispatch();
+
   const deliveryPrice = useAppSelector(state => state.delivery.deliveryPrice);
   const deliveryType = useAppSelector(state => state.delivery.deliveryType);
   const movingPrice = useAppSelector(state => state.moving.movingPrice);
@@ -35,42 +38,18 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
     state => state.moving.isMovingPriceAddToOrder
   );
 
-  const allCategories = useAppSelector(state => state.categories);
-
-  const allSubCategories = allCategories.flatMap(
-    category => category.categories
-  );
-
-  const subCategoriesBySlug = allCategories.find(
-    category => category.id === slug
-  )?.categories;
+  const {
+    subCategoriesBySlug,
+    materials,
+    totalPrice,
+    totalWeight,
+    totalQuantity,
+    title,
+  } = useMaterials(slug);
 
   if (!subCategoriesBySlug) {
     return null;
   }
-
-  const title = allCategories.find(category => category.id === slug)?.title;
-
-  const materials = allSubCategories?.flatMap(
-    subCategory => subCategory.materials
-  );
-
-  console.log('allCategories', allCategories);
-  console.log('allSubCategories', allSubCategories);
-  console.log('subCategoriesBySlug', subCategoriesBySlug);
-  console.log('materials', materials);
-
-  const totalPrice = materials?.reduce((acc, value) => {
-    return acc + value.price * value.quantity;
-  }, 0);
-
-  const totalWeight = materials?.reduce((acc, value) => {
-    return acc + value.weight * value.quantity;
-  }, 0);
-
-  const totalQuantity = materials?.reduce((acc, value) => {
-    return acc + value.quantity;
-  }, 0);
 
   const handleInputChangeQuantity = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -99,6 +78,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
     matInd: number,
     value: number
   ) => {
+    console.log(value);
     const payload = { catInd, matInd, value, slug };
 
     dispatch(changeQuantity(payload));
@@ -198,7 +178,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
             );
           })}
           <DisclosureAddMaterials />
-          {totalQuantity > 0 && <DisclosureMoving materials={materials} />}
+          {totalQuantity > 0 && <DisclosureMoving />}
           <DisclosureDelivery totalWeight={totalWeight} />
         </div>
         <div className="text-center">

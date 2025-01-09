@@ -20,7 +20,6 @@ export default function Home() {
             `,
         }}
       />
-
       <div className="container">
         <StorageMap />
       </div>

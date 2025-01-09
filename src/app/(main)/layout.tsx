@@ -50,18 +50,15 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <StoreProvider>
-        <body
-          className={clsx(
-            montserrat.className,
-            'flex h-full min-h-screen flex-col overflow-x-hidden'
-          )}
-        >
+        <body className={clsx(montserrat.className)}>
           <Providers>
-            <Header />
-            <main className="flex-1 flex items-center justify-center">
-              {children}
-            </main>
-            <Footer />
+            <div className="flex flex-col h-full min-h-screen overflow-x-hidden">
+              <Header />
+              <main className="flex-1 flex items-center justify-center">
+                {children}
+              </main>
+              <Footer />
+            </div>
           </Providers>
         </body>
       </StoreProvider>

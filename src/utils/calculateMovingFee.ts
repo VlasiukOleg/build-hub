@@ -1,11 +1,21 @@
-const PRICE_PER_TON = 500;
-const BASE_PRICE = 500;
 const PRICE_PER_FLOOR = 250;
-const PRICE_GIPSOKARTON_LIFT_XS = 25;
+const PRICE_GIPSOKARTON_SM = 25;
+const PRICE_GIPSOKARTON_MD = 35;
+const PRICE_GIPSOKARTON_LG = 40;
 
-const PRICE_GIPSOKARTON_XS_PER_FLOOR = 40;
-const PRICE_GIPSOKARTON_SM_PER_FLOOR = 55;
-const PRICE_GIPSOKORTON_MD_PER_FLOOR = 70;
+const PRICE_GIPSOKARTON_SM_PER_FLOOR = 15;
+const PRICE_GIPSOKARTON_MD_PER_FLOOR = 20;
+const PRICE_GIPSOKARTON_LG_PER_FLOOR = 30;
+
+import { PRICE_PER_TON } from '@/constants/constants';
+
+const getDistanceMultiplier = (distance: number) => {
+  if (distance <= 20) return 1;
+  if (distance > 20 && distance < 35) return 1.2;
+  if (distance >= 35 && distance < 45) return 1.4;
+  if (distance >= 45 && distance <= 50) return 1.5;
+  return 2;
+};
 
 export const calculateMovingFee = (
   weight: number,
@@ -13,45 +23,64 @@ export const calculateMovingFee = (
   distance: number,
   building: string,
   floor: number,
-  liftSizedGipsokarton: number
+  gipsSmCalculateQuantity: number,
+  gipsMdCalculateQuantity: number,
+  gipsLgCalculateQuantity: number
 ) => {
-  const normalizedWeight = weight * 0.001;
+  let weightTypeMovingFee = 0;
+  let gipsSmMovingFee = 0;
+  let gipsMdMovingFee = 0;
+  let gipsLgMovingFee = 0;
 
-  let movingFee = 0;
-
-  if (weight > 0 && weight < 1000 && liftSizedGipsokarton === 0) {
-    movingFee = PRICE_PER_TON;
+  if (
+    weight > 0 &&
+    weight < 1000 &&
+    gipsSmCalculateQuantity === 0 &&
+    gipsMdCalculateQuantity === 0 &&
+    gipsLgCalculateQuantity === 0
+  ) {
+    weightTypeMovingFee = PRICE_PER_TON;
   } else {
-    movingFee =
-      PRICE_PER_TON * normalizedWeight +
-      liftSizedGipsokarton * PRICE_GIPSOKARTON_LIFT_XS -
-      liftSizedGipsokarton * 0.02 * BASE_PRICE;
+    weightTypeMovingFee = PRICE_PER_TON;
+    gipsSmMovingFee = PRICE_GIPSOKARTON_SM;
+    gipsMdMovingFee = PRICE_GIPSOKARTON_MD;
+    gipsLgMovingFee = PRICE_GIPSOKARTON_LG;
   }
 
   if (elevator === 'passenger') {
-    movingFee =
-      PRICE_PER_TON * normalizedWeight * 1.15 +
-      liftSizedGipsokarton * PRICE_GIPSOKARTON_XS_PER_FLOOR -
-      liftSizedGipsokarton * 20 * BASE_PRICE * 1.15;
+    weightTypeMovingFee *= 1.15;
+    gipsSmMovingFee *= 1.15;
   }
+
+  if (
+    (floor > 1 && elevator === 'cargo') ||
+    (floor > 1 && elevator === 'passenger')
+  ) {
+    gipsMdMovingFee += PRICE_GIPSOKARTON_MD_PER_FLOOR * (floor - 1);
+    gipsLgMovingFee += PRICE_GIPSOKARTON_LG_PER_FLOOR * (floor - 1);
+  }
+
+  const distanceMultiplier = getDistanceMultiplier(distance);
+
+  weightTypeMovingFee *= distanceMultiplier;
+  gipsSmMovingFee *= distanceMultiplier;
+  gipsMdMovingFee = PRICE_GIPSOKARTON_MD * distanceMultiplier;
+  gipsLgMovingFee = PRICE_GIPSOKARTON_LG * distanceMultiplier;
 
   if (floor > 1) {
-    movingFee +=
+    gipsMdMovingFee += PRICE_GIPSOKARTON_MD_PER_FLOOR * (floor - 1);
+    gipsLgMovingFee += PRICE_GIPSOKARTON_LG_PER_FLOOR * (floor - 1);
+    weightTypeMovingFee +=
       building === 'old'
-        ? (PRICE_PER_FLOOR + 50) * (floor - 1) * normalizedWeight
-        : PRICE_PER_FLOOR * (floor - 1) * normalizedWeight;
+        ? (PRICE_PER_FLOOR + 50) * (floor - 1)
+        : PRICE_PER_FLOOR * (floor - 1);
+    gipsSmMovingFee += PRICE_GIPSOKARTON_SM_PER_FLOOR * (floor - 1);
   }
 
-  if (distance <= 20) {
-    movingFee *= 1;
-  } else if (distance > 20 && distance < 35) {
-    movingFee *= 1.2;
-  } else if (distance >= 35 && distance < 45) {
-    movingFee *= 1.4;
-  } else if (distance >= 45 && distance <= 50) {
-    movingFee *= 1.5;
-  } else if (distance > 50) {
-    movingFee *= 2;
-  }
-  return movingFee;
+  return {
+    weightTypeMovingFee,
+    gipsSmMovingFee,
+    gipsMdMovingFee,
+    gipsLgMovingFee,
+  };
 };

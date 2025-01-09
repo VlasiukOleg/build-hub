@@ -19,7 +19,7 @@ const materialsSlice = createSlice({
 
         if (categoryItem && material) {
           // Обновить количество материала
-          material.quantity = (Number(material.quantity) || 0) + value;
+          material.quantity += Number(value);
         }
       }
     },
@@ -35,8 +35,16 @@ const materialsSlice = createSlice({
         const material = categoryItem?.materials[matInd];
 
         if (categoryItem && material) {
+          console.log(Number(value));
           // Обновить количество материала
-          material.quantity = value;
+          if (value === Number(0)) {
+            console.log('Yes');
+            console.log(material.quantity);
+            material.quantity = Number(0);
+          } else {
+            console.log(material.quantity);
+            material.quantity = Number(value);
+          }
         }
       }
     },

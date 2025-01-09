@@ -13,9 +13,9 @@
   "materialSlugs": ["shtukaturka", "gipsokarton"],
   "moving": {
     "columnLabels": {
-      "type": "Тип матеріалу",
-      "measure": "Одиниця вимірювання",
-      "quantity": "Кількість",
+      "type": "Тип мат.",
+      "measure": "Од. вим.",
+      "quantity": "К-сть",
       "price": "Ціна",
       "totalPrice": "Всього"
     }

@@ -8,43 +8,18 @@ import {
 import DisclosureMovingPanel from '../DisclosureMovingPanel';
 
 import { normalizedWeight } from '@/utils/normalizesWeight';
+import { useMaterials } from '@/hooks/useMaterials';
 
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import Moving from '@/../public/images/moving.png';
 
 import { MOVING_TYPE_CALCULATION_LIST_MAP } from '@/components/common/MovingCostTable/constans';
-import { MATERIAL_SIZE } from '@/constants/constants';
 import { PRICE_PER_TON } from '@/constants/constants';
 
-interface IDisclosureMovingProps {
-  materials: {
-    id: number;
-    image: string;
-    title: string;
-    description: string;
-    weight: number;
-    movingTypeCalculation: string;
-    price: number;
-    quantity: number;
-    totalPrice: number;
-  }[];
-}
+interface IDisclosureMovingProps {}
 
-const DisclosureMoving: React.FC<IDisclosureMovingProps> = ({ materials }) => {
-  const totalWeight = materials?.reduce((acc, value) => {
-    return acc + value.weight * value.quantity;
-  }, 0);
-
-  const liftSizedGipsokarton = materials.filter(
-    material => material.size === MATERIAL_SIZE.SM
-  );
-
-  const liftSizedGipsokartonQuantity = liftSizedGipsokarton.reduce(
-    (acc, value) => {
-      return acc + Number(value.quantity);
-    },
-    0
-  );
+const DisclosureMoving: React.FC<IDisclosureMovingProps> = () => {
+  const { materials, totalWeight } = useMaterials();
 
   const weightTypeCalculateMaterial = materials.filter(
     material =>
@@ -81,11 +56,9 @@ const DisclosureMoving: React.FC<IDisclosureMovingProps> = ({ materials }) => {
   const rows = getRows();
 
   console.log(
-    'weighCalculationMaterialWeight',
+    'normalizedWeightTypeCalculateMaterialTotalWeight',
     normalizedWeightTypeCalculateMaterialTotalWeight
   );
-
-  console.log('liftSizedGipsokartonQuantity', liftSizedGipsokartonQuantity);
 
   return (
     <Disclosure as="div" className="p-6">
@@ -105,11 +78,7 @@ const DisclosureMoving: React.FC<IDisclosureMovingProps> = ({ materials }) => {
         </div>
         <ChevronDownIcon className="size-5 fill-grey group-data-[hover]:fill-grey/80 group-data-[open]:rotate-180 md:size-6 xl:size-7" />
       </DisclosureButton>
-      <DisclosureMovingPanel
-        totalWeight={totalWeight}
-        rows={rows}
-        liftSizedGipsokarton={liftSizedGipsokartonQuantity}
-      />
+      <DisclosureMovingPanel />
     </Disclosure>
   );
 };

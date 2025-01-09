@@ -27,7 +27,6 @@ const storages = [
 const StorageMap: React.FC<IStorageMapProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedStore, setSelectedStore] = useState('');
-  console.log(selectedStore);
 
   const router = useRouter();
   const dispatch = useAppDispatch();

@@ -8,6 +8,7 @@ import {
   Field,
   Label,
 } from '@headlessui/react';
+import { Alert } from '@nextui-org/react';
 import clsx from 'clsx';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { useState, useEffect } from 'react';
@@ -19,24 +20,14 @@ import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import { setMovingCost, toggleMovingPriceToOrder } from '@/redux/movingSlice';
 
 import { calculateMovingFee } from '@/utils/calculateMovingFee';
+import { getMaterialsByCalculationType } from '@/utils/getMaterialsByCalculationType';
 import { normalizedWeight } from '@/utils/normalizesWeight';
 
+import { MOVING_TYPE_CALCULATION_LIST_MAP } from '@/components/common/MovingCostTable/constans';
 import { PRICE_PER_TON } from '@/constants/constants';
+import { useMaterials } from '@/hooks/useMaterials';
 
-interface IDisclosureMovingPanelProps {
-  totalWeight: number;
-  liftSizedGipsokarton: number;
-  rows:
-    | {
-        key: string;
-        type: string;
-        measure: string;
-        quantity: number;
-        price: number;
-        totalPrice: number;
-      }[]
-    | [];
-}
+interface IDisclosureMovingPanelProps {}
 
 const elevators = [
   {
@@ -55,13 +46,22 @@ const buildings = [
   { name: 'Сталінка/Царський', label: 'old' },
 ];
 
+const title = 'Увага!';
+const description =
+  'У вашому замовленні є гіпсокартон 2,5 чи 3 м, які не входять в ліфт, введіть будь ласка поверх для розрахунку';
+
 const DisclosureMovingPanel: React.FunctionComponent<
   IDisclosureMovingPanelProps
-> = ({ totalWeight, liftSizedGipsokarton, rows }) => {
+> = () => {
   const [elevator, setElevator] = useState(elevators[1]);
   const [building, setBuilding] = useState(buildings[0]);
   const [floor, setFloor] = useState('1');
   const [distance, setDistance] = useState(20);
+  const [weightTypeCalculateMaterialFee, setWeightTypeCalculateMaterialFee] =
+    useState(0);
+  const [gipsSmCalculateFee, setGipsSmCalculateFee] = useState(0);
+  const [gipsMdCalculateFee, setGipsMdCalculateFee] = useState(0);
+  const [gipsLgCalculateFee, setGipsLgCalculateFee] = useState(0);
 
   const movingPrice = useAppSelector(state => state.moving.movingPrice);
   const isMovingPriceAddToOrderBar = useAppSelector(
@@ -69,6 +69,8 @@ const DisclosureMovingPanel: React.FunctionComponent<
   );
 
   const dispatch = useAppDispatch();
+
+  const { materials, totalWeight } = useMaterials();
 
   const handleFloorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -81,21 +83,123 @@ const DisclosureMovingPanel: React.FunctionComponent<
     dispatch(toggleMovingPriceToOrder());
   };
 
+  const weightTypeCalculateMaterial = materials.filter(
+    material =>
+      material.movingTypeCalculation === MOVING_TYPE_CALCULATION_LIST_MAP.WEIGHT
+  );
+
+  const weightTypeCalculateMaterialTotalWeight =
+    weightTypeCalculateMaterial.reduce((acc, value) => {
+      return acc + value.weight * value.quantity;
+    }, 0);
+
+  const normalizedWeightTypeCalculateMaterialTotalWeight = normalizedWeight(
+    weightTypeCalculateMaterialTotalWeight
+  );
+
+  const gipsSmCalculate = materials.filter(
+    material =>
+      material.movingTypeCalculation ===
+      MOVING_TYPE_CALCULATION_LIST_MAP.GIPS_SM
+  );
+
+  const gipsSmCalculateQuantity = gipsSmCalculate.reduce((acc, value) => {
+    return acc + Number(value.quantity);
+  }, 0);
+
+  const gipsMdCalculate = materials.filter(
+    material =>
+      material.movingTypeCalculation ===
+      MOVING_TYPE_CALCULATION_LIST_MAP.GIPS_MD
+  );
+
+  const gipsMdCalculateQuantity = gipsMdCalculate.reduce((acc, value) => {
+    return acc + Number(value.quantity);
+  }, 0);
+
+  const gipsLgCalculate = materials.filter(
+    material =>
+      material.movingTypeCalculation ===
+      MOVING_TYPE_CALCULATION_LIST_MAP.GIPS_LG
+  );
+
+  const gipsLgCalculateQuantity = gipsLgCalculate.reduce((acc, value) => {
+    return acc + Number(value.quantity);
+  }, 0);
+
+  const isFloorInputVisible =
+    (gipsMdCalculateQuantity > 0 && elevator.label !== 'nolift') ||
+    (gipsLgCalculateQuantity > 0 && elevator.label !== 'nolift');
+
+  const rows = [
+    {
+      key: '1',
+      type: 'Ваговий матеріал',
+      measure: 'тн',
+      quantity: normalizedWeightTypeCalculateMaterialTotalWeight,
+      price: `${weightTypeCalculateMaterialFee.toFixed()} грн.`,
+      totalPrice: `${normalizedWeightTypeCalculateMaterialTotalWeight * weightTypeCalculateMaterialFee} грн. `,
+    },
+    {
+      key: '2',
+      type: 'Гіпсакартон 2 м.',
+      measure: 'шт',
+      quantity: gipsSmCalculateQuantity,
+      price: `${gipsSmCalculateFee.toFixed()} грн.`,
+      totalPrice: `${(gipsSmCalculateQuantity * gipsSmCalculateFee).toFixed()} грн.`,
+    },
+    {
+      key: '3',
+      type: 'Гіпсакартон 2.5 м.',
+      measure: 'шт',
+      quantity: gipsMdCalculateQuantity,
+      price: `${gipsMdCalculateFee.toFixed()} грн.`,
+      totalPrice: `${(gipsMdCalculateQuantity * gipsMdCalculateFee).toFixed()} грн.`,
+    },
+    {
+      key: '4',
+      type: 'Гіпсакартон 3 м.',
+      measure: 'шт',
+      quantity: gipsLgCalculateQuantity,
+      price: `${gipsLgCalculateFee.toFixed()} грн.`,
+      totalPrice: `${(gipsLgCalculateQuantity * gipsLgCalculateFee).toFixed()} грн.`,
+    },
+  ];
+
+  const totalMovingFee =
+    normalizedWeightTypeCalculateMaterialTotalWeight *
+      weightTypeCalculateMaterialFee +
+    gipsSmCalculateQuantity * gipsSmCalculateFee +
+    gipsMdCalculateQuantity * gipsMdCalculateFee +
+    gipsLgCalculateQuantity * gipsLgCalculateFee;
+
+  dispatch(setMovingCost(Math.round(totalMovingFee)));
+
   useEffect(() => {
     if (elevator.label !== 'nolift') {
       setBuilding(buildings[0]);
     }
     const floorNumber = Number(floor) || 0;
-    const movingFee = calculateMovingFee(
+    const {
+      weightTypeMovingFee,
+      gipsSmMovingFee,
+      gipsMdMovingFee,
+      gipsLgMovingFee,
+    } = calculateMovingFee(
       totalWeight,
       elevator.label,
       distance,
       building.label,
       floorNumber,
-      liftSizedGipsokarton
+      gipsSmCalculateQuantity,
+      gipsMdCalculateQuantity,
+      gipsLgCalculateQuantity
     );
 
-    dispatch(setMovingCost(Math.round(movingFee)));
+    setWeightTypeCalculateMaterialFee(weightTypeMovingFee);
+    setGipsSmCalculateFee(gipsSmMovingFee);
+    setGipsMdCalculateFee(gipsMdMovingFee);
+    setGipsLgCalculateFee(gipsLgMovingFee);
   }, [
     totalWeight,
     dispatch,
@@ -103,7 +207,9 @@ const DisclosureMovingPanel: React.FunctionComponent<
     distance,
     floor,
     building.label,
-    liftSizedGipsokarton,
+    gipsSmCalculateQuantity,
+    gipsMdCalculateQuantity,
+    gipsLgCalculateQuantity,
   ]);
 
   return (
@@ -175,23 +281,36 @@ const DisclosureMovingPanel: React.FunctionComponent<
         </div>
       )}
 
-      {elevator.label === 'passenger' && liftSizedGipsokarton > 0 && (
-        <Field className="mb-3 md:mb-0 md:flex md:items-center md:gap-2">
-          <Label className="text-sm/6 font-medium textgrey xl:text-base">
-            Поверх
-          </Label>
+      {isFloorInputVisible && (
+        <>
+          <div className="flex items-center justify-center gap-4">
+            <Alert
+              description={description}
+              title={title}
+              color="danger"
+              classNames={{
+                title: 'font-bold text-xs/6 md:text-sm xl:text-base',
+                description: 'text-xs/6 md:text-sm xl:text-base',
+              }}
+            />
+            <Field className="mb-3 md:mb-0 md:flex md:items-center md:gap-2">
+              <Label className="text-sm/6 font-medium text-grey xl:text-base">
+                Поверх
+              </Label>
 
-          <Input
-            value={floor}
-            type="number"
-            min={1}
-            onChange={handleFloorChange}
-            className={clsx(
-              'block w-full rounded-lg border-accent border-[1px] bg-white/5 py-1.5 px-3 text-sm/6 text-grey md:w-[75px] md:py-2 md:text-center xl:text-base',
-              'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
-            )}
-          />
-        </Field>
+              <Input
+                value={floor}
+                type="number"
+                min={1}
+                onChange={handleFloorChange}
+                className={clsx(
+                  'block w-full rounded-lg border-accent border-[1px] bg-white/5 py-1.5 px-3 text-sm/6 text-grey md:w-[75px] md:py-2 md:text-center xl:text-base',
+                  'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
+                )}
+              />
+            </Field>
+          </div>
+        </>
       )}
 
       <div className="md:flex md:gap-5 md:items-center xl:flex-col xl:items-start mb-3 xl:mb-5">
@@ -225,7 +344,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
       <div className="text-center">
         {' '}
         <Button
-          onClick={onAddMovingToOrderBar}
+          onPress={onAddMovingToOrderBar}
           color={isMovingPriceAddToOrderBar ? 'danger' : 'success'}
           size="lg"
         >
