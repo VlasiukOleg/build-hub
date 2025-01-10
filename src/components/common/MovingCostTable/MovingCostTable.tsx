@@ -41,7 +41,13 @@ const MovingCOstTable: React.FunctionComponent<IMovingCostTableProps> = ({
   rows,
 }) => {
   return (
-    <Table aria-label="Moving Cost Table">
+    <Table
+      aria-label="Moving Cost Table"
+      classNames={{
+        th: 'text-xs md:text-sm xl:text-base p-1 md:p-3',
+        td: 'text-xs md:text-sm xl:text-base p-1 md:p-3',
+      }}
+    >
       <TableHeader columns={columns}>
         {column => <TableColumn key={column.key}>{column.label}</TableColumn>}
       </TableHeader>

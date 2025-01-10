@@ -47,8 +47,10 @@ const buildings = [
 ];
 
 const title = 'Увага!';
+
+const getAlertDescription = () => {};
 const description =
-  'У вашому замовленні є гіпсокартон 2,5 чи 3 м, які не входять в ліфт, введіть будь ласка поверх для розрахунку';
+  'У вашому замовленні є матеріали, які не входять в ліфт (в таблиці виділені червоним кольором), введіть будь ласка поверх для розрахунку';
 
 const DisclosureMovingPanel: React.FunctionComponent<
   IDisclosureMovingPanelProps
@@ -62,6 +64,8 @@ const DisclosureMovingPanel: React.FunctionComponent<
   const [gipsSmCalculateFee, setGipsSmCalculateFee] = useState(0);
   const [gipsMdCalculateFee, setGipsMdCalculateFee] = useState(0);
   const [gipsLgCalculateFee, setGipsLgCalculateFee] = useState(0);
+  const [profLgCalculateFee, setProfLgCalculateFee] = useState(0);
+  const [profXlCalculateFee, setProfXlCalculateFee] = useState(0);
 
   const movingPrice = useAppSelector(state => state.moving.movingPrice);
   const isMovingPriceAddToOrderBar = useAppSelector(
@@ -127,9 +131,30 @@ const DisclosureMovingPanel: React.FunctionComponent<
     return acc + Number(value.quantity);
   }, 0);
 
+  const profLgCalculate = materials.filter(
+    material =>
+      material.movingTypeCalculation ===
+      MOVING_TYPE_CALCULATION_LIST_MAP.PROF_LG
+  );
+
+  const profLgCalculateQuantity = profLgCalculate.reduce((acc, value) => {
+    return acc + Number(value.quantity);
+  }, 0);
+
+  const profXlCalculate = materials.filter(
+    material =>
+      material.movingTypeCalculation ===
+      MOVING_TYPE_CALCULATION_LIST_MAP.PROF_XL
+  );
+
+  const profXlCalculateQuantity = profXlCalculate.reduce((acc, value) => {
+    return acc + Number(value.quantity);
+  }, 0);
+
   const isFloorInputVisible =
     (gipsMdCalculateQuantity > 0 && elevator.label !== 'nolift') ||
-    (gipsLgCalculateQuantity > 0 && elevator.label !== 'nolift');
+    (gipsLgCalculateQuantity > 0 && elevator.label !== 'nolift') ||
+    (profXlCalculateQuantity > 0 && elevator.label !== 'nolift');
 
   const rows = [
     {
@@ -142,7 +167,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
     },
     {
       key: '2',
-      type: 'Гіпсакартон 2 м.',
+      type: 'Гіпсокартон 2 м.',
       measure: 'шт',
       quantity: gipsSmCalculateQuantity,
       price: `${gipsSmCalculateFee.toFixed()} грн.`,
@@ -150,7 +175,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
     },
     {
       key: '3',
-      type: 'Гіпсакартон 2.5 м.',
+      type: 'Гіпсокартон 2.5 м.',
       measure: 'шт',
       quantity: gipsMdCalculateQuantity,
       price: `${gipsMdCalculateFee.toFixed()} грн.`,
@@ -158,11 +183,27 @@ const DisclosureMovingPanel: React.FunctionComponent<
     },
     {
       key: '4',
-      type: 'Гіпсакартон 3 м.',
+      type: 'Гіпсокартон 3 м.',
       measure: 'шт',
       quantity: gipsLgCalculateQuantity,
       price: `${gipsLgCalculateFee.toFixed()} грн.`,
       totalPrice: `${(gipsLgCalculateQuantity * gipsLgCalculateFee).toFixed()} грн.`,
+    },
+    {
+      key: '5',
+      type: 'Профіль 3 м.',
+      measure: 'шт',
+      quantity: profLgCalculateQuantity,
+      price: `${profLgCalculateFee.toFixed()} грн.`,
+      totalPrice: `${(profLgCalculateQuantity * profLgCalculateFee).toFixed()} грн.`,
+    },
+    {
+      key: '6',
+      type: 'Профіль 4 м.',
+      measure: 'шт',
+      quantity: profXlCalculateQuantity,
+      price: `${profXlCalculateFee.toFixed()} грн.`,
+      totalPrice: `${(profXlCalculateQuantity * profXlCalculateFee).toFixed()} грн.`,
     },
   ];
 
@@ -171,7 +212,9 @@ const DisclosureMovingPanel: React.FunctionComponent<
       weightTypeCalculateMaterialFee +
     gipsSmCalculateQuantity * gipsSmCalculateFee +
     gipsMdCalculateQuantity * gipsMdCalculateFee +
-    gipsLgCalculateQuantity * gipsLgCalculateFee;
+    gipsLgCalculateQuantity * gipsLgCalculateFee +
+    profLgCalculateQuantity * profLgCalculateFee +
+    profXlCalculateQuantity * profXlCalculateFee;
 
   dispatch(setMovingCost(Math.round(totalMovingFee)));
 
@@ -185,6 +228,8 @@ const DisclosureMovingPanel: React.FunctionComponent<
       gipsSmMovingFee,
       gipsMdMovingFee,
       gipsLgMovingFee,
+      profLgMovingFee,
+      profXlMovingFee,
     } = calculateMovingFee(
       totalWeight,
       elevator.label,
@@ -193,13 +238,17 @@ const DisclosureMovingPanel: React.FunctionComponent<
       floorNumber,
       gipsSmCalculateQuantity,
       gipsMdCalculateQuantity,
-      gipsLgCalculateQuantity
+      gipsLgCalculateQuantity,
+      profLgCalculateQuantity,
+      profXlCalculateQuantity
     );
 
     setWeightTypeCalculateMaterialFee(weightTypeMovingFee);
     setGipsSmCalculateFee(gipsSmMovingFee);
     setGipsMdCalculateFee(gipsMdMovingFee);
     setGipsLgCalculateFee(gipsLgMovingFee);
+    setProfLgCalculateFee(profLgMovingFee);
+    setProfXlCalculateFee(profXlMovingFee);
   }, [
     totalWeight,
     dispatch,
@@ -210,6 +259,8 @@ const DisclosureMovingPanel: React.FunctionComponent<
     gipsSmCalculateQuantity,
     gipsMdCalculateQuantity,
     gipsLgCalculateQuantity,
+    profLgCalculateQuantity,
+    profXlCalculateQuantity,
   ]);
 
   return (
@@ -283,7 +334,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
 
       {isFloorInputVisible && (
         <>
-          <div className="flex items-center justify-center gap-4">
+          <div className="items-center justify-center gap-4 md:flex">
             <Alert
               description={description}
               title={title}
