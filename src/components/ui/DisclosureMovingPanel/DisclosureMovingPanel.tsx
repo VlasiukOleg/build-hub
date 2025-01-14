@@ -207,6 +207,8 @@ const DisclosureMovingPanel: React.FunctionComponent<
     },
   ];
 
+  const visibleRows = rows.filter(row => row.quantity > 0);
+
   const totalMovingFee =
     normalizedWeightTypeCalculateMaterialTotalWeight *
       weightTypeCalculateMaterialFee +
@@ -384,13 +386,10 @@ const DisclosureMovingPanel: React.FunctionComponent<
             )}
           />
         </Field>
-        <div className="bg-white/5 text-center font-semibold rounded-lg border-[1px] border-accent p-2 md:flex-[50%] xl:w-[50%]">
-          Ціна розвантаження: {movingPrice} грн.
-        </div>
       </div>
       <div>
-        <p>Розрахунок доставки</p>
-        <MovingCostTable rows={rows} />
+        <p className='text-center mb-2'>Розрахунок розвантаження</p>
+        <MovingCostTable rows={visibleRows} />
       </div>
       <div className="text-center">
         {' '}
@@ -398,6 +397,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
           onPress={onAddMovingToOrderBar}
           color={isMovingPriceAddToOrderBar ? 'danger' : 'success'}
           size="lg"
+          className='mt-3'
         >
           {isMovingPriceAddToOrderBar
             ? 'Прибрати з замовлення'

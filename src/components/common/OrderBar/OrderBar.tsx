@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
+import { Button } from '@nextui-org/react';
 
 import { useAppDispatch } from '@/redux/hooks';
 import { clearQuantity } from '@/redux/materialsSlice';
@@ -14,8 +15,12 @@ import PriceIcon from '@/../public/icons/price.svg';
 import DeliveryIcon from '@/../public/icons/delivery-truck.svg';
 import MovingIcon from '@/../public/icons/moving.svg';
 
-import Cart from '@/../public/images/cart.png';
-import Remove from '@/../public/images/remove.png';
+import { PiShoppingCartSimpleBold } from 'react-icons/pi';
+import { MdOutlineCancel } from 'react-icons/md';
+import { LuWeight } from 'react-icons/lu';
+import { FaPersonWalkingLuggage } from 'react-icons/fa6';
+import { TbTruckDelivery } from 'react-icons/tb';
+import { GiMoneyStack } from 'react-icons/gi';
 
 interface IOrderBarProps {
   totalQuantity: number;
@@ -66,49 +71,48 @@ const OrderBar: React.FC<IOrderBarProps> = ({
       )}
     >
       <div className="flex items-center gap-1 md:gap-3 xl:gap-5">
-        <div className="p-1 rounded-lg bg-white text-black flex items-center gap-1 text-xs md:text-sm md:p-2 xl:text-lg xl:p-3 xl:gap-2">
-          <WeightIcon width={20} height={20} className="size-5 xl:size-7" />{' '}
+        <div className="p-1 rounded-lg bg-white text-black flex items-center gap-1 text-xs md:text-sm md:p-2 xl:text-lg xl:p-2 xl:gap-2">
+          <LuWeight className="size-5  xl:size-7 text-grey" />
           {totalWeight.toFixed(2)} кг.
         </div>
         {isMovingAddToOrder && (
-          <div className="p-1 rounded-lg bg-white text-black flex items-center gap-1 text-xs md:text-sm md:p-2 xl:text-lg xl:p-3 xl:gap-2">
-            <MovingIcon width={20} height={20} className="size-5  xl:size-7" />{' '}
+          <div className="p-1 rounded-lg bg-white text-black flex items-center gap-1 text-xs md:text-sm md:p-2 xl:text-lg xl:p-2 xl:gap-2">
+            <FaPersonWalkingLuggage className="size-5  xl:size-7 text-grey" />
             {movingPrice} грн.
           </div>
         )}
 
         {deliveryType === 'delivery' && (
-          <div className="p-1 rounded-lg bg-white text-black flex items-center gap-1 text-xs md:text-sm md:p-2 xl:text-lg xl:p-3 xl:gap-2">
-            <DeliveryIcon
-              width={20}
-              height={20}
-              className="size-5  xl:size-7"
-            />{' '}
+          <div className="p-1 rounded-lg bg-white text-black flex items-center gap-1 text-xs md:text-sm md:p-2 xl:text-lg xl:p-2 xl:gap-2">
+            <TbTruckDelivery className="size-5  xl:size-7 text-grey" />
             {deliveryPrice} грн.
           </div>
         )}
       </div>
 
       <div className="flex items-center gap-2">
-        <div className="p-1 rounded-lg bg-white text-black flex gap-1 items-center text-xs md:text-sm md:p-2 xl:text-lg xl:p-3 xl:gap-2">
-          <PriceIcon width={20} height={20} className="size-5 xl:size-7" />{' '}
+        <div className="p-1 rounded-lg bg-white text-black flex gap-1 items-center text-xs md:text-sm md:p-2 xl:text-lg xl:p-2 xl:gap-2">
+          <GiMoneyStack className="size-5  xl:size-7 text-grey" />
           {totalPrice.toFixed(2)} грн.
         </div>
-        <button type="button" onClick={() => router.push('/order')}>
-          <Image
-            src={Cart}
-            alt="іконка корзини"
-            className="size-8 md:size-9 xl:size-14"
-          />
-        </button>
-        <button>
-          <Image
-            src={Remove}
-            alt="іконка видалення"
-            className="size-7 md:size-8 xl:size-12"
-            onClick={onClearOrder}
-          />
-        </button>
+        <Button
+          isIconOnly
+          aria-label="Take a photo"
+          onPress={() => router.push('/order')}
+          className="bg-white h-7 md:h-9 md:w-9 xl:size-11"
+          radius="sm"
+        >
+          <PiShoppingCartSimpleBold className="size-4 md:size-6 xl:size-8 text-green-500" />
+        </Button>
+        <Button
+          isIconOnly
+          aria-label="Take a photo"
+          onPress={onClearOrder}
+          className="bg-white h-7 md:h-9 md:w-9 xl:size-11"
+          radius="sm"
+        >
+          <MdOutlineCancel className="size-4 md:size-6 xl:size-8 text-red-600" />
+        </Button>
       </div>
     </div>
   );

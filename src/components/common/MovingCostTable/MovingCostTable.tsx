@@ -8,6 +8,8 @@ import {
   getKeyValue,
 } from '@nextui-org/react';
 
+import MovingTotalPrice from './MovingTotalPrice';
+
 import { getMovingTableLabels } from './utils';
 import { MOVING_LIST_TABLE_KEYS_MAP } from './constans';
 
@@ -47,6 +49,7 @@ const MovingCOstTable: React.FunctionComponent<IMovingCostTableProps> = ({
         th: 'text-xs md:text-sm xl:text-base p-1 md:p-3',
         td: 'text-xs md:text-sm xl:text-base p-1 md:p-3',
       }}
+      bottomContent={<MovingTotalPrice />}
     >
       <TableHeader columns={columns}>
         {column => <TableColumn key={column.key}>{column.label}</TableColumn>}

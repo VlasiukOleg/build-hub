@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 
 import { Disclosure, DisclosureButton } from '@headlessui/react';
+import { Button } from '@nextui-org/react';
 
 import DisclosureMaterialsPanel from '../DisclosureMaterialsPanel';
 import DisclosureGipsokartonPanel from '../DisclosureGipsokartonPanel';
@@ -182,9 +183,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
           <DisclosureDelivery totalWeight={totalWeight} />
         </div>
         <div className="text-center">
-          <ButtonLink onClick={() => router.push('/order')}>
-            Оформити замовлення
-          </ButtonLink>
+          <Button size="lg" className='bg-accent font-medium' radius='sm' onPress={() => router.push('/order')}>Оформити замовлення</Button>
         </div>
       </div>
     </section>
