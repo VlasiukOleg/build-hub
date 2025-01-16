@@ -12,7 +12,6 @@ import DisclosureMoving from '../DisclosureMoving';
 import DisclosureDelivery from '../DisclosureDelivery';
 import DisclosureAddMaterials from '../DisclosureAddMaterials';
 import OrderBar from '@/components/common/OrderBar';
-import ButtonLink from '../ButtonLink';
 
 import { useMaterials } from '@/hooks/useMaterials';
 
@@ -20,7 +19,6 @@ import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import { inputChangeQuantity, changeQuantity } from '@/redux/materialsSlice';
 
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import { useMaterialsByCalculationType } from '@/hooks/useMaterialsByCalculationType';
 
 interface IDisclosureCategoriesProps {
   slug: string;
@@ -183,7 +181,14 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
           <DisclosureDelivery totalWeight={totalWeight} />
         </div>
         <div className="text-center">
-          <Button size="lg" className='bg-accent font-medium' radius='sm' onPress={() => router.push('/order')}>Оформити замовлення</Button>
+          <Button
+            size="lg"
+            className="bg-accent font-medium text-white"
+            radius="sm"
+            onPress={() => router.push('/order')}
+          >
+            Оформити замовлення
+          </Button>
         </div>
       </div>
     </section>

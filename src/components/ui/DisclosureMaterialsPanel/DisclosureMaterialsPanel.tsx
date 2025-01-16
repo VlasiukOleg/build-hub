@@ -2,6 +2,10 @@ import Image from 'next/image';
 import clsx from 'clsx';
 
 import { DisclosurePanel, Input } from '@headlessui/react';
+import { Button } from '@nextui-org/react';
+
+import { FaMinus } from 'react-icons/fa6';
+import { FaPlus } from 'react-icons/fa6';
 
 interface IDisclosureMaterialsPanelProps {
   material: {
@@ -74,13 +78,16 @@ const DisclosureMaterialsPanel: React.FC<IDisclosureMaterialsPanelProps> = ({
               Ціна: {material.price} грн.
             </div>
             <div>
-              <button
-                type="button"
-                className="bg-accent text-bgWhite size-6 rounded-md"
-                onClick={() => handleButtonChangeQuantity(catInd, matInd, -1)}
+              <Button
+                isIconOnly
+                aria-label="Take a photo"
+                onPress={() => handleButtonChangeQuantity(catInd, matInd, -1)}
+                className="h-7 w-7 min-w-7 border-accent"
+                radius="sm"
+                variant="bordered"
               >
-                -
-              </button>
+                <FaMinus className=" text-accent" />
+              </Button>
               <Input
                 min={1}
                 name="quantity"
@@ -94,13 +101,16 @@ const DisclosureMaterialsPanel: React.FC<IDisclosureMaterialsPanelProps> = ({
                   'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
                 )}
               />
-              <button
-                type="button"
-                className="bg-accent text-bgWhite size-6 rounded-md"
-                onClick={() => handleButtonChangeQuantity(catInd, matInd, 1)}
+              <Button
+                isIconOnly
+                aria-label="Take a photo"
+                onPress={() => handleButtonChangeQuantity(catInd, matInd, 1)}
+                className="h-7 w-7 min-w-7 border-accent"
+                radius="sm"
+                variant="bordered"
               >
-                +
-              </button>
+                <FaPlus className=" text-accent" />
+              </Button>
             </div>
           </div>
           <div className="bg-bgWhite text-grey  font-semibold text-center rounded-lg border-[1px] border-accent p-2 md:text-lg xl:w-full xl:text-xl xl:p-3">
