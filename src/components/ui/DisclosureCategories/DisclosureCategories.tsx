@@ -5,6 +5,7 @@ import clsx from 'clsx';
 
 import { Disclosure, DisclosureButton } from '@headlessui/react';
 import { Button } from '@nextui-org/react';
+import { Avatar } from '@nextui-org/react';
 
 import DisclosureMaterialsPanel from '../DisclosureMaterialsPanel';
 import DisclosureGipsokartonPanel from '../DisclosureGipsokartonPanel';
@@ -131,9 +132,12 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
               >
                 <DisclosureButton className="group flex w-full items-center justify-between">
                   <div className="text-left flex gap-2 items-center">
-                    <div className="rounded-full bg-accent text-bgWhite size-5 flex justify-center items-center text-xs md:size-6 md:text-sm xl:size-7 xl:text-base ">
-                      {catInd + 1}
-                    </div>
+                    <Avatar
+                      icon={catInd + 1}
+                      className="w-5 h-5 bg-accent text-xs md:size-6 md:text-sm xl:size-7 xl:text-base"
+                      radius="sm"
+                      color="primary"
+                    />
                     <span className="text-xs/6 text-left font-semibold text-grey leading-4 group-data-[hover]:text-grey/80 md:text-base xl:text-xl">
                       {category.categoryTitle}
                     </span>

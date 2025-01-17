@@ -4,17 +4,17 @@ import {
   DisclosurePanel,
   DisclosureButton,
 } from '@headlessui/react';
+import { Avatar } from '@nextui-org/react';
 
 import DisclosureMovingPanel from '../DisclosureMovingPanel';
 
 import { normalizedWeight } from '@/utils/normalizesWeight';
 import { useMaterials } from '@/hooks/useMaterials';
 
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import Moving from '@/../public/images/moving.png';
-
 import { MOVING_TYPE_CALCULATION_LIST_MAP } from '@/components/common/MovingCostTable/constans';
-import { PRICE_PER_TON } from '@/constants/constants';
+
+import { LiaLuggageCartSolid } from "react-icons/lia";
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 interface IDisclosureMovingProps {}
 
@@ -35,41 +35,15 @@ const DisclosureMoving: React.FC<IDisclosureMovingProps> = () => {
     weightTypeCalculateMaterialTotalWeight
   );
 
-  const getRows = () => {
-    if (weightTypeCalculateMaterialTotalWeight > 0) {
-      return [
-        {
-          key: '1',
-          type: 'Ваговий матеріал',
-          measure: 'тн',
-          quantity: normalizedWeightTypeCalculateMaterialTotalWeight,
-          price: PRICE_PER_TON,
-          totalPrice:
-            normalizedWeightTypeCalculateMaterialTotalWeight * PRICE_PER_TON,
-        },
-      ];
-    }
-
-    return [];
-  };
-
-  const rows = getRows();
-
-  console.log(
-    'normalizedWeightTypeCalculateMaterialTotalWeight',
-    normalizedWeightTypeCalculateMaterialTotalWeight
-  );
-
   return (
     <Disclosure as="div" className="p-6">
       <DisclosureButton className="group flex w-full items-center justify-between">
         <div className="text-left flex gap-2 items-center">
-          <Image
-            src={Moving}
-            width={20}
-            height={20}
-            alt="moving icon"
-            className="md:size-6 xl:size-7"
+          <Avatar
+            icon={<LiaLuggageCartSolid />}
+            className="w-5 h-5 bg-accent text-base md:size-6 md:text-base xl:size-7 xl:text-xl"
+            radius="sm"
+            color="primary"
           />
 
           <span className="text-xs/6 text-left  text-grey font-semibold group-data-[hover]:text-grey/80 md:text-base xl:text-xl">

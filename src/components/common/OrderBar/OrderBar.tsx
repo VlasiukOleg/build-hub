@@ -10,11 +10,6 @@ import { useAppDispatch } from '@/redux/hooks';
 import { clearQuantity } from '@/redux/materialsSlice';
 import { toggleMovingPriceToOrder } from '@/redux/movingSlice';
 
-import WeightIcon from '@/../public/icons/weight.svg';
-import PriceIcon from '@/../public/icons/price.svg';
-import DeliveryIcon from '@/../public/icons/delivery-truck.svg';
-import MovingIcon from '@/../public/icons/moving.svg';
-
 import { PiShoppingCartSimpleBold } from 'react-icons/pi';
 import { MdOutlineCancel } from 'react-icons/md';
 import { LuWeight } from 'react-icons/lu';
@@ -97,7 +92,7 @@ const OrderBar: React.FC<IOrderBarProps> = ({
         </div>
         <Button
           isIconOnly
-          aria-label="Take a photo"
+          aria-label="Go to Cart"
           onPress={() => router.push('/order')}
           className="bg-white h-7 md:h-9 md:w-9 xl:size-11"
           radius="sm"
@@ -106,7 +101,7 @@ const OrderBar: React.FC<IOrderBarProps> = ({
         </Button>
         <Button
           isIconOnly
-          aria-label="Take a photo"
+          aria-label="Clear Order"
           onPress={onClearOrder}
           className="bg-white h-7 md:h-9 md:w-9 xl:size-11"
           radius="sm"

@@ -388,7 +388,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
         </Field>
       </div>
       <div>
-        <p className='text-center mb-2'>Розрахунок розвантаження</p>
+        <p className="text-center mb-2">Розрахунок розвантаження</p>
         <MovingCostTable rows={visibleRows} />
       </div>
       <div className="text-center">
@@ -397,7 +397,8 @@ const DisclosureMovingPanel: React.FunctionComponent<
           onPress={onAddMovingToOrderBar}
           color={isMovingPriceAddToOrderBar ? 'danger' : 'success'}
           size="lg"
-          className='mt-3'
+          className="mt-3"
+          variant="bordered"
         >
           {isMovingPriceAddToOrderBar
             ? 'Прибрати з замовлення'

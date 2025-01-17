@@ -1,10 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
-
+import { Button } from '@nextui-org/react';
 import clsx from 'clsx';
-
 import { DisclosurePanel, Field, Label, Input } from '@headlessui/react';
 
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -15,8 +13,8 @@ import {
   toggleAdditionalPriceAddToOrder,
 } from '@/redux/additionalMaterialSlice';
 
-import Remove from '@/../public/images/remove.png';
-import Plus from '@/../public/images/plus.png';
+import { FiPlusCircle } from 'react-icons/fi';
+import { MdOutlineCancel } from 'react-icons/md';
 
 interface IDisclosureAddMaterialsPanelProps {}
 
@@ -39,6 +37,8 @@ const DisclosureAddMaterialsPanel: React.FC<
   const isAdditionalMaterialAddToOrder = useAppSelector(
     state => state.additionalMaterial.isAdditionalMaterialAddToOrder
   );
+
+  const isButtonActive = Number(newMaterial.quantity) > 0 && newMaterial.title.length > 0;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -96,14 +96,16 @@ const DisclosureAddMaterialsPanel: React.FC<
               )}
             />
           </Field>
-
-          <button type="button" onClick={handleAddMaterial}>
-            <Image
-              src={Plus}
-              alt="іконка додавання"
-              className="size-9 md:size-8 xl:size-12"
-            />
-          </button>
+          <Button
+            isIconOnly
+            aria-label="Clear Order"
+            onPress={handleAddMaterial}
+            className="bg-transparent h-7 md:h-9 md:w-9 xl:size-11"
+            radius="sm"
+            isDisabled={!isButtonActive}
+          >
+            <FiPlusCircle className="size-6  xl:size-9 text-green-500" />
+          </Button>
         </div>
       </div>
 
@@ -118,7 +120,7 @@ const DisclosureAddMaterialsPanel: React.FC<
                 {additionalMaterial.map((material, index) => (
                   <li
                     key={material.title}
-                    className="p-2 font-semibold flex items-center text-grey md:p-4"
+                    className="p-2 font-semibold flex items-center text-grey"
                   >
                     <p className="text-xs text-semibold w-[70%] md:text-base ">
                       {' '}
@@ -128,16 +130,15 @@ const DisclosureAddMaterialsPanel: React.FC<
                       {material.quantity}
                     </p>
                     <div className="w-[15%] text-right flex items-center justify-end">
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveMaterial(index)}
+                      <Button
+                        isIconOnly
+                        aria-label="Clear Order"
+                        onPress={() => handleRemoveMaterial(index)}
+                        className="bg-transparent h-7 md:h-9 md:w-9 xl:size-11"
+                        radius="sm"
                       >
-                        <Image
-                          src={Remove}
-                          alt="іконка видалення"
-                          className="size-6 md:size-8 xl:size-12"
-                        />
-                      </button>
+                        <MdOutlineCancel className="size-6  xl:size-9 text-red-600" />
+                      </Button>
                     </div>
                   </li>
                 ))}
@@ -145,15 +146,17 @@ const DisclosureAddMaterialsPanel: React.FC<
             </div>
           </div>
           <div className="text-center mt-4">
-            <button
-              type="button"
-              onClick={onToggleAdditionalMaterialToOrder}
-              className="inline-flex justify-center border border-accent items-center rounded-md gap-4 text-xs font-medium leading-[1.5] bg-bgWhite text-accent px-6 py-2 md:text-base xl:text-2xl"
+            <Button
+              onPress={onToggleAdditionalMaterialToOrder}
+              color={isAdditionalMaterialAddToOrder ? 'danger' : 'success'}
+              className="text-xs h-8 font-medium md:text-base md:h-10 xl:text-lg xl:h-12"
+              variant="bordered"
+              radius="sm"
             >
               {isAdditionalMaterialAddToOrder
-                ? 'Видалити з замовлення'
+                ? 'Прибрати із замовлення'
                 : 'Додати до замовлення'}
-            </button>
+            </Button>
           </div>
         </>
       )}

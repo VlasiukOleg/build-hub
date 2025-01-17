@@ -1,8 +1,10 @@
 import { Disclosure, DisclosureButton } from '@headlessui/react';
+import { Avatar, AvatarIcon } from '@nextui-org/react';
 
 import DisclosureAddMaterialsPanel from '../DisclosureAddMaterialsPanel/';
 
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { FaPlus } from 'react-icons/fa6';
 
 interface IDisclosureAdditionalMaterialsProps {}
 
@@ -13,9 +15,12 @@ const DisclosureAdditionalMaterials: React.FC<
     <Disclosure as="div" className="p-6">
       <DisclosureButton className="group flex w-full items-center justify-between">
         <div className="text-left flex gap-2 items-center">
-          <div className="rounded-full bg-accent text-bgWhite size-5 flex justify-center items-center text-lg md:size-6 md:text-xl xl:size-7  ">
-            +
-          </div>
+          <Avatar
+            icon={<FaPlus />}
+            className="w-5 h-5 bg-accent text-xs md:size-6 md:text-sm xl:size-7 xl:text-base"
+            radius="sm"
+            color="primary"
+          />
           <span className="text-xs/6 text-left  text-grey font-semibold group-data-[hover]:text-grey/80 md:text-base xl:text-xl">
             Додати матеріал
           </span>

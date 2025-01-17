@@ -1,11 +1,11 @@
-import Image from 'next/image';
+import { Avatar } from '@nextui-org/react';
 
 import { Disclosure, DisclosureButton } from '@headlessui/react';
 
 import DisclosureDeliveryPanel from '../DisclosureDeliveryPanel';
 
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import Delivery from '@/../public/images/delivery.png';
+import { TbTruckDelivery } from "react-icons/tb";
 
 interface IDisclosureDeliveryProps {
   totalWeight: number;
@@ -18,12 +18,11 @@ const DisclosureMoving: React.FC<IDisclosureDeliveryProps> = ({
     <Disclosure as="div" className="p-6">
       <DisclosureButton className="group flex w-full items-center justify-between">
         <div className="text-left flex gap-2 items-center">
-          <Image
-            src={Delivery}
-            width={20}
-            height={20}
-            alt="moving icon"
-            className="md:size-6 xl:size-7"
+          <Avatar
+            icon={<TbTruckDelivery />}
+            className="w-5 h-5 bg-accent text-base md:size-6 md:text-base xl:size-7 xl:text-xl"
+            radius="sm"
+            color="primary"
           />
 
           <span className="text-xs/6 text-left  text-grey font-semibold group-data-[hover]:text-grey/80 md:text-base xl:text-xl">
