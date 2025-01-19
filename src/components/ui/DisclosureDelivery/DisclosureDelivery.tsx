@@ -5,7 +5,7 @@ import { Disclosure, DisclosureButton } from '@headlessui/react';
 import DisclosureDeliveryPanel from '../DisclosureDeliveryPanel';
 
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import { TbTruckDelivery } from "react-icons/tb";
+import { TbTruckDelivery } from 'react-icons/tb';
 
 interface IDisclosureDeliveryProps {
   totalWeight: number;

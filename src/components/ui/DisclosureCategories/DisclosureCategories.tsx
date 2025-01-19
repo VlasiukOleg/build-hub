@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { Disclosure, DisclosureButton } from '@headlessui/react';
 import { Button } from '@nextui-org/react';
 import { Avatar } from '@nextui-org/react';
+import { Breadcrumbs, BreadcrumbItem } from '@nextui-org/react';
 
 import DisclosureMaterialsPanel from '../DisclosureMaterialsPanel';
 import DisclosureGipsokartonPanel from '../DisclosureGipsokartonPanel';
@@ -21,8 +22,16 @@ import { inputChangeQuantity, changeQuantity } from '@/redux/materialsSlice';
 
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
+const BREADCRUMBS_LABEL = {
+  catalog: 'Каталог',
+  shtukaturka: 'Штукатурка',
+  gipsokarton: 'Гіпсокартон',
+};
+
+type SlugType = keyof typeof BREADCRUMBS_LABEL;
+
 interface IDisclosureCategoriesProps {
-  slug: string;
+  slug: SlugType;
 }
 
 const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
@@ -117,6 +126,12 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
           movingPrice={movingPrice}
           isMovingAddToOrder={isMovingAddToOrder}
         />
+        <Breadcrumbs>
+          <BreadcrumbItem href="/catalog">Каталог</BreadcrumbItem>
+          <BreadcrumbItem href="/catalog/slug">
+            {BREADCRUMBS_LABEL[slug]}
+          </BreadcrumbItem>
+        </Breadcrumbs>
         <h1 className="font-unbounded xl:text-2xl font-bold text-center mb-5  md:text-lg">
           {title}
         </h1>
