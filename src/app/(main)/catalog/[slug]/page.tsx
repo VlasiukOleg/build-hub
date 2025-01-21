@@ -4,8 +4,10 @@ import DisclosureCategories from '@/components/ui/DisclosureCategories/';
 
 import data from '@/data/common.json';
 
+import { Pages } from '@/@types';
+
 interface IPageProps {
-  params: { slug: string };
+  params: { slug: Pages };
 }
 
 export const dynamicParams = false;

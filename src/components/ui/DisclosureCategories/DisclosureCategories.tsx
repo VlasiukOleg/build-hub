@@ -22,16 +22,16 @@ import { inputChangeQuantity, changeQuantity } from '@/redux/materialsSlice';
 
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
+import { Pages } from '@/@types';
+
 const BREADCRUMBS_LABEL = {
-  catalog: 'Каталог',
-  shtukaturka: 'Штукатурка',
-  gipsokarton: 'Гіпсокартон',
+  [Pages.CATALOG]: 'Каталог',
+  [Pages.SHTUKATURKA]: 'Штукатурка',
+  [Pages.GIPSOKARTON]: 'Гіпсокартон',
 };
 
-type SlugType = keyof typeof BREADCRUMBS_LABEL;
-
 interface IDisclosureCategoriesProps {
-  slug: SlugType;
+  slug: Pages;
 }
 
 const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({

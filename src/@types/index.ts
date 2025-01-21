@@ -1,0 +1,5 @@
+export enum Pages {
+  CATALOG = 'catalog',
+  SHTUKATURKA = 'shtukaturka',
+  GIPSOKARTON = 'gipsokarton',
+}
