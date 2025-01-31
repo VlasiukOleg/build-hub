@@ -36,7 +36,7 @@ const DisclosureDeliveryPanel: React.FC<IDisclosureDeliveryPanelProps> = ({
   }, [dispatch, totalWeight]);
 
   return (
-    <DisclosurePanel className="mt-2 text-sm/5 text-grey md:text-lg xl:text-xl xl:mt-6">
+    <div className="mt-2 text-sm/5 text-grey md:text-lg xl:text-xl xl:mt-6">
       {deliveryType ? (
         <>
           <div className="mb-3 font-normal">
@@ -77,7 +77,7 @@ const DisclosureDeliveryPanel: React.FC<IDisclosureDeliveryPanelProps> = ({
           </ButtonLink>
         </div>
       )}
-    </DisclosurePanel>
+    </div>
   );
 };
 

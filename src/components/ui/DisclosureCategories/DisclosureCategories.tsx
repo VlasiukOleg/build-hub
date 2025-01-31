@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 
 import { Disclosure, DisclosureButton } from '@headlessui/react';
-import { Button } from '@nextui-org/react';
-import { Avatar } from '@nextui-org/react';
-import { Breadcrumbs, BreadcrumbItem } from '@nextui-org/react';
+import { Button } from '@heroui/react';
+import { Avatar } from '@heroui/react';
+import { Breadcrumbs, BreadcrumbItem } from '@heroui/react';
 
 import DisclosureMaterialsPanel from '../DisclosureMaterialsPanel';
 import DisclosureGipsokartonPanel from '../DisclosureGipsokartonPanel';
@@ -28,6 +28,7 @@ const BREADCRUMBS_LABEL = {
   [Pages.CATALOG]: 'Каталог',
   [Pages.SHTUKATURKA]: 'Штукатурка',
   [Pages.GIPSOKARTON]: 'Гіпсокартон',
+  [Pages.ORDER]: 'Корзина',
 };
 
 interface IDisclosureCategoriesProps {
@@ -204,7 +205,7 @@ const DisclosureCategories: React.FC<IDisclosureCategoriesProps> = ({
             size="lg"
             className="bg-accent font-medium text-white"
             radius="sm"
-            onPress={() => router.push('/order')}
+            onPress={() => router.push(`/${Pages.ORDER}`)}
           >
             Оформити замовлення
           </Button>

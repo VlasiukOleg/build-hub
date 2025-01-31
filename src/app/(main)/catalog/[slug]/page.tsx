@@ -1,6 +1,7 @@
 import Script from 'next/script';
 
 import DisclosureCategories from '@/components/ui/DisclosureCategories/';
+import AccordionCategories from '@/components/ui/AccordionCategories';
 
 import data from '@/data/common.json';
 
@@ -38,7 +39,9 @@ const Page: React.FC<IPageProps> = ({ params: { slug } }) => {
             `,
         }}
       />
-      <DisclosureCategories slug={slug} />
+      <div>
+        <AccordionCategories slug={slug} />
+      </div>
     </>
   );
 };

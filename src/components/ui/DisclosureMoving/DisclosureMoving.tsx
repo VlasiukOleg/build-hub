@@ -4,7 +4,7 @@ import {
   DisclosurePanel,
   DisclosureButton,
 } from '@headlessui/react';
-import { Avatar } from '@nextui-org/react';
+import { Avatar } from "@heroui/react";
 
 import DisclosureMovingPanel from '../DisclosureMovingPanel';
 

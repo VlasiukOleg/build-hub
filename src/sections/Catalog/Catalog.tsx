@@ -1,3 +1,5 @@
+'use client';
+
 import CatalogCard from '@/components/ui/CatalogCard';
 
 import Shtukaturka from '@/../public/images/shtukaturka-450x300.webp';

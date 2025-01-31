@@ -8,11 +8,11 @@ import {
   Field,
   Label,
 } from '@headlessui/react';
-import { Alert } from '@nextui-org/react';
+import { Alert } from '@heroui/react';
 import clsx from 'clsx';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { useState, useEffect } from 'react';
-import { Button } from '@nextui-org/react';
+import { Button } from '@heroui/react';
 
 import MovingCostTable from '@/components/common/MovingCostTable';
 
@@ -266,7 +266,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
   ]);
 
   return (
-    <DisclosurePanel className="mt-2 text-sm/5 text-grey md:text-lg xl:text-xl xl:mt-6">
+    <div className="mt-2 text-sm/5 text-grey md:text-lg xl:text-xl xl:mt-6">
       <div className="mb-3 font-medium">
         Загальна вага: <span className="text-accent">{totalWeight} кг.</span>
       </div>
@@ -405,7 +405,7 @@ const DisclosureMovingPanel: React.FunctionComponent<
             : 'Додати до замовлення'}
         </Button>
       </div>
-    </DisclosurePanel>
+    </div>
   );
 };
 

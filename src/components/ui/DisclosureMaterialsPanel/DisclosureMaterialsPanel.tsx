@@ -2,7 +2,7 @@ import Image from 'next/image';
 import clsx from 'clsx';
 
 import { DisclosurePanel, Input } from '@headlessui/react';
-import { Button } from '@nextui-org/react';
+import { Button } from "@heroui/react";
 
 import { FaMinus } from 'react-icons/fa6';
 import { FaPlus } from 'react-icons/fa6';
@@ -46,11 +46,6 @@ const DisclosureMaterialsPanel: React.FC<IDisclosureMaterialsPanelProps> = ({
   handleBlur,
 }) => {
   return (
-    <DisclosurePanel
-      transition
-      className="mt-4  text-white/50  origin-top transition duration-200 ease-out data-[closed]:-translate-y-6 data-[closed]:opacity-0 xl:mt-5"
-      key={material.id}
-    >
       <div className="xl:flex xl:justify-between">
         <div className="flex items-center gap-4 mb-2 xl:mb-0">
           <div className="rounded-xl border-[1px] border-accent overflow-hidden inline-block min-w-[75px] max-h-[75px] md:min-w-[100px] md:max-h-[100px] xl:min-w-[150px] xl:max-h-[150px]">
@@ -118,7 +113,6 @@ const DisclosureMaterialsPanel: React.FC<IDisclosureMaterialsPanelProps> = ({
           </div>
         </div>
       </div>
-    </DisclosurePanel>
   );
 };
 

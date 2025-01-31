@@ -1,5 +1,5 @@
 import { Disclosure, DisclosureButton } from '@headlessui/react';
-import { Avatar, AvatarIcon } from '@nextui-org/react';
+import { Avatar, AvatarIcon } from "@heroui/react";
 
 import DisclosureAddMaterialsPanel from '../DisclosureAddMaterialsPanel/';
 

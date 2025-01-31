@@ -49,10 +49,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uk">
-      <StoreProvider>
-        <body className={clsx(montserrat.className)}>
+      <body className={clsx(montserrat.className)}>
+        <StoreProvider>
           <Providers>
-            <div className="flex flex-col h-full min-h-screen overflow-x-hidden">
+            <div className="flex flex-col h-full min-h-screen">
               <Header />
               <main className="flex-1 flex items-center justify-center">
                 {children}
@@ -60,8 +60,8 @@ export default function RootLayout({
               <Footer />
             </div>
           </Providers>
-        </body>
-      </StoreProvider>
+        </StoreProvider>
+      </body>
     </html>
   );
 }

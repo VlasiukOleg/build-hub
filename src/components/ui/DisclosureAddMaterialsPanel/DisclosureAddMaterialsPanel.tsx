@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '@nextui-org/react';
+import { Button } from '@heroui/react';
 import clsx from 'clsx';
 import { DisclosurePanel, Field, Label, Input } from '@headlessui/react';
 
@@ -38,7 +38,8 @@ const DisclosureAddMaterialsPanel: React.FC<
     state => state.additionalMaterial.isAdditionalMaterialAddToOrder
   );
 
-  const isButtonActive = Number(newMaterial.quantity) > 0 && newMaterial.title.length > 0;
+  const isButtonActive =
+    Number(newMaterial.quantity) > 0 && newMaterial.title.length > 0;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -62,7 +63,7 @@ const DisclosureAddMaterialsPanel: React.FC<
   };
 
   return (
-    <DisclosurePanel className="mt-2 text-sm/5 text-grey md:text-lg xl:text-xl xl:mt-6">
+    <div className="mt-2 text-sm/5 text-grey md:text-lg xl:text-xl xl:mt-6">
       <p className="text-xs text-center text-accent font-bold mb-2 md:text-base xl:text-xl">
         Якщо Ви не знайшли потрібний матеріал, додайте що Вам необхідно:
       </p>
@@ -160,7 +161,7 @@ const DisclosureAddMaterialsPanel: React.FC<
           </div>
         </>
       )}
-    </DisclosurePanel>
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
-import { Button } from '@nextui-org/react';
+import { Button } from "@heroui/react";
 
 import { useAppDispatch } from '@/redux/hooks';
 import { clearQuantity } from '@/redux/materialsSlice';
